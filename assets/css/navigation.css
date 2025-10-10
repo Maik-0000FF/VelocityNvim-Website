@@ -17,6 +17,12 @@
     right: 0;
 }
 
+@media (max-width: 768px) {
+    .sticky-nav {
+        position: fixed;
+    }
+}
+
 .nav-content {
     max-width: 100%;
     margin: 0 auto;
