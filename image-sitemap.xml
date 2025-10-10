@@ -4,9 +4,14 @@
     <url>
         <loc>https://velocitynvim.com/</loc>
         <image:image>
-            <image:loc>https://velocitynvim.com/assets/images/screenshot_velocitynvim.png</image:loc>
+            <image:loc>https://velocitynvim.com/assets/images/screenshot_velocitynvim.webp</image:loc>
             <image:title>VelocityNvim Editor Screenshot</image:title>
             <image:caption>VelocityNvim Neovim distribution with native vim.pack - Editor interface with dark theme, LSP integration, and Treesitter syntax highlighting</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://velocitynvim.com/assets/images/screenshot_velocitynvim.png</image:loc>
+            <image:title>VelocityNvim Editor Screenshot PNG</image:title>
+            <image:caption>VelocityNvim Neovim distribution with native vim.pack - Editor interface (PNG fallback)</image:caption>
         </image:image>
         <image:image>
             <image:loc>https://velocitynvim.com/assets/images/VelocityNvim_Logo.svg</image:loc>
