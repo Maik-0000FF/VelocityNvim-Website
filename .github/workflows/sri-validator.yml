@@ -1,0 +1,206 @@
+name: "SRI Validator"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    # Wöchentlich prüfen (Montag 4:00 UTC)
+    - cron: '0 4 * * 1'
+  workflow_dispatch:
+
+jobs:
+  sri-check:
+    name: Validate & Generate SRI
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Find External Resources
+      id: find-resources
+      run: |
+        echo "Finding external resources in HTML/CSS/JS files..."
+
+        # Finde alle <script> und <link> Tags mit externen URLs
+        EXTERNAL_SCRIPTS=$(grep -rhoE '<(script|link)[^>]+src=["\x27](https?://[^"\x27]+)["\x27][^>]*>' --include="*.html" . || true)
+        EXTERNAL_LINKS=$(grep -rhoE '<link[^>]+href=["\x27](https?://[^"\x27]+)["\x27][^>]*>' --include="*.html" . || true)
+
+        echo "External Scripts:"
+        echo "$EXTERNAL_SCRIPTS"
+        echo ""
+        echo "External Links:"
+        echo "$EXTERNAL_LINKS"
+
+        # Extrahiere URLs
+        SCRIPT_URLS=$(echo "$EXTERNAL_SCRIPTS" | grep -oE 'https?://[^"'\'']+' || true)
+        LINK_URLS=$(echo "$EXTERNAL_LINKS" | grep -oE 'https?://[^"'\'']+' || true)
+
+        ALL_URLS=$(echo -e "$SCRIPT_URLS\n$LINK_URLS" | sort -u | grep -v "^$")
+
+        echo "all_urls<<EOF" >> $GITHUB_OUTPUT
+        echo "$ALL_URLS" >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+
+    - name: Check Existing SRI
+      run: |
+        echo "Checking for existing SRI attributes..."
+
+        MISSING_SRI=0
+
+        while IFS= read -r line; do
+          if [ -z "$line" ]; then
+            continue
+          fi
+
+          URL="$line"
+          echo "Checking: $URL"
+
+          # Prüfe ob SRI-Hash existiert
+          if grep -r "$URL" --include="*.html" . | grep -q "integrity="; then
+            HASH=$(grep -r "$URL" --include="*.html" . | grep -oE 'integrity="[^"]+"' | head -1)
+            echo "  ✅ Has SRI: $HASH"
+          else
+            echo "  ⚠️ Missing SRI"
+            MISSING_SRI=$((MISSING_SRI + 1))
+          fi
+        done <<< "${{ steps.find-resources.outputs.all_urls }}"
+
+        echo ""
+        if [ $MISSING_SRI -eq 0 ]; then
+          echo "✅ All external resources have SRI"
+        else
+          echo "⚠️ $MISSING_SRI resources missing SRI"
+        fi
+
+    - name: Generate SRI Hashes
+      run: |
+        echo "Generating SRI hashes for external resources..."
+        echo ""
+        echo "=========================================="
+        echo "Copy these SRI hashes to your HTML files:"
+        echo "=========================================="
+        echo ""
+
+        while IFS= read -r line; do
+          if [ -z "$line" ]; then
+            continue
+          fi
+
+          URL="$line"
+          echo "Resource: $URL"
+
+          # Download und generiere Hash
+          TEMP_FILE=$(mktemp)
+          if curl -sL "$URL" -o "$TEMP_FILE" 2>/dev/null; then
+            HASH_SHA256=$(openssl dgst -sha256 -binary "$TEMP_FILE" | openssl base64 -A)
+            HASH_SHA384=$(openssl dgst -sha384 -binary "$TEMP_FILE" | openssl base64 -A)
+            HASH_SHA512=$(openssl dgst -sha512 -binary "$TEMP_FILE" | openssl base64 -A)
+
+            echo "  SHA-256: sha256-$HASH_SHA256"
+            echo "  SHA-384: sha384-$HASH_SHA384"
+            echo "  SHA-512: sha512-$HASH_SHA512"
+            echo ""
+
+            # Empfehlung mit SHA-384 (beste Balance)
+            if echo "$URL" | grep -q "\.js"; then
+              echo "  Recommended for <script>:"
+              echo "  <script src=\"$URL\""
+              echo "          integrity=\"sha384-$HASH_SHA384\""
+              echo "          crossorigin=\"anonymous\"></script>"
+            elif echo "$URL" | grep -q "\.css"; then
+              echo "  Recommended for <link>:"
+              echo "  <link rel=\"stylesheet\" href=\"$URL\""
+              echo "        integrity=\"sha384-$HASH_SHA384\""
+              echo "        crossorigin=\"anonymous\">"
+            fi
+
+            echo ""
+            echo "------------------------------------------"
+            echo ""
+          else
+            echo "  ❌ Failed to download"
+            echo ""
+          fi
+
+          rm -f "$TEMP_FILE"
+        done <<< "${{ steps.find-resources.outputs.all_urls }}"
+
+    - name: Validate Existing SRI Hashes
+      run: |
+        echo "Validating existing SRI hashes..."
+
+        VALIDATION_ERRORS=0
+
+        # Finde alle Ressourcen mit SRI
+        RESOURCES_WITH_SRI=$(grep -rhoE '<(script|link)[^>]+integrity="[^"]+"[^>]*>' --include="*.html" . || true)
+
+        if [ -z "$RESOURCES_WITH_SRI" ]; then
+          echo "ℹ️ No resources with SRI found"
+          exit 0
+        fi
+
+        echo "$RESOURCES_WITH_SRI" | while IFS= read -r line; do
+          if [ -z "$line" ]; then
+            continue
+          fi
+
+          # Extrahiere URL und Hash
+          URL=$(echo "$line" | grep -oE 'https?://[^"'\'']+' || true)
+          EXPECTED_HASH=$(echo "$line" | grep -oE 'integrity="[^"]+"' | sed 's/integrity="//;s/"//' || true)
+
+          if [ -z "$URL" ] || [ -z "$EXPECTED_HASH" ]; then
+            continue
+          fi
+
+          echo "Validating: $URL"
+          echo "Expected: $EXPECTED_HASH"
+
+          # Download und berechne Hash
+          TEMP_FILE=$(mktemp)
+          if curl -sL "$URL" -o "$TEMP_FILE" 2>/dev/null; then
+            # Bestimme Hash-Algorithmus
+            ALGO=$(echo "$EXPECTED_HASH" | cut -d'-' -f1)
+            EXPECTED_VALUE=$(echo "$EXPECTED_HASH" | cut -d'-' -f2)
+
+            case "$ALGO" in
+              sha256)
+                ACTUAL_HASH=$(openssl dgst -sha256 -binary "$TEMP_FILE" | openssl base64 -A)
+                ;;
+              sha384)
+                ACTUAL_HASH=$(openssl dgst -sha384 -binary "$TEMP_FILE" | openssl base64 -A)
+                ;;
+              sha512)
+                ACTUAL_HASH=$(openssl dgst -sha512 -binary "$TEMP_FILE" | openssl base64 -A)
+                ;;
+              *)
+                echo "  ⚠️ Unknown hash algorithm: $ALGO"
+                continue
+                ;;
+            esac
+
+            if [ "$ACTUAL_HASH" = "$EXPECTED_VALUE" ]; then
+              echo "  ✅ SRI hash valid"
+            else
+              echo "  ❌ SRI hash mismatch!"
+              echo "  Expected: $EXPECTED_VALUE"
+              echo "  Actual:   $ACTUAL_HASH"
+              VALIDATION_ERRORS=$((VALIDATION_ERRORS + 1))
+            fi
+          else
+            echo "  ❌ Failed to download for validation"
+            VALIDATION_ERRORS=$((VALIDATION_ERRORS + 1))
+          fi
+
+          rm -f "$TEMP_FILE"
+          echo ""
+        done
+
+        if [ $VALIDATION_ERRORS -gt 0 ]; then
+          echo "❌ $VALIDATION_ERRORS SRI validation errors found"
+          exit 1
+        else
+          echo "✅ All SRI hashes are valid"
+        fi
