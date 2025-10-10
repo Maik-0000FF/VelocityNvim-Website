@@ -1,0 +1,41 @@
+# Operating System
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node modules (if using npm/yarn in future)
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Environment variables
+.env
+.env.local
+
+# Build output
+dist/
+build/
+
+# Claude Code
+.claude/
+SESSION_SUMMARY.md
+claude.md
+
+# MCP Development Docs (not needed for deployment)
+mcp/
+
+# Test Server
+*.pyc
+__pycache__/
+
+# Deployment Plan (local only)
+DEPLOYMENT_PLAN.md
