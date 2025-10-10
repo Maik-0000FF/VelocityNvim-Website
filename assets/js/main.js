@@ -85,12 +85,15 @@ function initScrollHoverEffects() {
     }
 
     // Calculate rootMargin - card triggers hover when it reaches center (40% from top/bottom)
+    // Add extra margin at top to account for fixed navbar on mobile
     const viewportHeight = window.innerHeight;
-    const margin = Math.round(viewportHeight * 0.4);
+    const navbarHeight = 60; // Fixed navbar height on mobile
+    const marginBottom = Math.round(viewportHeight * 0.4);
+    const marginTop = Math.round(viewportHeight * 0.4) + navbarHeight;
 
     const observerOptions = {
         root: null,
-        rootMargin: `-${margin}px 0px -${margin}px 0px`,
+        rootMargin: `-${marginTop}px 0px -${marginBottom}px 0px`,
         threshold: [0, 0.25, 0.5, 0.75, 1]
     };
 

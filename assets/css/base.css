@@ -169,6 +169,7 @@ h2 {
 @media (max-width: 768px) {
     body {
         font-size: 14px;
+        padding-top: 60px;
     }
 
     .container {
