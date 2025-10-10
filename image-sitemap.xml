@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    <url>
+        <loc>https://velocitynvim.com/</loc>
+        <image:image>
+            <image:loc>https://velocitynvim.com/assets/images/screenshot_velocitynvim.png</image:loc>
+            <image:title>VelocityNvim Editor Screenshot</image:title>
+            <image:caption>VelocityNvim Neovim distribution with native vim.pack - Editor interface with dark theme, LSP integration, and Treesitter syntax highlighting</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://velocitynvim.com/assets/images/VelocityNvim_Logo.svg</image:loc>
+            <image:title>VelocityNvim Logo</image:title>
+            <image:caption>Official VelocityNvim logo - Fast Neovim distribution</image:caption>
+        </image:image>
+    </url>
+</urlset>

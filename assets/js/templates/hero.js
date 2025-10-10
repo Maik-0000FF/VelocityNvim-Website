@@ -35,7 +35,11 @@ export const heroTemplate = () => `
         <div class="hero-screenshot">
             <picture>
                 <source srcset="assets/images/screenshot_velocitynvim.webp" type="image/webp">
-                <img src="assets/images/screenshot_velocitynvim.png" alt="VelocityNvim Screenshot" onerror="this.style.display='none'">
+                <img src="assets/images/screenshot_velocitynvim.png"
+                     alt="VelocityNvim Neovim editor screenshot showing dark theme with LSP integration, Treesitter syntax highlighting, and native vim.pack plugin system"
+                     title="VelocityNvim - Fast Neovim Distribution"
+                     loading="eager"
+                     onerror="this.style.display='none'">
             </picture>
         </div>
     </div>
