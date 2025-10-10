@@ -46,10 +46,11 @@ jobs:
           VULNERABLE=1
         fi
 
-        # Prüfe auf HTTP statt HTTPS
-        if echo "$EXTERNAL_URLS" | grep -q "http://"; then
+        # Prüfe auf HTTP statt HTTPS (ignoriere XML-Namespaces wie w3.org/2000/svg)
+        HTTP_RESOURCES=$(echo "$EXTERNAL_URLS" | grep "http://" | grep -v "w3.org" || true)
+        if [ -n "$HTTP_RESOURCES" ]; then
           echo "⚠️ Insecure HTTP resources found (should use HTTPS)"
-          echo "$EXTERNAL_URLS" | grep "http://"
+          echo "$HTTP_RESOURCES"
           VULNERABLE=1
         fi
 
