@@ -1,0 +1,137 @@
+name: "Dependency Security Scanning"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    # Wöchentlicher Scan jeden Sonntag um 3:00 UTC
+    - cron: '0 3 * * 0'
+  workflow_dispatch:
+
+jobs:
+  dependency-scan:
+    name: Scan Dependencies
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Scan for Vulnerable External Resources
+      run: |
+        echo "Checking external dependencies for known vulnerabilities..."
+
+        # Sammle alle externen URLs
+        EXTERNAL_URLS=$(grep -rhoE 'https?://[^"'\'']+' --include="*.html" --include="*.css" --include="*.js" . | sort -u)
+
+        echo "Found external resources:"
+        echo "$EXTERNAL_URLS"
+
+        # Prüfe auf bekannte CDN-Domains
+        echo ""
+        echo "Checking CDN usage..."
+
+        VULNERABLE=0
+
+        # Prüfe auf unsichere CDN-Versionen (Beispiele)
+        if echo "$EXTERNAL_URLS" | grep -q "jquery.*1\.[0-8]\."; then
+          echo "⚠️ Old jQuery version detected (potential XSS vulnerabilities)"
+          VULNERABLE=1
+        fi
+
+        if echo "$EXTERNAL_URLS" | grep -q "bootstrap.*[0-3]\."; then
+          echo "⚠️ Old Bootstrap version detected"
+          VULNERABLE=1
+        fi
+
+        # Prüfe auf HTTP statt HTTPS
+        if echo "$EXTERNAL_URLS" | grep -q "http://"; then
+          echo "⚠️ Insecure HTTP resources found (should use HTTPS)"
+          echo "$EXTERNAL_URLS" | grep "http://"
+          VULNERABLE=1
+        fi
+
+        if [ $VULNERABLE -eq 0 ]; then
+          echo "✅ No vulnerable external dependencies detected"
+        else
+          echo "❌ Vulnerable dependencies found!"
+          exit 1
+        fi
+
+    - name: Check Subresource Integrity (SRI)
+      run: |
+        echo "Checking for Subresource Integrity on external resources..."
+
+        # Finde alle <script> und <link> Tags mit externen URLs
+        EXTERNAL_SCRIPTS=$(grep -rhoE '<(script|link)[^>]*(https?://[^>]+)>' --include="*.html" . || true)
+
+        if [ -z "$EXTERNAL_SCRIPTS" ]; then
+          echo "✅ No external scripts found"
+          exit 0
+        fi
+
+        echo "External resources found:"
+        echo "$EXTERNAL_SCRIPTS"
+        echo ""
+
+        # Prüfe auf fehlende integrity-Attribute
+        MISSING_SRI=$(echo "$EXTERNAL_SCRIPTS" | grep -v "integrity=" || true)
+
+        if [ -n "$MISSING_SRI" ]; then
+          echo "⚠️ External resources without SRI detected:"
+          echo "$MISSING_SRI"
+          echo ""
+          echo "Recommendation: Add integrity and crossorigin attributes for security"
+          echo "Example: <script src='...' integrity='sha384-...' crossorigin='anonymous'></script>"
+        else
+          echo "✅ All external resources have SRI"
+        fi
+
+    - name: Check for Known Vulnerable Patterns
+      run: |
+        echo "Checking for known vulnerable code patterns..."
+
+        VULNERABLE=0
+
+        # Prüfe auf eval()
+        if grep -rn "eval(" --include="*.js" . 2>/dev/null | grep -v "node_modules" | grep -v ".git"; then
+          echo "⚠️ eval() usage detected - potential security risk"
+          VULNERABLE=1
+        fi
+
+        # Prüfe auf innerHTML mit User Input
+        if grep -rn "innerHTML.*=" --include="*.js" . 2>/dev/null | grep -v "node_modules" | grep -v ".git"; then
+          echo "⚠️ innerHTML usage detected - review for XSS vulnerabilities"
+          VULNERABLE=1
+        fi
+
+        # Prüfe auf document.write
+        if grep -rn "document\.write" --include="*.js" . 2>/dev/null | grep -v "node_modules" | grep -v ".git"; then
+          echo "⚠️ document.write() detected - potential XSS vector"
+          VULNERABLE=1
+        fi
+
+        if [ $VULNERABLE -eq 0 ]; then
+          echo "✅ No known vulnerable patterns detected"
+        fi
+
+    - name: OWASP Dependency Check
+      uses: dependency-check/Dependency-Check_Action@main
+      with:
+        project: 'VelocityNvim-Website'
+        path: '.'
+        format: 'HTML'
+        args: >
+          --enableRetired
+          --enableExperimental
+      continue-on-error: true
+
+    - name: Upload Dependency Check Results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: dependency-check-report
+        path: reports/
+        retention-days: 30
