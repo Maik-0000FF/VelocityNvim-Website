@@ -55,7 +55,12 @@ let scrollHoverObserver = null;
 function initScrollHoverEffects() {
     const featureCards = document.querySelectorAll('.feature-card');
     const supportItems = document.querySelectorAll('.support-item');
+    const heroScreenshot = document.querySelector('.hero-screenshot');
     const allCards = [...featureCards, ...supportItems];
+
+    if (heroScreenshot) {
+        allCards.push(heroScreenshot);
+    }
 
     if (allCards.length === 0) {
         console.warn('No cards found for scroll hover effects');
@@ -106,7 +111,8 @@ function initScrollHoverEffects() {
         scrollHoverObserver.observe(card);
     });
 
-    console.log(`Scroll hover observer initialized for ${allCards.length} cards (${featureCards.length} features + ${supportItems.length} support)`);
+    const screenshotCount = heroScreenshot ? 1 : 0;
+    console.log(`Scroll hover observer initialized for ${allCards.length} cards (${featureCards.length} features + ${supportItems.length} support + ${screenshotCount} screenshot)`);
 }
 
 // ===== Tab Switching =====
