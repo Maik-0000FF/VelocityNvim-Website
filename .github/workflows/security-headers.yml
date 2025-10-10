@@ -1,0 +1,149 @@
+name: "Security Headers Check"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    # Täglich um 2:00 UTC prüfen
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  security-headers:
+    name: Check Security Headers
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Wait for Deployment
+      run: |
+        echo "Waiting for GitHub Pages deployment..."
+        sleep 30
+
+    - name: Check Security Headers with securityheaders.com
+      run: |
+        echo "Checking security headers for https://velocitynvim.com..."
+
+        # Teste die Website-Headers
+        RESPONSE=$(curl -sI https://velocitynvim.com/ || true)
+
+        echo "Response Headers:"
+        echo "$RESPONSE"
+        echo ""
+
+        WARNINGS=0
+
+        # Content-Security-Policy
+        if ! echo "$RESPONSE" | grep -iq "content-security-policy"; then
+          echo "⚠️ Missing: Content-Security-Policy"
+          WARNINGS=$((WARNINGS + 1))
+        else
+          echo "✅ Content-Security-Policy present"
+        fi
+
+        # X-Frame-Options
+        if ! echo "$RESPONSE" | grep -iq "x-frame-options"; then
+          echo "⚠️ Missing: X-Frame-Options"
+          WARNINGS=$((WARNINGS + 1))
+        else
+          echo "✅ X-Frame-Options present"
+        fi
+
+        # X-Content-Type-Options
+        if ! echo "$RESPONSE" | grep -iq "x-content-type-options"; then
+          echo "⚠️ Missing: X-Content-Type-Options"
+          WARNINGS=$((WARNINGS + 1))
+        else
+          echo "✅ X-Content-Type-Options present"
+        fi
+
+        # Strict-Transport-Security
+        if ! echo "$RESPONSE" | grep -iq "strict-transport-security"; then
+          echo "⚠️ Missing: Strict-Transport-Security (HSTS)"
+          WARNINGS=$((WARNINGS + 1))
+        else
+          echo "✅ Strict-Transport-Security (HSTS) present"
+        fi
+
+        # Referrer-Policy
+        if ! echo "$RESPONSE" | grep -iq "referrer-policy"; then
+          echo "⚠️ Missing: Referrer-Policy"
+          WARNINGS=$((WARNINGS + 1))
+        else
+          echo "✅ Referrer-Policy present"
+        fi
+
+        # Permissions-Policy
+        if ! echo "$RESPONSE" | grep -iq "permissions-policy"; then
+          echo "⚠️ Missing: Permissions-Policy"
+          WARNINGS=$((WARNINGS + 1))
+        else
+          echo "✅ Permissions-Policy present"
+        fi
+
+        echo ""
+        echo "=========================================="
+        if [ $WARNINGS -eq 0 ]; then
+          echo "✅ All security headers present!"
+        else
+          echo "⚠️ $WARNINGS security headers missing"
+          echo ""
+          echo "Note: GitHub Pages has limited control over HTTP headers."
+          echo "Some headers may need to be configured via _headers file or"
+          echo "meta tags in HTML for GitHub Pages compatibility."
+        fi
+
+    - name: Test HTTPS Enforcement
+      run: |
+        echo "Testing HTTPS enforcement..."
+
+        # Teste HTTP -> HTTPS Redirect
+        HTTP_RESPONSE=$(curl -sI -L http://velocitynvim.com/ | grep -i "location" || true)
+
+        if echo "$HTTP_RESPONSE" | grep -q "https://"; then
+          echo "✅ HTTP redirects to HTTPS"
+        else
+          echo "⚠️ HTTP does not redirect to HTTPS"
+        fi
+
+    - name: Check for Mixed Content
+      run: |
+        echo "Checking HTML for mixed content issues..."
+
+        # Lade die HTML-Seite
+        PAGE_CONTENT=$(curl -s https://velocitynvim.com/ || true)
+
+        # Prüfe auf HTTP-Ressourcen (außer w3.org Namespaces)
+        MIXED_CONTENT=$(echo "$PAGE_CONTENT" | grep -oE '(src|href)="http://[^"]+' | grep -v "w3.org" || true)
+
+        if [ -n "$MIXED_CONTENT" ]; then
+          echo "⚠️ Mixed content detected:"
+          echo "$MIXED_CONTENT"
+          exit 1
+        else
+          echo "✅ No mixed content detected"
+        fi
+
+    - name: OWASP ZAP Baseline Scan
+      uses: zaproxy/action-baseline@v0.12.0
+      with:
+        target: 'https://velocitynvim.com/'
+        allow_issue_writing: false
+        fail_action: false
+        cmd_options: '-a'
+      continue-on-error: true
+
+    - name: Upload ZAP Scan Results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: zap-scan-results
+        path: |
+          report_html.html
+          report_md.md
+          report_json.json
+        retention-days: 30
