@@ -3,5 +3,13 @@
 User-agent: *
 Allow: /
 
+# Disallow development files
+Disallow: /*.md$
+Disallow: /mcp/
+Disallow: /.git/
+
 # Sitemap
-Sitemap: https://maik-0000ff.github.io/VelocityNvim/sitemap.xml
+Sitemap: https://velocitynvim.com/sitemap.xml
+
+# Crawl-delay (optional, für höfliche Bots)
+Crawl-delay: 1
