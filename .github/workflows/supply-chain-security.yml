@@ -184,9 +184,10 @@ jobs:
         echo ""
 
         # Erstelle eine einfache SBOM-Liste
-        cat > sbom.txt << 'SBOM_EOF'
+        GENERATED_DATE=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
+        cat > sbom.txt << SBOM_EOF
 Project: VelocityNvim Landing Page
-Generated: $(date -u +"%Y-%m-%d %H:%M:%S UTC")
+Generated: ${GENERATED_DATE}
 
 External Dependencies:
 SBOM_EOF
