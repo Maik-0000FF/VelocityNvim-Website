@@ -76,16 +76,23 @@
     cursor: pointer;
 }
 
+/* Desktop: Match features grid width */
+@media (min-width: 769px) {
+    .hero-screenshot {
+        max-width: 1200px;
+    }
+}
+
 .hero-screenshot.scroll-hover-active {
     transform: translateY(-4px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.95);
 }
 
 /* Desktop hover effect */
 @media (min-width: 769px) {
     .hero-screenshot:hover {
         transform: translateY(-4px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.95);
     }
 }
 
@@ -188,6 +195,7 @@ a.feature-card:hover {
     }
 }
 
+.feature-card h2,
 .feature-card h3 {
     color: var(--color-text);
     font-size: 1.3em;
@@ -490,6 +498,7 @@ a.feature-card:hover {
     flex: 1;
 }
 
+.documentation-section .feature-card h2,
 .documentation-section .feature-card h3 {
     color: var(--color-text);
     font-size: 1.3em;
@@ -549,6 +558,7 @@ a.feature-card:hover {
         height: 70px;
     }
 
+    .feature-card h2,
     .feature-card h3 {
         font-size: 1.2em;
     }
