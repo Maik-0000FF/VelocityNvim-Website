@@ -185,12 +185,10 @@ jobs:
 
         # Erstelle eine einfache SBOM-Liste
         GENERATED_DATE=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
-        cat > sbom.txt << SBOM_EOF
-Project: VelocityNvim Landing Page
-Generated: ${GENERATED_DATE}
-
-External Dependencies:
-SBOM_EOF
+        echo "Project: VelocityNvim Landing Page" > sbom.txt
+        echo "Generated: ${GENERATED_DATE}" >> sbom.txt
+        echo "" >> sbom.txt
+        echo "External Dependencies:" >> sbom.txt
 
         grep -rhoE 'https?://[^"'\'']+' --include="*.html" . | sort -u | while read url; do
           echo "- $url" >> sbom.txt
