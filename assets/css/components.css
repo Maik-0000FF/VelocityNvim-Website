@@ -77,17 +77,15 @@
 }
 
 .hero-screenshot.scroll-hover-active {
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 35px 90px rgba(0, 0, 0, 0.5),
-                0 15px 40px rgba(3, 102, 214, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
 /* Desktop hover effect */
 @media (min-width: 769px) {
     .hero-screenshot:hover {
-        transform: translateY(-4px) scale(1.02);
-        box-shadow: 0 35px 90px rgba(0, 0, 0, 0.5),
-                    0 15px 40px rgba(3, 102, 214, 0.3);
+        transform: translateY(-4px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     }
 }
 
