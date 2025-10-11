@@ -174,7 +174,7 @@ body {
 
 .footer {
     background: #1a202c;
-    color: #586069;
+    color: #a0aec0;
     padding: var(--spacing-3xl) var(--spacing-2xl);
     text-align: center;
     min-height: 280px;
@@ -201,7 +201,7 @@ body {
 .footer-communities h3 {
     font-size: 1.1em;
     margin-bottom: var(--spacing-md);
-    color: #586069;
+    color: #a0aec0;
 }
 
 .social-links {
@@ -253,7 +253,7 @@ body {
 }
 
 .footer-brand small {
-    color: #586069;
+    color: #a0aec0;
 }
 
 /* Typography */
