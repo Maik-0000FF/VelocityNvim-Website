@@ -159,6 +159,19 @@ body {
     padding: var(--spacing-2xl);
 }
 
+/* Prevent CLS by reserving space for dynamic content */
+#hero-container {
+    min-height: 800px;
+}
+
+#support-container {
+    min-height: 400px;
+}
+
+#links-container {
+    min-height: 200px;
+}
+
 .footer {
     background: #1a202c;
     color: #586069;
@@ -1289,6 +1302,19 @@ h4 .icon-inline {
 
     .content {
         padding: var(--spacing-md) 10px;
+    }
+
+    /* Adjust container heights for mobile */
+    #hero-container {
+        min-height: 1200px;
+    }
+
+    #support-container {
+        min-height: 600px;
+    }
+
+    #links-container {
+        min-height: 150px;
     }
 
     .footer {
