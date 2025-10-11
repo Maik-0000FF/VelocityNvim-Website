@@ -188,10 +188,12 @@
 a.support-item {
     color: inherit;
     text-decoration: none;
+    cursor: pointer;
+    display: flex;
 }
 
-a.support-item:hover h3 {
-    color: var(--color-primary);
+a.support-item:hover {
+    opacity: 1;
 }
 
 .bitcoin-item {
@@ -303,11 +305,15 @@ a.support-item:hover h3 {
     }
 
     .support-item h3 {
-        font-size: 0.95em;
+        font-size: 1.2em;
     }
 
     .support-item p {
-        font-size: 0.8em;
+        font-size: 0.95em;
+    }
+
+    .bitcoin-item p {
+        font-size: 0.9em !important;
     }
 }
 
