@@ -28,57 +28,81 @@ export const beautifulUiTemplate = () => `
             <h2>UI-Komponenten im Detail</h2>
 
             <div class="feature-card">
-                <span data-icon="star" data-color="#2196F3" data-size="32"></span>
-                <h3>Moderne Statusline</h3>
-                <p>
+                <div>
+                    <span data-icon="star" data-color="#2196F3" data-size="32"></span>
+                    <div>
+                        <h3>Moderne Statusline</h3>
+                        <p>
                     Die Statusline zeigt dir alle wichtigen Informationen: Aktueller Modus, Dateipfad,
                     Git-Branch, LSP-Status, Diagnostics und mehr. Alles übersichtlich und farblich kodiert.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="star" data-color="#2196F3" data-size="32"></span>
-                <h3>Durchdachte Farbschemata</h3>
-                <p>
+                <div>
+                    <span data-icon="star" data-color="#2196F3" data-size="32"></span>
+                    <div>
+                        <h3>Durchdachte Farbschemata</h3>
+                        <p>
                     Sorgfältig ausgewählte Themes mit perfekt abgestimmten Farben. Alle Themes
                     sind für lange Coding-Sessions optimiert und reduzieren Augenbelastung.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="star" data-color="#2196F3" data-size="32"></span>
-                <h3>Treesitter Syntax Highlighting</h3>
-                <p>
+                <div>
+                    <span data-icon="star" data-color="#2196F3" data-size="32"></span>
+                    <div>
+                        <h3>Treesitter Syntax Highlighting</h3>
+                        <p>
                     Präzises, semantisches Syntax-Highlighting dank Treesitter. Code-Strukturen
                     werden klar hervorgehoben und erleichtern das Verständnis komplexer Codebases.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="star" data-color="#2196F3" data-size="32"></span>
-                <h3>Einheitliche Icons</h3>
-                <p>
+                <div>
+                    <span data-icon="star" data-color="#2196F3" data-size="32"></span>
+                    <div>
+                        <h3>Einheitliche Icons</h3>
+                        <p>
                     Konsistente Icon-Sets für Dateitypen, Git-Status und mehr. Visuelle Hinweise
                     helfen dir, Informationen schneller zu erfassen.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="star" data-color="#2196F3" data-size="32"></span>
-                <h3>Floating Windows</h3>
-                <p>
+                <div>
+                    <span data-icon="star" data-color="#2196F3" data-size="32"></span>
+                    <div>
+                        <h3>Floating Windows</h3>
+                        <p>
                     LSP-Hover-Informationen, Diagnostics und Completion-Menüs erscheinen in
                     elegant gestalteten Floating Windows mit abgerundeten Ecken und Schatten.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="star" data-color="#2196F3" data-size="32"></span>
-                <h3>Fzf-lua Integration</h3>
-                <p>
+                <div>
+                    <span data-icon="star" data-color="#2196F3" data-size="32"></span>
+                    <div>
+                        <h3>Fzf-lua Integration</h3>
+                        <p>
                     Schöne Fuzzy-Finder-Oberfläche für Dateien, Buffers, Git-Commits und mehr.
                     Live-Preview und schnelle Navigation inklusive.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <h2>Konsistenz als Kernprinzip</h2>
@@ -172,57 +196,81 @@ export const beautifulUiTemplate = () => `
             <h2>UI Components in Detail</h2>
 
             <div class="feature-card">
-                <span data-icon="star" data-color="#2196F3" data-size="32"></span>
-                <h3>Modern Statusline</h3>
-                <p>
+                <div>
+                    <span data-icon="star" data-color="#2196F3" data-size="32"></span>
+                    <div>
+                        <h3>Modern Statusline</h3>
+                        <p>
                     The statusline shows you all important information: Current mode, file path,
                     Git branch, LSP status, diagnostics and more. Everything clearly organized and color-coded.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="star" data-color="#2196F3" data-size="32"></span>
-                <h3>Thoughtful Color Schemes</h3>
-                <p>
+                <div>
+                    <span data-icon="star" data-color="#2196F3" data-size="32"></span>
+                    <div>
+                        <h3>Thoughtful Color Schemes</h3>
+                        <p>
                     Carefully selected themes with perfectly coordinated colors. All themes
                     are optimized for long coding sessions and reduce eye strain.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="star" data-color="#2196F3" data-size="32"></span>
-                <h3>Treesitter Syntax Highlighting</h3>
-                <p>
+                <div>
+                    <span data-icon="star" data-color="#2196F3" data-size="32"></span>
+                    <div>
+                        <h3>Treesitter Syntax Highlighting</h3>
+                        <p>
                     Precise, semantic syntax highlighting thanks to Treesitter. Code structures
                     are clearly highlighted and make understanding complex codebases easier.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="star" data-color="#2196F3" data-size="32"></span>
-                <h3>Consistent Icons</h3>
-                <p>
+                <div>
+                    <span data-icon="star" data-color="#2196F3" data-size="32"></span>
+                    <div>
+                        <h3>Consistent Icons</h3>
+                        <p>
                     Consistent icon sets for file types, Git status and more. Visual cues
                     help you grasp information faster.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="star" data-color="#2196F3" data-size="32"></span>
-                <h3>Floating Windows</h3>
-                <p>
+                <div>
+                    <span data-icon="star" data-color="#2196F3" data-size="32"></span>
+                    <div>
+                        <h3>Floating Windows</h3>
+                        <p>
                     LSP hover information, diagnostics and completion menus appear in
                     elegantly designed floating windows with rounded corners and shadows.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="star" data-color="#2196F3" data-size="32"></span>
-                <h3>Fzf-lua Integration</h3>
-                <p>
+                <div>
+                    <span data-icon="star" data-color="#2196F3" data-size="32"></span>
+                    <div>
+                        <h3>Fzf-lua Integration</h3>
+                        <p>
                     Beautiful fuzzy finder interface for files, buffers, Git commits and more.
                     Live preview and fast navigation included.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <h2>Consistency as Core Principle</h2>

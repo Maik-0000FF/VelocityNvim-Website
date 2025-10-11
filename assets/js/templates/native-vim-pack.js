@@ -29,49 +29,69 @@ export const nativeVimPackTemplate = () => `
             <h2>Vorteile von vim.pack</h2>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#9C27B0" data-size="32"></span>
-                <h3>Keine externen Abhängigkeiten</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#9C27B0" data-size="32"></span>
+                    <div>
+                        <h3>Keine externen Abhängigkeiten</h3>
+                        <p>
                     vim.pack ist direkt in Neovim eingebaut. Du benötigst keine zusätzlichen Plugin-Manager,
                     keine Bootstrap-Skripte und keine externen Tools. Weniger Code bedeutet weniger potenzielle
                     Fehlerquellen.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#9C27B0" data-size="32"></span>
-                <h3>Bewährte Stabilität</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#9C27B0" data-size="32"></span>
+                    <div>
+                        <h3>Bewährte Stabilität</h3>
+                        <p>
                     Das vim.pack-System existiert seit Jahren und wird von Millionen Vim/Neovim-Nutzern weltweit
                     verwendet. Es ist ausgereift, getestet und zuverlässig.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#9C27B0" data-size="32"></span>
-                <h3>Einfache Struktur</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#9C27B0" data-size="32"></span>
+                    <div>
+                        <h3>Einfache Struktur</h3>
+                        <p>
                     Plugins liegen einfach in Verzeichnissen. Kein komplexes Manifest, keine Lock-Dateien,
                     keine Build-Schritte. Was du siehst, ist was du bekommst.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#9C27B0" data-size="32"></span>
-                <h3>Git-Submodule kompatibel</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#9C27B0" data-size="32"></span>
+                    <div>
+                        <h3>Git-Submodule kompatibel</h3>
+                        <p>
                     Perfekte Integration mit Git-Submodules für versioniertes Plugin-Management.
                     Oder nutze einfache Git-Clones - du hast die Wahl.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#9C27B0" data-size="32"></span>
-                <h3>Volle Transparenz</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#9C27B0" data-size="32"></span>
+                    <div>
+                        <h3>Volle Transparenz</h3>
+                        <p>
                     Du weißt genau, wo deine Plugins liegen und wie sie geladen werden. Keine Magic,
                     keine versteckten Mechanismen. Debugging wird einfacher.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <h2>Wie funktioniert vim.pack?</h2>
@@ -266,48 +286,68 @@ git rm plugin-name</code></pre>
             <h2>Benefits of vim.pack</h2>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#9C27B0" data-size="32"></span>
-                <h3>No External Dependencies</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#9C27B0" data-size="32"></span>
+                    <div>
+                        <h3>No External Dependencies</h3>
+                        <p>
                     vim.pack is built directly into Neovim. You don't need additional plugin managers,
                     bootstrap scripts, or external tools. Less code means fewer potential sources of errors.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#9C27B0" data-size="32"></span>
-                <h3>Proven Stability</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#9C27B0" data-size="32"></span>
+                    <div>
+                        <h3>Proven Stability</h3>
+                        <p>
                     The vim.pack system has existed for years and is used by millions of Vim/Neovim users worldwide.
                     It's mature, tested, and reliable.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#9C27B0" data-size="32"></span>
-                <h3>Simple Structure</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#9C27B0" data-size="32"></span>
+                    <div>
+                        <h3>Simple Structure</h3>
+                        <p>
                     Plugins simply reside in directories. No complex manifests, no lock files,
                     no build steps. What you see is what you get.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#9C27B0" data-size="32"></span>
-                <h3>Git Submodule Compatible</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#9C27B0" data-size="32"></span>
+                    <div>
+                        <h3>Git Submodule Compatible</h3>
+                        <p>
                     Perfect integration with Git submodules for versioned plugin management.
                     Or use simple Git clones - you have the choice.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#9C27B0" data-size="32"></span>
-                <h3>Full Transparency</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#9C27B0" data-size="32"></span>
+                    <div>
+                        <h3>Full Transparency</h3>
+                        <p>
                     You know exactly where your plugins are and how they're loaded. No magic,
                     no hidden mechanisms. Debugging becomes easier.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <h2>How Does vim.pack Work?</h2>

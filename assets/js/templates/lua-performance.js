@@ -28,49 +28,69 @@ export const luaPerformanceTemplate = () => `
             <h2>Performance-Vorteile von Lua</h2>
 
             <div class="feature-card">
-                <span data-icon="rocket" data-color="#FFC107" data-size="32"></span>
-                <h3>Schnellere Ausführung</h3>
-                <p>
+                <div>
+                    <span data-icon="rocket" data-color="#FFC107" data-size="32"></span>
+                    <div>
+                        <h3>Schnellere Ausführung</h3>
+                        <p>
                     Lua-Code wird von LuaJIT just-in-time kompiliert und läuft deutlich schneller
                     als Vimscript. Besonders bei komplexen Operationen ist der Unterschied spürbar.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="lightning" data-color="#FFC107" data-size="32"></span>
-                <h3>Direkter API-Zugriff</h3>
-                <p>
+                <div>
+                    <span data-icon="lightning" data-color="#FFC107" data-size="32"></span>
+                    <div>
+                        <h3>Direkter API-Zugriff</h3>
+                        <p>
                     Die Neovim Lua API ist direkt verfügbar, ohne Wrapper oder Overhead.
                     Funktionen wie <code>vim.api.*</code>, <code>vim.fn.*</code> und <code>vim.opt.*</code>
                     bieten vollständigen Zugriff auf alle Neovim-Features.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="brain" data-color="#FFC107" data-size="32"></span>
-                <h3>Moderne Sprachfeatures</h3>
-                <p>
+                <div>
+                    <span data-icon="brain" data-color="#FFC107" data-size="32"></span>
+                    <div>
+                        <h3>Moderne Sprachfeatures</h3>
+                        <p>
                     Lua bietet Tables, Metatables, Closures und First-Class Functions.
                     Diese Features ermöglichen eleganten, wartbaren Code.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="package" data-color="#FFC107" data-size="32"></span>
-                <h3>Natives Modul-System</h3>
-                <p>
+                <div>
+                    <span data-icon="package" data-color="#FFC107" data-size="32"></span>
+                    <div>
+                        <h3>Natives Modul-System</h3>
+                        <p>
                     Lua's <code>require()</code>-System ermöglicht saubere Code-Organisation.
                     Module werden einmal geladen und gecacht für maximale Effizienz.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#FFC107" data-size="32"></span>
-                <h3>Asynchrone Operationen</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#FFC107" data-size="32"></span>
+                    <div>
+                        <h3>Asynchrone Operationen</h3>
+                        <p>
                     Lua unterstützt Coroutines für asynchrone Programmierung. LSP, Treesitter
                     und andere Plugins nutzen dies für non-blocking Operationen.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <h2>Lua in VelocityNvim</h2>
@@ -223,49 +243,69 @@ export const luaPerformanceTemplate = () => `
             <h2>Performance Benefits of Lua</h2>
 
             <div class="feature-card">
-                <span data-icon="rocket" data-color="#FFC107" data-size="32"></span>
-                <h3>Faster Execution</h3>
-                <p>
+                <div>
+                    <span data-icon="rocket" data-color="#FFC107" data-size="32"></span>
+                    <div>
+                        <h3>Faster Execution</h3>
+                        <p>
                     Lua code is just-in-time compiled by LuaJIT and runs significantly faster
                     than Vimscript. The difference is especially noticeable in complex operations.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="lightning" data-color="#FFC107" data-size="32"></span>
-                <h3>Direct API Access</h3>
-                <p>
+                <div>
+                    <span data-icon="lightning" data-color="#FFC107" data-size="32"></span>
+                    <div>
+                        <h3>Direct API Access</h3>
+                        <p>
                     The Neovim Lua API is directly available without wrappers or overhead.
                     Functions like <code>vim.api.*</code>, <code>vim.fn.*</code> and <code>vim.opt.*</code>
                     provide full access to all Neovim features.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="brain" data-color="#FFC107" data-size="32"></span>
-                <h3>Modern Language Features</h3>
-                <p>
+                <div>
+                    <span data-icon="brain" data-color="#FFC107" data-size="32"></span>
+                    <div>
+                        <h3>Modern Language Features</h3>
+                        <p>
                     Lua offers tables, metatables, closures and first-class functions.
                     These features enable elegant, maintainable code.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="package" data-color="#FFC107" data-size="32"></span>
-                <h3>Native Module System</h3>
-                <p>
+                <div>
+                    <span data-icon="package" data-color="#FFC107" data-size="32"></span>
+                    <div>
+                        <h3>Native Module System</h3>
+                        <p>
                     Lua's <code>require()</code> system enables clean code organization.
                     Modules are loaded once and cached for maximum efficiency.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#FFC107" data-size="32"></span>
-                <h3>Asynchronous Operations</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#FFC107" data-size="32"></span>
+                    <div>
+                        <h3>Asynchronous Operations</h3>
+                        <p>
                     Lua supports coroutines for asynchronous programming. LSP, Treesitter
                     and other plugins use this for non-blocking operations.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <h2>Lua in VelocityNvim</h2>

@@ -21,135 +21,191 @@ export const leanEfficientTemplate = () => `
             <h2>Fokussierte Architektur</h2>
 
             <div class="feature-card">
-                <span data-icon="rocket" data-color="#00BCD4" data-size="32"></span>
-                <h3>Minimale Startup-Zeit</h3>
-                <p>
+                <div>
+                    <span data-icon="rocket" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Minimale Startup-Zeit</h3>
+                        <p>
                     Durch schlanke Konfiguration und optimierte Ladestrategien startet VelocityNvim
                     in unter 100ms. Keine unnötigen Initialisierungen oder redundante Checks beim Start.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="code" data-color="#00BCD4" data-size="32"></span>
-                <h3>Sauberer Code</h3>
-                <p>
+                <div>
+                    <span data-icon="code" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Sauberer Code</h3>
+                        <p>
                     Die Codebasis ist klar strukturiert und gut dokumentiert. Keine veralteten Workarounds,
                     keine Legacy-Kompatibilität. Jede Zeile Code hat einen Zweck.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="package" data-color="#00BCD4" data-size="32"></span>
-                <h3>Ausgewählte Plugins</h3>
-                <p>
+                <div>
+                    <span data-icon="package" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Ausgewählte Plugins</h3>
+                        <p>
                     Nur essenzielle Plugins sind integriert. Jedes Plugin wurde sorgfältig ausgewählt
                     und erfüllt einen spezifischen Zweck ohne Funktionsüberschneidungen.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="settings" data-color="#00BCD4" data-size="32"></span>
-                <h3>Keine Bloat-Features</h3>
-                <p>
+                <div>
+                    <span data-icon="settings" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Keine Bloat-Features</h3>
+                        <p>
                     VelocityNvim verzichtet bewusst auf "Nice-to-have" Features, die selten genutzt werden.
                     Der Fokus liegt auf Features, die täglich produktiven Mehrwert bieten.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="brain" data-color="#00BCD4" data-size="32"></span>
-                <h3>Speicher-Effizienz</h3>
-                <p>
+                <div>
+                    <span data-icon="brain" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Speicher-Effizienz</h3>
+                        <p>
                     Optimierter Speicherverbrauch durch bewussten Verzicht auf unnötige Plugins und
                     Funktionen. VelocityNvim bleibt auch bei großen Projekten ressourcenschonend.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <h2>Was macht VelocityNvim schlank?</h2>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#00BCD4" data-size="32"></span>
-                <h3>Ein Plugin Manager</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Ein Plugin Manager</h3>
+                        <p>
                     Natives vim.pack statt externen Plugin Managern. Weniger Abstraktionsschichten,
                     direktere Kontrolle, schnellere Ladezeiten.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="lightning" data-color="#00BCD4" data-size="32"></span>
-                <h3>Eager Loading</h3>
-                <p>
+                <div>
+                    <span data-icon="lightning" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Eager Loading</h3>
+                        <p>
                     Alle Plugins werden beim Start geladen. Kein komplexes Lazy-Loading-System,
                     das Overhead und Komplexität hinzufügt.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="wrench" data-color="#00BCD4" data-size="32"></span>
-                <h3>Modulare Struktur</h3>
-                <p>
+                <div>
+                    <span data-icon="wrench" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Modulare Struktur</h3>
+                        <p>
                     Klare Trennung zwischen Core, Plugins und User-Konfiguration. Einfach zu verstehen,
                     einfach zu erweitern, einfach zu debuggen.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <h2>Performance-Vorteile</h2>
 
             <div class="feature-card">
-                <span data-icon="rocket" data-color="#00BCD4" data-size="32"></span>
-                <h3>Schneller Start</h3>
-                <p>
+                <div>
+                    <span data-icon="rocket" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Schneller Start</h3>
+                        <p>
                     VelocityNvim startet typischerweise in 50-100ms. Keine Verzögerungen, kein Warten
                     auf Plugin-Initialisierungen.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="brain" data-color="#00BCD4" data-size="32"></span>
-                <h3>Niedriger RAM-Verbrauch</h3>
-                <p>
+                <div>
+                    <span data-icon="brain" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Niedriger RAM-Verbrauch</h3>
+                        <p>
                     Durch fokussierte Plugin-Auswahl bleibt der Speicherverbrauch gering. Auch bei
                     mehreren geöffneten Buffers und großen Dateien.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="lightning" data-color="#00BCD4" data-size="32"></span>
-                <h3>Responsive UI</h3>
-                <p>
+                <div>
+                    <span data-icon="lightning" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Responsive UI</h3>
+                        <p>
                     Keine UI-Freezes oder Verzögerungen durch übermäßige Plugin-Aktivität. Die Oberfläche
                     bleibt jederzeit reaktionsschnell.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <h2>Wartbarkeit</h2>
 
             <div class="feature-card">
-                <span data-icon="book" data-color="#00BCD4" data-size="32"></span>
-                <h3>Lesbare Konfiguration</h3>
-                <p>
+                <div>
+                    <span data-icon="book" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Lesbare Konfiguration</h3>
+                        <p>
                     Klare, gut dokumentierte Lua-Konfiguration. Keine kryptischen Abkürzungen oder
                     verschachtelten Konstrukte. Leicht zu verstehen und anzupassen.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="design" data-color="#00BCD4" data-size="32"></span>
-                <h3>Einfaches Debugging</h3>
-                <p>
+                <div>
+                    <span data-icon="design" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Einfaches Debugging</h3>
+                        <p>
                     Weniger Code bedeutet weniger Fehlerquellen. Probleme lassen sich schnell eingrenzen
                     und beheben.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="wrench" data-color="#00BCD4" data-size="32"></span>
-                <h3>Update-Freundlich</h3>
-                <p>
+                <div>
+                    <span data-icon="wrench" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Update-Freundlich</h3>
+                        <p>
                     Schlanke Codebasis erleichtert Updates. Weniger Breaking Changes, weniger
                     Abhängigkeiten, die aktualisiert werden müssen.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <h2>Was VelocityNvim NICHT ist</h2>
@@ -208,135 +264,191 @@ export const leanEfficientTemplate = () => `
             <h2>Focused Architecture</h2>
 
             <div class="feature-card">
-                <span data-icon="rocket" data-color="#00BCD4" data-size="32"></span>
-                <h3>Minimal Startup Time</h3>
-                <p>
+                <div>
+                    <span data-icon="rocket" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Minimal Startup Time</h3>
+                        <p>
                     Through lean configuration and optimized loading strategies, VelocityNvim starts
                     in under 100ms. No unnecessary initializations or redundant checks at startup.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="code" data-color="#00BCD4" data-size="32"></span>
-                <h3>Clean Code</h3>
-                <p>
+                <div>
+                    <span data-icon="code" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Clean Code</h3>
+                        <p>
                     The codebase is clearly structured and well documented. No outdated workarounds,
                     no legacy compatibility. Every line of code has a purpose.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="package" data-color="#00BCD4" data-size="32"></span>
-                <h3>Selected Plugins</h3>
-                <p>
+                <div>
+                    <span data-icon="package" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Selected Plugins</h3>
+                        <p>
                     Only essential plugins are integrated. Each plugin has been carefully selected
                     and serves a specific purpose without feature overlap.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="settings" data-color="#00BCD4" data-size="32"></span>
-                <h3>No Bloat Features</h3>
-                <p>
+                <div>
+                    <span data-icon="settings" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>No Bloat Features</h3>
+                        <p>
                     VelocityNvim deliberately avoids "nice-to-have" features that are rarely used.
                     The focus is on features that provide daily productive value.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="brain" data-color="#00BCD4" data-size="32"></span>
-                <h3>Memory Efficiency</h3>
-                <p>
+                <div>
+                    <span data-icon="brain" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Memory Efficiency</h3>
+                        <p>
                     Optimized memory usage by consciously avoiding unnecessary plugins and functions.
                     VelocityNvim remains resource-efficient even with large projects.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <h2>What Makes VelocityNvim Lean?</h2>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#00BCD4" data-size="32"></span>
-                <h3>One Plugin Manager</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>One Plugin Manager</h3>
+                        <p>
                     Native vim.pack instead of external plugin managers. Fewer abstraction layers,
                     more direct control, faster load times.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="lightning" data-color="#00BCD4" data-size="32"></span>
-                <h3>Eager Loading</h3>
-                <p>
+                <div>
+                    <span data-icon="lightning" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Eager Loading</h3>
+                        <p>
                     All plugins are loaded at startup. No complex lazy-loading system adding
                     overhead and complexity.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="wrench" data-color="#00BCD4" data-size="32"></span>
-                <h3>Modular Structure</h3>
-                <p>
+                <div>
+                    <span data-icon="wrench" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Modular Structure</h3>
+                        <p>
                     Clear separation between core, plugins, and user configuration. Easy to understand,
                     easy to extend, easy to debug.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <h2>Performance Benefits</h2>
 
             <div class="feature-card">
-                <span data-icon="rocket" data-color="#00BCD4" data-size="32"></span>
-                <h3>Fast Startup</h3>
-                <p>
+                <div>
+                    <span data-icon="rocket" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Fast Startup</h3>
+                        <p>
                     VelocityNvim typically starts in 50-100ms. No delays, no waiting for
                     plugin initializations.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="brain" data-color="#00BCD4" data-size="32"></span>
-                <h3>Low RAM Usage</h3>
-                <p>
+                <div>
+                    <span data-icon="brain" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Low RAM Usage</h3>
+                        <p>
                     Through focused plugin selection, memory consumption remains low. Even with
                     multiple open buffers and large files.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="lightning" data-color="#00BCD4" data-size="32"></span>
-                <h3>Responsive UI</h3>
-                <p>
+                <div>
+                    <span data-icon="lightning" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Responsive UI</h3>
+                        <p>
                     No UI freezes or delays from excessive plugin activity. The interface
                     remains responsive at all times.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <h2>Maintainability</h2>
 
             <div class="feature-card">
-                <span data-icon="book" data-color="#00BCD4" data-size="32"></span>
-                <h3>Readable Configuration</h3>
-                <p>
+                <div>
+                    <span data-icon="book" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Readable Configuration</h3>
+                        <p>
                     Clear, well-documented Lua configuration. No cryptic abbreviations or nested
                     constructs. Easy to understand and customize.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="design" data-color="#00BCD4" data-size="32"></span>
-                <h3>Simple Debugging</h3>
-                <p>
+                <div>
+                    <span data-icon="design" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Simple Debugging</h3>
+                        <p>
                     Less code means fewer sources of errors. Problems can be quickly identified
                     and fixed.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="wrench" data-color="#00BCD4" data-size="32"></span>
-                <h3>Update-Friendly</h3>
-                <p>
+                <div>
+                    <span data-icon="wrench" data-color="#00BCD4" data-size="32"></span>
+                    <div>
+                        <h3>Update-Friendly</h3>
+                        <p>
                     Lean codebase makes updates easier. Fewer breaking changes, fewer dependencies
                     that need updating.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <h2>What VelocityNvim is NOT</h2>

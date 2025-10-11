@@ -28,95 +28,131 @@ export const customizationTemplate = () => `
             <h2>Drei Ebenen der Anpassung</h2>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#FF9800" data-size="32"></span>
-                <h3>1. Erweitern</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#FF9800" data-size="32"></span>
+                    <div>
+                        <h3>1. Erweitern</h3>
+                        <p>
                     Füge neue Plugins, Mappings oder Funktionen hinzu, ohne die bestehende
                     Konfiguration zu verändern. Perfekt für zusätzliche Features, die dein
                     spezieller Workflow benötigt.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#FF9800" data-size="32"></span>
-                <h3>2. Überschreiben</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#FF9800" data-size="32"></span>
+                    <div>
+                        <h3>2. Überschreiben</h3>
+                        <p>
                     Ändere einzelne Einstellungen, Keybindings oder Plugin-Optionen.
                     Die Standard-Konfiguration bleibt erhalten, nur deine Anpassungen
                     haben Priorität.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#FF9800" data-size="32"></span>
-                <h3>3. Ersetzen</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#FF9800" data-size="32"></span>
+                    <div>
+                        <h3>3. Ersetzen</h3>
+                        <p>
                     Tausche ganze Komponenten aus, wenn du es anders haben möchtest.
                     Bevorzugst du einen anderen LSP-Client oder ein anderes Theme?
                     Kein Problem - ersetze es einfach.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <h2>Was kannst du anpassen?</h2>
 
             <div class="feature-card">
-                <span data-icon="package" data-color="#FF9800" data-size="32"></span>
-                <h3>Plugins</h3>
-                <p>
+                <div>
+                    <span data-icon="package" data-color="#FF9800" data-size="32"></span>
+                    <div>
+                        <h3>Plugins</h3>
+                        <p>
                     Füge eigene Plugins hinzu, deaktiviere Standard-Plugins oder
                     ersetze sie durch Alternativen. Das native vim.pack-System macht
                     es einfach.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="design" data-color="#FF9800" data-size="32"></span>
-                <h3>UI & Themes</h3>
-                <p>
+                <div>
+                    <span data-icon="design" data-color="#FF9800" data-size="32"></span>
+                    <div>
+                        <h3>UI & Themes</h3>
+                        <p>
                     Wechsle zwischen verschiedenen Themes, passe Farben individuell an
                     oder erstelle dein eigenes Farbschema. Statusline-Layout und Icons
                     sind ebenfalls konfigurierbar.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="lightning" data-color="#FF9800" data-size="32"></span>
-                <h3>Keybindings</h3>
-                <p>
+                <div>
+                    <span data-icon="lightning" data-color="#FF9800" data-size="32"></span>
+                    <div>
+                        <h3>Keybindings</h3>
+                        <p>
                     Alle Tastenkürzel können überschrieben werden. Nutze deine
                     gewohnten Mappings oder erstelle komplett neue Workflows.
                     Leader-Key, Modifier - alles anpassbar.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="brain" data-color="#FF9800" data-size="32"></span>
-                <h3>LSP & Completion</h3>
-                <p>
+                <div>
+                    <span data-icon="brain" data-color="#FF9800" data-size="32"></span>
+                    <div>
+                        <h3>LSP & Completion</h3>
+                        <p>
                     Konfiguriere LSP-Server, passe Completion-Verhalten an,
                     ändere Diagnostics-Anzeige. Volle Kontrolle über deine
                     Entwicklungsumgebung.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="wrench" data-color="#FF9800" data-size="32"></span>
-                <h3>Editor-Optionen</h3>
-                <p>
+                <div>
+                    <span data-icon="wrench" data-color="#FF9800" data-size="32"></span>
+                    <div>
+                        <h3>Editor-Optionen</h3>
+                        <p>
                     Tab-Größe, Zeilennummern, Scrolling-Verhalten, Splits,
                     Windows - jede Editor-Einstellung kann nach deinen
                     Präferenzen angepasst werden.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="coffee" data-color="#FF9800" data-size="32"></span>
-                <h3>Autocommands & Funktionen</h3>
-                <p>
+                <div>
+                    <span data-icon="coffee" data-color="#FF9800" data-size="32"></span>
+                    <div>
+                        <h3>Autocommands & Funktionen</h3>
+                        <p>
                     Erstelle eigene Autocommands für spezifische Dateitypen,
                     schreibe Custom-Funktionen in Lua. Automatisiere deinen
                     Workflow komplett nach deinen Bedürfnissen.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <h2>Best Practices für Anpassungen</h2>
@@ -198,94 +234,130 @@ export const customizationTemplate = () => `
             <h2>Three Levels of Customization</h2>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#FF9800" data-size="32"></span>
-                <h3>1. Extend</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#FF9800" data-size="32"></span>
+                    <div>
+                        <h3>1. Extend</h3>
+                        <p>
                     Add new plugins, mappings, or functions without changing the existing
                     configuration. Perfect for additional features your specific workflow needs.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#FF9800" data-size="32"></span>
-                <h3>2. Override</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#FF9800" data-size="32"></span>
+                    <div>
+                        <h3>2. Override</h3>
+                        <p>
                     Change individual settings, keybindings, or plugin options.
                     The default configuration remains, only your customizations
                     take priority.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#FF9800" data-size="32"></span>
-                <h3>3. Replace</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#FF9800" data-size="32"></span>
+                    <div>
+                        <h3>3. Replace</h3>
+                        <p>
                     Swap out entire components if you want it differently.
                     Prefer a different LSP client or another theme?
                     No problem - just replace it.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <h2>What Can You Customize?</h2>
 
             <div class="feature-card">
-                <span data-icon="package" data-color="#FF9800" data-size="32"></span>
-                <h3>Plugins</h3>
-                <p>
+                <div>
+                    <span data-icon="package" data-color="#FF9800" data-size="32"></span>
+                    <div>
+                        <h3>Plugins</h3>
+                        <p>
                     Add your own plugins, disable default plugins, or
                     replace them with alternatives. The native vim.pack system
                     makes it easy.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="design" data-color="#FF9800" data-size="32"></span>
-                <h3>UI & Themes</h3>
-                <p>
+                <div>
+                    <span data-icon="design" data-color="#FF9800" data-size="32"></span>
+                    <div>
+                        <h3>UI & Themes</h3>
+                        <p>
                     Switch between different themes, customize colors individually,
                     or create your own color scheme. Statusline layout and icons
                     are also configurable.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="lightning" data-color="#FF9800" data-size="32"></span>
-                <h3>Keybindings</h3>
-                <p>
+                <div>
+                    <span data-icon="lightning" data-color="#FF9800" data-size="32"></span>
+                    <div>
+                        <h3>Keybindings</h3>
+                        <p>
                     All keybindings can be overridden. Use your familiar mappings
                     or create completely new workflows. Leader key, modifiers -
                     everything customizable.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="brain" data-color="#FF9800" data-size="32"></span>
-                <h3>LSP & Completion</h3>
-                <p>
+                <div>
+                    <span data-icon="brain" data-color="#FF9800" data-size="32"></span>
+                    <div>
+                        <h3>LSP & Completion</h3>
+                        <p>
                     Configure LSP servers, adjust completion behavior,
                     change diagnostics display. Full control over your
                     development environment.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="wrench" data-color="#FF9800" data-size="32"></span>
-                <h3>Editor Options</h3>
-                <p>
+                <div>
+                    <span data-icon="wrench" data-color="#FF9800" data-size="32"></span>
+                    <div>
+                        <h3>Editor Options</h3>
+                        <p>
                     Tab size, line numbers, scrolling behavior, splits,
                     windows - every editor setting can be adjusted
                     to your preferences.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="coffee" data-color="#FF9800" data-size="32"></span>
-                <h3>Autocommands & Functions</h3>
-                <p>
+                <div>
+                    <span data-icon="coffee" data-color="#FF9800" data-size="32"></span>
+                    <div>
+                        <h3>Autocommands & Functions</h3>
+                        <p>
                     Create your own autocommands for specific file types,
                     write custom functions in Lua. Automate your workflow
                     completely according to your needs.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <h2>Best Practices for Customizations</h2>

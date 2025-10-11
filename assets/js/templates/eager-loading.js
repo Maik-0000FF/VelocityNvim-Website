@@ -28,49 +28,69 @@ export const eagerLoadingTemplate = () => `
             <h2>Vorteile von Eager Loading</h2>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#4CAF50" data-size="32"></span>
-                <h3>Keine Verzögerungen im Workflow</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#4CAF50" data-size="32"></span>
+                    <div>
+                        <h3>Keine Verzögerungen im Workflow</h3>
+                        <p>
                     Alle Funktionen sind sofort verfügbar. Du musst nicht warten, bis ein Plugin
                     nachgeladen wird, wenn du es zum ersten Mal verwendest.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#4CAF50" data-size="32"></span>
-                <h3>Vorhersehbares Verhalten</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#4CAF50" data-size="32"></span>
+                    <div>
+                        <h3>Vorhersehbares Verhalten</h3>
+                        <p>
                     Du weißt genau, welche Funktionen verfügbar sind. Es gibt keine überraschenden
                     Ladezeiten oder fehlende Features, weil ein Plugin noch nicht geladen wurde.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#4CAF50" data-size="32"></span>
-                <h3>Einfacheres Debugging</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#4CAF50" data-size="32"></span>
+                    <div>
+                        <h3>Einfacheres Debugging</h3>
+                        <p>
                     Da alle Plugins von Anfang an geladen sind, ist es einfacher, Probleme zu identifizieren
                     und zu beheben. Es gibt keine komplexen Lazy-Loading-Mechanismen, die Fehler verursachen könnten.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#4CAF50" data-size="32"></span>
-                <h3>Native Integration</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#4CAF50" data-size="32"></span>
+                    <div>
+                        <h3>Native Integration</h3>
+                        <p>
                     Durch die Nutzung von vim.pack benötigt VelocityNvim keinen externen Plugin-Manager.
                     Das reduziert Komplexität und potenzielle Fehlerquellen.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#4CAF50" data-size="32"></span>
-                <h3>Optimierte Performance</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#4CAF50" data-size="32"></span>
+                    <div>
+                        <h3>Optimierte Performance</h3>
+                        <p>
                     Moderne Computer können alle benötigten Plugins in Sekundenbruchteilen laden.
                     Die paar Millisekunden längere Startzeit werden durch den unterbrechungsfreien
                     Workflow mehr als kompensiert.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <h2>Lazy Loading vs. Eager Loading</h2>
@@ -146,49 +166,69 @@ export const eagerLoadingTemplate = () => `
             <h2>Benefits of Eager Loading</h2>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#4CAF50" data-size="32"></span>
-                <h3>No Workflow Interruptions</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#4CAF50" data-size="32"></span>
+                    <div>
+                        <h3>No Workflow Interruptions</h3>
+                        <p>
                     All features are immediately available. You don't have to wait for a plugin
                     to load when you use it for the first time.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#4CAF50" data-size="32"></span>
-                <h3>Predictable Behavior</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#4CAF50" data-size="32"></span>
+                    <div>
+                        <h3>Predictable Behavior</h3>
+                        <p>
                     You know exactly which features are available. There are no surprising
                     load times or missing features because a plugin hasn't loaded yet.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#4CAF50" data-size="32"></span>
-                <h3>Easier Debugging</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#4CAF50" data-size="32"></span>
+                    <div>
+                        <h3>Easier Debugging</h3>
+                        <p>
                     Since all plugins are loaded from the start, it's easier to identify
                     and fix issues. There are no complex lazy-loading mechanisms that could cause errors.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#4CAF50" data-size="32"></span>
-                <h3>Native Integration</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#4CAF50" data-size="32"></span>
+                    <div>
+                        <h3>Native Integration</h3>
+                        <p>
                     By using vim.pack, VelocityNvim doesn't need an external plugin manager.
                     This reduces complexity and potential sources of errors.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <div class="feature-card">
-                <span data-icon="checkmarkSimple" data-color="#4CAF50" data-size="32"></span>
-                <h3>Optimized Performance</h3>
-                <p>
+                <div>
+                    <span data-icon="checkmarkSimple" data-color="#4CAF50" data-size="32"></span>
+                    <div>
+                        <h3>Optimized Performance</h3>
+                        <p>
                     Modern computers can load all necessary plugins in fractions of a second.
                     The few milliseconds of additional startup time are more than compensated
                     by the uninterrupted workflow.
                 </p>
+                    </div>
+                </div>
             </div>
 
             <h2>Lazy Loading vs. Eager Loading</h2>

@@ -26,6 +26,11 @@ const materialIconMap = {
     'code': 'code',
     'lightbulb': 'lightbulb',
     'settings': 'settings',
+    'speed': 'speed',
+    'article': 'article',
+    'keyboard': 'keyboard',
+    'shield': 'shield',
+    'sync': 'sync',
 
     // Alerts
     'alertRed': 'error',
