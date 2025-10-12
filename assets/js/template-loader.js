@@ -24,6 +24,9 @@ import { getIcon, renderDataIcons } from './material-icons.js';
  * Lädt alle Templates in die Content-Container
  */
 export function loadTemplates(callback) {
+    // Load Footer Component
+    loadFooter();
+
     // Hero & Features
     const heroContainer = document.getElementById('hero-container');
     if (heroContainer) {
@@ -129,6 +132,38 @@ export function loadTemplates(callback) {
  */
 function renderAllIcons() {
     renderDataIcons();
+}
+
+/**
+ * Lädt den Footer aus der separaten Komponente
+ */
+async function loadFooter() {
+    const footerContainer = document.getElementById('footer-container');
+    if (!footerContainer) return;
+
+    try {
+        // Determine the correct path based on current location
+        const path = window.location.pathname;
+        const isInDocsFolder = path.includes('/docs/');
+        const footerPath = isInDocsFolder ? '../components/footer.html' : 'components/footer.html';
+
+        const response = await fetch(footerPath);
+        if (!response.ok) {
+            throw new Error(`Failed to load footer: ${response.status}`);
+        }
+
+        let footerHtml = await response.text();
+
+        // Fix image paths for docs folder pages
+        if (isInDocsFolder) {
+            footerHtml = footerHtml.replace(/src="assets\//g, 'src="../assets/');
+        }
+
+        footerContainer.innerHTML = footerHtml;
+    } catch (error) {
+        console.error('Error loading footer:', error);
+        // Fallback: keep the container empty rather than showing an error
+    }
 }
 
 /**

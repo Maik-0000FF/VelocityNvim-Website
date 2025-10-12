@@ -43,9 +43,15 @@
                 <img src="../assets/images/favicon.svg" alt="VelocityNvim Logo">
                 <span>VelocityNvim</span>
             </a>
-            <ul class="nav-links">
+            <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="../index.html">Home</a></li>
-                <li><a href="requirements.html">Requirements</a></li>
+                <li class="lang-content de active"><a href="requirements.html">Voraussetzungen</a></li>
+                <li class="lang-content en"><a href="requirements.html">Requirements</a></li>
                 <li class="lang-content de active"><a href="installation.html">Installation</a></li>
                 <li class="lang-content en"><a href="installation.html">Installation</a></li>
             </ul>
@@ -71,34 +77,7 @@
             <div id="installation-container"></div>
         </div>
 
-        <div class="footer">
-            <div class="footer-content">
-                <div class="footer-info">
-                    <p class="lang-content de active">Powered by GitHub Pages</p>
-                    <p class="lang-content en">Powered by GitHub Pages</p>
-                </div>
-
-                <div class="footer-communities">
-                    <h3 class="lang-content de active">Community</h3>
-                    <h3 class="lang-content en">Communities</h3>
-                    <div class="social-links">
-                        <a href="https://github.com/Maik-0000FF/VelocityNvim" target="_blank" rel="noopener" aria-label="GitHub">
-                            <img src="../assets/images/github-142-svgrepo-com.svg" alt="GitHub" class="social-icon">
-                        </a>
-                        <a href="https://www.youtube.com/@Maik-0000FF" target="_blank" rel="noopener" aria-label="YouTube">
-                            <img src="../assets/images/youtube-svgrepo-com.svg" alt="YouTube" class="social-icon">
-                        </a>
-                    </div>
-                </div>
-
-                <div class="footer-brand">
-                    <img src="../assets/images/VelocityNvim_Logo_Footer.svg" alt="VelocityNvim Logo" class="footer-logo">
-                    <p>VelocityNvim</p>
-                    <p class="lang-content de active"><small>Copyright © 2025 VelocityNvim™</small></p>
-                    <p class="lang-content en"><small>Copyright © 2025 VelocityNvim™</small></p>
-                </div>
-            </div>
-        </div>
+        <div id="footer-container"></div>
     </div>
 
     <script type="module" src="../assets/js/main.js"></script>
