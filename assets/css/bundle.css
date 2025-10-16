@@ -309,8 +309,8 @@ body {
 }
 
 .footer {
-    background: #1a202c;
-    color: #a0aec0;
+    background: var(--color-bg-dark);
+    color: var(--color-text-dark-secondary);
     padding: var(--spacing-3xl) var(--spacing-2xl);
     text-align: center;
     min-height: 280px;
@@ -337,7 +337,7 @@ body {
 .footer-communities h3 {
     font-size: 1.1em;
     margin-bottom: var(--spacing-md);
-    color: #a0aec0;
+    color: var(--color-text-dark-secondary);
 }
 
 .social-links {
@@ -352,21 +352,29 @@ body {
     justify-content: center;
     width: 40px;
     height: 40px;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--overlay-card);
     border-radius: var(--radius-md);
-    transition: all var(--transition-normal);
+    transition: all var(--transition-smooth);
+    border: 1px solid var(--overlay-light);
 }
 
 .social-links a:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--overlay-light);
     transform: translateY(-2px);
+    box-shadow: var(--shadow-glow-cyan);
+    border: 1px solid var(--color-accent-cyan);
 }
 
 .social-icon {
     width: 24px;
     height: 24px;
-    filter: invert(1);
+    filter: brightness(0) saturate(100%) invert(93%) sepia(5%) saturate(417%) hue-rotate(197deg) brightness(98%) contrast(92%);
     display: block;
+    transition: all var(--transition-smooth);
+}
+
+.social-links a:hover .social-icon {
+    filter: brightness(0) saturate(100%) invert(77%) sepia(77%) saturate(2766%) hue-rotate(134deg) brightness(95%) contrast(107%);
 }
 
 .footer-brand {
@@ -381,15 +389,16 @@ body {
     height: 60px;
     margin-bottom: var(--spacing-sm);
     display: block;
+    filter: brightness(0) saturate(100%) invert(93%) sepia(5%) saturate(417%) hue-rotate(197deg) brightness(98%) contrast(92%);
 }
 
 .footer-brand p {
     margin: 0;
-    color: white;
+    color: var(--color-text-dark-secondary);
 }
 
 .footer-brand small {
-    color: #a0aec0;
+    color: var(--color-text-dark-secondary);
 }
 
 /* Typography */
@@ -532,6 +541,7 @@ h2 {
     text-align: center;
     transition: all 0.6s ease;
     box-shadow: none;
+    border: 1px solid transparent;
     aspect-ratio: 1 / 1;
     display: flex;
     flex-direction: column;
