@@ -132,12 +132,16 @@ function initParallaxEffect() {
     window.addEventListener('scroll', function() {
         const scrollY = window.scrollY;
         const parallaxSpeed = 0.25; // Adjust speed (0.25 = moves at 1/4 scroll speed)
+        const zoomSpeed = 0.0001; // Zoom speed (0.0001 = very subtle zoom)
 
         // Move screenshot up as user scrolls down
         const translateY = -(scrollY * parallaxSpeed);
 
-        // Keep existing 3D transform and add translateY
-        heroScreenshot.style.transform = `perspective(1000px) rotateY(23deg) translateX(8%) translateY(${translateY}px)`;
+        // Calculate scale - starts at 1 and increases with scroll
+        const scale = 1 + (scrollY * zoomSpeed);
+
+        // Keep existing 3D transform and add translateY and scale
+        heroScreenshot.style.transform = `perspective(1000px) rotateY(23deg) translateX(8%) translateY(${translateY}px) scale(${scale})`;
     });
 }
 
