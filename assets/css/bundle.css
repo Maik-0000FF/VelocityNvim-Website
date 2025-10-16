@@ -241,7 +241,7 @@ body {
 }
 
 .header {
-    background: var(--bg-gradient-header);
+    background: var(--color-bg-dark);
     color: white;
     padding: var(--spacing-3xl) var(--spacing-2xl);
     padding-top: 180px;
@@ -272,6 +272,12 @@ body {
     font-weight: 700;
     position: relative;
     z-index: 1;
+    background: var(--gradient-cyan-purple);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: var(--animation-gradient);
 }
 
 .header .subtitle {
@@ -279,6 +285,7 @@ body {
     opacity: 0.95;
     position: relative;
     z-index: 1;
+    color: var(--color-text-dark);
 }
 
 .content {
