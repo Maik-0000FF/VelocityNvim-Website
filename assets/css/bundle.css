@@ -485,10 +485,18 @@ h2 {
     margin: var(--spacing-2xl) auto;
     max-width: 900px;
     border-radius: 12px;
-    overflow: hidden;
-    box-shadow: none;
+    overflow: visible;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
     transition: all 0.6s ease;
-    cursor: pointer;
+    transform: perspective(1000px) rotateY(23deg) translateX(8%);
+    transform-style: preserve-3d;
+}
+
+.hero-screenshot img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
 }
 
 /* Desktop: Match features grid width */
@@ -496,25 +504,6 @@ h2 {
     .hero-screenshot {
         max-width: 1200px;
     }
-}
-
-.hero-screenshot.scroll-hover-active {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.95);
-}
-
-/* Desktop hover effect */
-@media (min-width: 769px) {
-    .hero-screenshot:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.95);
-    }
-}
-
-.hero-screenshot img {
-    width: 100%;
-    height: auto;
-    display: block;
 }
 
 /* Features Section */
