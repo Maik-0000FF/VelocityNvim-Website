@@ -77,6 +77,132 @@
     --icon-size-md: 1.2em;
     --icon-size-lg: 1.5em;
     --icon-size-xl: 2.5em;
+
+    /* ===== DARK THEME COLORS ===== */
+
+    /* Dunkelblau Hintergrund (Primary Background) */
+    --color-bg-dark: #041D3C;
+    --color-bg-dark-alt: #032645;
+    --color-bg-dark-lighter: #042248;
+
+    /* Cyan/Türkis Akzente (Primary Accent) */
+    --color-accent-cyan: #00E2C2;
+    --color-accent-cyan-light: #99ECFF;
+    --color-accent-cyan-glow: #39FFF2;
+
+    /* Lila/Magenta Akzente (Secondary Accent) */
+    --color-accent-purple: #A69EFF;
+    --color-accent-magenta: #F86CFF;
+
+    /* Blau-Töne für Verläufe */
+    --color-accent-blue: #00D3FF;
+    --color-accent-blue-dark: #3D9BE9;
+
+    /* Text-Farben für Dark Theme */
+    --color-text-dark: #EFFAFF;
+    --color-text-dark-secondary: #E5E7EB;
+    --color-text-dark-muted: rgba(255, 255, 255, 0.7);
+
+    /* Transparenzen */
+    --overlay-dark: rgba(4, 37, 72, 0.6);
+    --overlay-light: rgba(255, 255, 255, 0.05);
+    --overlay-card: rgba(255, 255, 255, 0.08);
+
+    /* Gradienten */
+    --gradient-hero: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0),
+        rgba(0, 0, 0, 0),
+        var(--color-bg-dark)
+    );
+
+    --gradient-cyan-purple: linear-gradient(
+        to right,
+        var(--color-accent-cyan) 0%,
+        var(--color-accent-purple) 100%
+    );
+
+    --gradient-glow-cyan: radial-gradient(
+        78.77% 78.77% at 71.71% 30.77%,
+        #F0FCFF 0%,
+        #9BEDFF 67.21%,
+        #98ECFF 76.04%,
+        #5BE1FF 84.9%,
+        #00BAE2 94.79%
+    );
+
+    --gradient-glow-purple: radial-gradient(
+        78.77% 78.77% at 71.71% 30.77%,
+        #F7F2FF 0%,
+        #D8BFFF 67.21%,
+        #C8AFFF 76.04%,
+        #A789FF 84.9%,
+        #8B5DFF 94.79%
+    );
+
+    /* Schatten & Blur-Effekte */
+    --shadow-glow-cyan: 0 0 40px rgba(0, 226, 194, 0.3);
+    --shadow-glow-purple: 0 0 40px rgba(166, 158, 255, 0.3);
+    --shadow-dark: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    --shadow-inset-light: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+
+    --blur-glassmorphism: blur(5.929px);
+    --blur-subtle: blur(3.2102px);
+
+    /* Border Radius Updates */
+    --radius-2xl: 16px;
+    --radius-3xl: 24px;
+
+    /* Animationen */
+    --transition-smooth: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bouncy: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --animation-gradient: moveGradient 5s linear infinite;
+    --animation-scroll: scrollX 34s linear infinite;
+}
+
+/* ===== KEYFRAME ANIMATIONS ===== */
+
+@keyframes moveGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes scrollX {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        opacity: 1;
+        filter: brightness(1);
+    }
+    50% {
+        opacity: 0.8;
+        filter: brightness(1.2);
+    }
 }
 
 /* ============================================
