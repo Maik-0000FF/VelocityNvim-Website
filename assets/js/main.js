@@ -47,6 +47,9 @@ document.addEventListener('DOMContentLoaded', function() {
             initScrollHoverEffects();
         }, 250);
     });
+
+    // Initialize parallax effect for screenshot
+    initParallaxEffect();
 });
 
 // ===== Scroll-based Hover Effects for Mobile =====
@@ -116,6 +119,26 @@ function initScrollHoverEffects() {
 
     const screenshotCount = heroScreenshot ? 1 : 0;
     console.log(`Scroll hover observer initialized for ${allCards.length} cards (${featureCards.length} features + ${supportItems.length} support + ${screenshotCount} screenshot)`);
+}
+
+// ===== Parallax Effect for Hero Screenshot =====
+function initParallaxEffect() {
+    const heroScreenshot = document.querySelector('.hero-screenshot');
+
+    if (!heroScreenshot) {
+        return;
+    }
+
+    window.addEventListener('scroll', function() {
+        const scrollY = window.scrollY;
+        const parallaxSpeed = 0.25; // Adjust speed (0.25 = moves at 1/4 scroll speed)
+
+        // Move screenshot up as user scrolls down
+        const translateY = -(scrollY * parallaxSpeed);
+
+        // Keep existing 3D transform and add translateY
+        heroScreenshot.style.transform = `perspective(1000px) rotateY(23deg) translateX(8%) translateY(${translateY}px)`;
+    });
 }
 
 // ===== Tab Switching =====
