@@ -86,12 +86,12 @@
     --color-bg-dark-lighter: #042248;
 
     /* Cyan/Türkis Akzente (Primary Accent) */
-    --color-accent-cyan: #00E2C2;
+    --color-accent-cyan: #39FFF2;
     --color-accent-cyan-light: #99ECFF;
     --color-accent-cyan-glow: #39FFF2;
 
     /* Lila/Magenta Akzente (Secondary Accent) */
-    --color-accent-purple: #A69EFF;
+    --color-accent-purple: #9D6EFF;
     --color-accent-magenta: #F86CFF;
 
     /* Blau-Töne für Verläufe */
@@ -141,8 +141,8 @@
     );
 
     /* Schatten & Blur-Effekte */
-    --shadow-glow-cyan: 0 0 40px rgba(0, 226, 194, 0.3);
-    --shadow-glow-purple: 0 0 40px rgba(166, 158, 255, 0.3);
+    --shadow-glow-cyan: 0 0 40px rgba(57, 255, 242, 0.4);
+    --shadow-glow-purple: 0 0 40px rgba(157, 110, 255, 0.3);
     --shadow-dark: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     --shadow-inset-light: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 
@@ -491,8 +491,8 @@ h2 {
     border-radius: 12px;
     overflow: visible;
     box-shadow:
-        0 0 60px rgba(0, 226, 194, 0.4),
-        0 0 100px rgba(166, 158, 255, 0.3),
+        0 0 60px rgba(57, 255, 242, 0.5),
+        0 0 100px rgba(153, 236, 255, 0.4),
         0 20px 40px rgba(0, 0, 0, 0.3);
     transition: all 0.6s ease;
     transform: perspective(1000px) rotateY(23deg) translateX(8%);
