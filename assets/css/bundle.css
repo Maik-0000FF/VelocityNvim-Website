@@ -505,7 +505,7 @@ h2 {
 
 /* Features Section */
 .features-section {
-    background: var(--bg-light);
+    background: transparent;
     padding: var(--spacing-3xl) var(--spacing-2xl);
     margin: var(--spacing-2xl) -40px;
     border-radius: var(--radius-xl);
@@ -538,19 +538,25 @@ h2 {
 }
 
 .feature-card.scroll-hover-active {
-    background: white;
+    background: var(--overlay-card);
+    backdrop-filter: var(--blur-subtle);
+    -webkit-backdrop-filter: var(--blur-subtle);
     transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
-    border-radius: 24px;
+    box-shadow: var(--shadow-glow-cyan);
+    border: 1px solid var(--overlay-light);
+    border-radius: var(--radius-2xl);
 }
 
 /* Desktop hover effect */
 @media (min-width: 769px) {
     .feature-card:hover {
-        background: white;
+        background: var(--overlay-card);
+        backdrop-filter: var(--blur-subtle);
+        -webkit-backdrop-filter: var(--blur-subtle);
         transform: translateY(-4px);
-        box-shadow: var(--shadow-md);
-        border-radius: 24px;
+        box-shadow: var(--shadow-glow-cyan);
+        border: 1px solid var(--overlay-light);
+        border-radius: var(--radius-2xl);
     }
 }
 
@@ -598,7 +604,7 @@ a.feature-card:hover {
 
 .feature-card h2,
 .feature-card h3 {
-    color: var(--color-text);
+    color: var(--color-text-dark);
     font-size: 1.3em;
     margin: var(--spacing-md) 0;
     padding: 0;
@@ -606,7 +612,7 @@ a.feature-card:hover {
 }
 
 .feature-card p {
-    color: var(--color-text-secondary);
+    color: var(--color-text-dark-secondary);
     line-height: 1.6;
     margin: 0;
 }
