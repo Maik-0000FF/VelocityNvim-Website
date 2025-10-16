@@ -135,6 +135,7 @@ function initParallaxEffect() {
         const zoomSpeed = 0.0001; // Zoom speed (0.0001 = very subtle zoom)
         const rotationResetSpeed = 0.02; // Speed to reset rotation (0.02 = slow reset)
         const fadeSpeed = 0.001; // Speed of fade out (0.001 = very gradual)
+        const blurSpeed = 0.005; // Blur speed (0.005 = subtle blur increase)
 
         // Move screenshot up as user scrolls down
         const translateY = -(scrollY * parallaxSpeed);
@@ -145,16 +146,20 @@ function initParallaxEffect() {
         // Calculate rotation - starts at 23deg and gradually resets to 0deg
         const rotationY = Math.max(0, 23 - (scrollY * rotationResetSpeed));
 
-        // Calculate translateX - starts at 8% and reduces to 0% as rotation decreases
+        // Calculate translateX - starts at 10% and reduces to 2% as rotation decreases
         // This keeps the screenshot centered as rotation changes
-        const translateX = (rotationY / 23) * 8; // 8% at 23deg, 0% at 0deg
+        const translateX = 2 + (rotationY / 23) * 8; // 10% at 23deg, 2% at 0deg
 
         // Calculate opacity - starts at 1 and fades to 0
         const opacity = Math.max(0, 1 - (scrollY * fadeSpeed));
 
+        // Calculate blur - starts at 0px and increases with scroll
+        const blur = scrollY * blurSpeed;
+
         // Keep existing 3D transform and add translateY, scale, and dynamic rotation
         heroScreenshot.style.transform = `perspective(1000px) rotateY(${rotationY}deg) translateX(${translateX}%) translateY(${translateY}px) scale(${scale})`;
         heroScreenshot.style.opacity = opacity;
+        heroScreenshot.style.filter = `blur(${blur}px)`;
     });
 }
 
