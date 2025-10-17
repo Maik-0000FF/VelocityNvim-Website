@@ -25,7 +25,7 @@ yarn-debug.log*
 dist/
 build/
 
-# Claude Code
+# Claude Code (local development only)
 .claude/
 SESSION_SUMMARY.md
 claude.md
@@ -40,3 +40,20 @@ __pycache__/
 # Deployment & Design Plans (local only)
 DEPLOYMENT_PLAN.md
 DESIGN_IMPLEMENTATION_PLAN.md
+
+# Implementation Tracking (local only)
+IMPLEMENTATION_TRACKING.md
+
+# Development Scripts (local only)
+scripts/
+tools/
+
+# Backup Files
+*.bak
+*.backup
+*~
+
+# Temporary Files
+tmp/
+temp/
+*.tmp
