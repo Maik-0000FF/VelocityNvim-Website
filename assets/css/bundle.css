@@ -1535,6 +1535,7 @@ h4 .icon-inline {
     .hero-screenshot {
         margin: var(--spacing-xl) var(--spacing-md);
         border-radius: 8px;
+        transform: perspective(1000px) rotateY(23deg) translateX(7%);
     }
 
     /* Features Section Mobile */

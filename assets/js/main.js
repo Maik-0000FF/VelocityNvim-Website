@@ -148,7 +148,10 @@ function initParallaxEffect() {
 
         // Calculate translateX - starts at 10% and reduces to 2% as rotation decreases
         // This keeps the screenshot centered as rotation changes
-        const translateX = 2 + (rotationY / 23) * 8; // 10% at 23deg, 2% at 0deg
+        // On mobile, apply additional offset to shift left
+        const isMobile = window.innerWidth <= 768;
+        const mobileOffset = isMobile ? -3 : 0; // Shift 3% left on mobile
+        const translateX = 2 + (rotationY / 23) * 8 + mobileOffset; // 10% at 23deg, 2% at 0deg (desktop), 7% / -1% (mobile)
 
         // Calculate opacity - starts at 1 and fades to 0
         const opacity = Math.max(0, 1 - (scrollY * fadeSpeed));
