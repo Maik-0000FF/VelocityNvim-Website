@@ -597,15 +597,6 @@ h2 {
     }
 }
 
-/* Clickable feature card */
-a.feature-card {
-    cursor: pointer;
-    display: flex;
-}
-
-a.feature-card:hover {
-    opacity: 1;
-}
 
 .feature-icon-box {
     width: 80px;
