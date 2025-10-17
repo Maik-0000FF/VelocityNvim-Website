@@ -9,7 +9,7 @@ export const supportTemplate = () => `
 
     <!-- German Donation Section -->
     <div class="donation-section lang-content de active">
-        <h2><span data-icon="coffee" data-size="36"></span>Unterstütze VelocityNvim</h2>
+        <h2><span data-icon="beer" data-size="36"></span>Unterstütze VelocityNvim</h2>
         <p style="font-size: 1.1em; margin-bottom: 10px;">
             Wenn dir VelocityNvim gefällt, unterstütze das Projekt!
         </p>
@@ -57,7 +57,7 @@ export const supportTemplate = () => `
 
     <!-- English Donation Section -->
     <div class="donation-section lang-content en">
-        <h2><span data-icon="coffee" data-size="36"></span>Support VelocityNvim</h2>
+        <h2><span data-icon="beer" data-size="36"></span>Support VelocityNvim</h2>
         <p style="font-size: 1.1em; margin-bottom: 10px;">
             If you like VelocityNvim, support the project!
         </p>

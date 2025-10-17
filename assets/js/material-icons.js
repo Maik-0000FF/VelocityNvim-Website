@@ -72,7 +72,9 @@ export function getIcon(iconName, color, size) {
     // Wenn Material Icon verfügbar, verwende es
     if (materialName) {
         const sizeValue = size || '24';
-        const style = `font-size: ${sizeValue}px; color: ${color || '#0366d6'};`;
+        // Verwende 'currentColor' als Fallback statt einem festen Blau
+        const colorValue = color || 'currentColor';
+        const style = `font-size: ${sizeValue}px; color: ${colorValue};`;
         return `<span class="material-symbols-outlined" style="${style}">${materialName}</span>`;
     }
 

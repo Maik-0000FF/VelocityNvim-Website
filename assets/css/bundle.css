@@ -774,6 +774,10 @@ h2 {
 }
 
 /* Links Section */
+#links-container h2 {
+    color: var(--color-text-dark);
+}
+
 .links {
     list-style: none;
     padding: 0;
@@ -784,14 +788,14 @@ h2 {
 }
 
 .links a {
-    color: var(--color-accent-cyan);
+    color: var(--color-text-dark);
     text-decoration: none;
     font-size: 1.1em;
     transition: color var(--transition-fast);
 }
 
 .links a:hover {
-    color: var(--color-accent-cyan-light);
+    color: var(--color-text-dark-secondary);
     text-decoration: underline;
 }
 
@@ -1132,7 +1136,7 @@ h2 {
 }
 
 .donation-section h2 {
-    color: var(--color-accent-cyan);
+    color: var(--color-text-dark);
     border-bottom: none;
     margin: 0 0 var(--spacing-lg) 0;
     padding-bottom: 10px;

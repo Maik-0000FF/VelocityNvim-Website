@@ -40,7 +40,7 @@ export const Icons = {
     `,
 
     // Package / Box Icon
-    package: (color = '#0366d6', size = '24') => `
+    package: (color = 'currentColor', size = '24') => `
         <svg class="icon-inline" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 2L3 7v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-9-5z" fill="none" stroke="${color}" stroke-width="2"/>
             <circle cx="12" cy="11" r="3" fill="${color}"/>
@@ -128,6 +128,14 @@ export const Icons = {
         </svg>
     `,
 
+    // Beer / Cheers Icon
+    beer: (color = 'currentColor', size = '24') => `
+        <svg class="icon-inline" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17 11h1a3 3 0 0 1 0 6h-1M17 11V8a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v3M5 11h12v9a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-9z" fill="none" stroke="${color}" stroke-width="2"/>
+            <path d="M9 11v9M13 11v9M7 8c0-.5.5-1 1-1h8c.5 0 1 .5 1 1" stroke="${color}" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+    `,
+
     // Bitcoin Icon (Path-based, no mask for crisp scaling)
     bitcoin: (color = '#0366d6', size = '60') => `
         <svg width="${size}" height="${size}" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -144,7 +152,7 @@ export const Icons = {
     `,
 
     // Bug Icon
-    bug: (color = '#0366d6', size = '24') => `
+    bug: (color = 'currentColor', size = '24') => `
         <svg class="icon-inline" viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="19" r="2" fill="${color}"/>
             <circle cx="12" cy="12" r="7" fill="none" stroke="${color}" stroke-width="2"/>
@@ -177,7 +185,7 @@ export const Icons = {
     `,
 
     // Book / Documentation Icon
-    book: (color = '#0366d6', size = '24') => `
+    book: (color = 'currentColor', size = '24') => `
         <svg class="icon-inline" viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="${color}" stroke-width="2"/>
             <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" fill="none" stroke="${color}" stroke-width="2"/>
@@ -291,13 +299,22 @@ export function getIcon(iconName, color, size) {
 
     // Nur definierte Parameter übergeben (nicht null/undefined)
     if (typeof icon === 'function') {
+        const hasColor = color !== null && color !== undefined;
+        const hasSize = size !== null && size !== undefined;
+
         // Übergebe nur Werte die explizit gesetzt wurden
-        if (color !== null && color !== undefined && size !== null && size !== undefined) {
+        if (hasColor && hasSize) {
             return icon(color, size);
-        } else if (color !== null && color !== undefined) {
+        } else if (hasColor) {
             return icon(color);
-        } else if (size !== null && size !== undefined) {
-            return icon(undefined, size);
+        } else if (hasSize) {
+            // Wichtig: Wenn nur size gegeben ist, müssen wir die Funktion so aufrufen,
+            // dass der erste Parameter (color) den Standardwert bekommt
+            // Wir können nicht undefined übergeben, da das den Standardwert überschreibt
+            // Stattdessen übergeben wir nichts für color und übergeben size als zweites Argument
+            // Aber das funktioniert nicht direkt - wir müssen einen Workaround verwenden
+            const tempFunc = (s) => icon(undefined, s);
+            return tempFunc(size);
         } else {
             return icon();
         }
