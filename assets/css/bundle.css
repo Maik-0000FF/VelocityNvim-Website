@@ -751,8 +751,8 @@ a.feature-card:hover {
     position: absolute;
     top: -35px;
     right: 10px;
-    background: rgba(34, 197, 94, 0.95);
-    color: white;
+    background: rgba(57, 255, 242, 0.95);
+    color: var(--color-bg-dark);
     padding: var(--spacing-sm) var(--spacing-lg);
     border-radius: var(--radius-md);
     font-size: 0.95em;
@@ -763,6 +763,7 @@ a.feature-card:hover {
     box-shadow: var(--shadow-code);
     white-space: nowrap;
     min-width: 100px;
+    text-align: center;
 }
 
 .copy-feedback span {
@@ -1222,24 +1223,32 @@ a.feature-card:hover {
 }
 
 .support-item.scroll-hover-active {
-    background: var(--overlay-card);
-    backdrop-filter: var(--blur-subtle);
-    -webkit-backdrop-filter: var(--blur-subtle);
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-glow-cyan);
-    border: 1px solid var(--overlay-light);
+    background: transparent;
+    backdrop-filter: blur(35px) saturate(100%);
+    -webkit-backdrop-filter: blur(35px) saturate(100%);
+    transform: translateY(-6px);
+    box-shadow:
+        0 0 80px color-mix(in srgb, var(--card-glow-color, #39FFF2) 70%, transparent),
+        0 10px 40px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        inset 0 0 60px color-mix(in srgb, var(--card-glow-color, #39FFF2) 5%, transparent);
+    border: 1px solid color-mix(in srgb, var(--card-glow-color, #39FFF2) 70%, transparent);
     border-radius: 24px;
 }
 
 /* Desktop hover effect */
 @media (min-width: 769px) {
     .support-item:hover {
-        background: var(--overlay-card);
-        backdrop-filter: var(--blur-subtle);
-        -webkit-backdrop-filter: var(--blur-subtle);
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-glow-cyan);
-        border: 1px solid var(--overlay-light);
+        background: transparent;
+        backdrop-filter: blur(35px) saturate(100%);
+        -webkit-backdrop-filter: blur(35px) saturate(100%);
+        transform: translateY(-6px);
+        box-shadow:
+            0 0 80px color-mix(in srgb, var(--card-glow-color, #39FFF2) 70%, transparent),
+            0 10px 40px rgba(0, 0, 0, 0.5),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3),
+            inset 0 0 60px color-mix(in srgb, var(--card-glow-color, #39FFF2) 5%, transparent);
+        border: 1px solid color-mix(in srgb, var(--card-glow-color, #39FFF2) 70%, transparent);
         border-radius: 24px;
     }
 }
@@ -1341,9 +1350,9 @@ a.support-item:hover {
 }
 
 .bitcoin-item .copy-btn {
-    background: var(--color-accent-cyan);
-    color: var(--color-bg-dark);
-    border: 1px solid var(--color-accent-cyan);
+    background: #EE44FF;
+    color: #052F54;
+    border: 1px solid #EE44FF;
     padding: 6px 12px;
     border-radius: 4px;
     cursor: pointer;
@@ -1354,9 +1363,9 @@ a.support-item:hover {
 }
 
 .bitcoin-item .copy-btn:hover {
-    background: var(--color-accent-cyan-light);
-    border-color: var(--color-accent-cyan-light);
-    box-shadow: var(--shadow-glow-cyan);
+    background: #FF66FF;
+    border-color: #FF66FF;
+    box-shadow: 0 0 20px rgba(238, 68, 255, 0.6);
 }
 
 /* Prevent icon scaling inside copy button */
