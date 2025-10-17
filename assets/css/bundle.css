@@ -146,8 +146,8 @@
     --shadow-dark: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     --shadow-inset-light: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 
-    --blur-glassmorphism: blur(5.929px);
-    --blur-subtle: blur(3.2102px);
+    --blur-glassmorphism: blur(15px);
+    --blur-subtle: blur(8px);
 
     /* Border Radius Updates */
     --radius-2xl: 16px;
@@ -205,8 +205,71 @@
     }
 }
 
+@keyframes floatLogo {
+    0% {
+        transform: translate(
+            calc(var(--float-start-x) + var(--repel-x, 0px)),
+            calc(var(--float-start-y) + var(--repel-y, 0px))
+        ) rotate(var(--float-rotate-start));
+    }
+    25% {
+        transform: translate(
+            calc(var(--float-mid1-x) + var(--repel-x, 0px)),
+            calc(var(--float-mid1-y) + var(--repel-y, 0px))
+        ) rotate(var(--float-rotate-mid1));
+    }
+    50% {
+        transform: translate(
+            calc(var(--float-mid2-x) + var(--repel-x, 0px)),
+            calc(var(--float-mid2-y) + var(--repel-y, 0px))
+        ) rotate(var(--float-rotate-mid2));
+    }
+    75% {
+        transform: translate(
+            calc(var(--float-mid3-x) + var(--repel-x, 0px)),
+            calc(var(--float-mid3-y) + var(--repel-y, 0px))
+        ) rotate(var(--float-rotate-mid3));
+    }
+    100% {
+        transform: translate(
+            calc(var(--float-start-x) + var(--repel-x, 0px)),
+            calc(var(--float-start-y) + var(--repel-y, 0px))
+        ) rotate(var(--float-rotate-start));
+    }
+}
+
 /* ============================================
-   2. BASE STYLES
+   2. FLOATING BACKGROUND LOGOS
+   ============================================ */
+
+.floating-logos-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.floating-logo {
+    position: absolute;
+    opacity: 0.3;
+    filter: blur(1px);
+    animation: floatLogo var(--float-duration) ease-in-out infinite;
+    will-change: transform;
+}
+
+.floating-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: var(--logo-color-filter);
+}
+
+/* ============================================
+   3. BASE STYLES
    ============================================ */
 
 * {
@@ -224,27 +287,40 @@ body {
     font-family: var(--font-family);
     line-height: var(--line-height-base);
     color: var(--color-text-dark);
-    background: var(--color-bg-dark);
+    background: transparent;
     min-height: 100vh;
     padding: 0;
     margin: 0;
+}
+
+html {
+    background: linear-gradient(
+        to bottom,
+        var(--color-bg-dark) 0%,
+        #042645 40%,
+        #052F54 70%,
+        #063862 100%
+    );
+    min-height: 100vh;
 }
 
 .container {
     width: calc(100% - 20px);
     max-width: var(--breakpoint-wide);
     margin: 10px auto;
-    background: var(--overlay-card);
+    background: transparent;
     backdrop-filter: var(--blur-glassmorphism);
     -webkit-backdrop-filter: var(--blur-glassmorphism);
     border-radius: var(--radius-2xl);
     box-shadow: var(--shadow-dark);
     border: 1px solid var(--overlay-light);
     overflow: hidden;
+    position: relative;
+    z-index: 2;
 }
 
 .header {
-    background: var(--color-bg-dark);
+    background: transparent;
     color: white;
     padding: var(--spacing-3xl) var(--spacing-2xl);
     padding-top: 180px;
@@ -293,13 +369,7 @@ body {
 
 .content {
     padding: var(--spacing-2xl);
-    background: linear-gradient(
-        to bottom,
-        var(--color-bg-dark) 0%,
-        #042645 40%,
-        #052F54 70%,
-        #063862 100%
-    );
+    background: transparent;
 }
 
 /* Prevent CLS by reserving space for dynamic content */
