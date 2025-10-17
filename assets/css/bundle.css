@@ -579,12 +579,16 @@ h2 {
 /* Desktop hover effect */
 @media (min-width: 769px) {
     .feature-card:hover {
-        background: rgba(57, 255, 242, 0.25);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
-        transform: translateY(-4px);
-        box-shadow: var(--shadow-glow-cyan);
-        border: 1px solid var(--color-accent-cyan);
+        background: transparent;
+        backdrop-filter: blur(35px) saturate(100%);
+        -webkit-backdrop-filter: blur(35px) saturate(100%);
+        transform: translateY(-6px);
+        box-shadow:
+            0 0 80px rgba(57, 255, 242, 0.7),
+            0 10px 40px rgba(0, 0, 0, 0.5),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3),
+            inset 0 0 60px rgba(57, 255, 242, 0.05);
+        border: 1px solid rgba(57, 255, 242, 0.7);
         border-radius: var(--radius-2xl);
     }
 }
