@@ -130,7 +130,9 @@ function initFloatingLogos() {
     if (!container) return;
 
     const logoCount = 23; // Number of floating logos
-    const logoPath = 'assets/images/favicon.svg';
+    // Determine correct path based on current location
+    const isInDocsFolder = window.location.pathname.includes('/docs/');
+    const logoPath = isInDocsFolder ? '../assets/images/favicon.svg' : 'assets/images/favicon.svg';
     const logos = []; // Store logo data for mouse interaction
 
     // Color gradient from Cyan to Magenta (matching the theme)

@@ -26,12 +26,12 @@ export const requirementsTemplate = () => `
             <h4 style="margin-top: 20px;"><span data-icon="clipboard"></span> Kompletter Check (One-Liner)</h4>
             <div class="code-block" style="position: relative; padding-bottom: 45px;">
                 <code id="oneliner-de">bash -c 'echo "=== VelocityNvim Check ==="; echo ""; echo "🔴 ERFORDERLICH - Editor & VCS:"; nvim --version &>/dev/null && echo "✓ Neovim" || echo "❌ Neovim FEHLT!"; git --version &>/dev/null && echo "✓ Git" || echo "❌ Git FEHLT!"; echo ""; echo "🔴 ERFORDERLICH - Build Tools:"; gcc --version &>/dev/null && echo "✓ GCC" || echo "❌ GCC FEHLT!"; make --version &>/dev/null && echo "✓ make" || echo "❌ make FEHLT!"; echo ""; echo "🔴 ERFORDERLICH - Download & Archive:"; command -v curl &>/dev/null && echo "✓ curl" || echo "❌ curl FEHLT!"; command -v wget &>/dev/null && echo "✓ wget" || echo "❌ wget FEHLT!"; command -v unzip &>/dev/null && echo "✓ unzip" || echo "❌ unzip FEHLT!"; command -v tar &>/dev/null && echo "✓ tar" || echo "❌ tar FEHLT!"; echo ""; echo "🟠 CLIPBOARD:"; wl-copy --version &>/dev/null && echo "✓ wl-clipboard" || true; xclip -version &>/dev/null && echo "✓ xclip" || true; command -v pbcopy &>/dev/null && echo "✓ pbcopy" || true; echo ""; echo "🎨 NERD FONT:"; fc-list | grep -iq "nerd" && echo "✓ Nerd Font installiert" || echo "❌ Nerd Font fehlt"; echo ""; echo "⚡ RUST:"; for tool in cargo fzf rg fd bat; do command -v $tool &>/dev/null && echo "✓ $tool" || echo "❌ $tool"; done; command -v delta &>/dev/null && echo "✓ git-delta" || echo "❌ git-delta"; echo ""; echo "🧠 LSP:"; for lsp in lua-language-server pyright typescript-language-server rust-analyzer texlab; do command -v $lsp &>/dev/null && echo "✓ $lsp" || echo "❌ $lsp"; done; echo ""; echo "🔧 FORMATTERS:"; for fmt in ruff stylua prettier shfmt; do command -v $fmt &>/dev/null && echo "✓ $fmt" || echo "❌ $fmt"; done; echo ""; echo "📝 LATEX:"; command -v pdflatex &>/dev/null && echo "✓ pdflatex" || echo "❌ pdflatex"; command -v latexmk &>/dev/null && echo "✓ latexmk" || echo "❌ latexmk"; echo ""; echo "📄 PDF:"; for pdf in zathura okular evince; do command -v $pdf &>/dev/null && echo "✓ $pdf" || true; done'</code>
-                <button class="copy-btn" style="position: absolute; bottom: 10px; right: 10px; background: #0366d6; border: none; color: white; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.9em;" onclick="copyOneliner('de')" title="Befehl kopieren"><span data-icon="clipboard" data-color="white" data-size="16"></span> Kopieren</button>
+                <button class="copy-btn" style="position: absolute; bottom: 10px; right: 10px; background: #39FFF2; border: none; color: #052F54; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.9em; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(57, 255, 242, 0.3);" onclick="copyOneliner('de')" onmouseover="this.style.background='#66CCFF'; this.style.boxShadow='0 4px 12px rgba(102, 204, 255, 0.4)'" onmouseout="this.style.background='#39FFF2'; this.style.boxShadow='0 2px 8px rgba(57, 255, 242, 0.3)'" title="Befehl kopieren"><span data-icon="clipboard" data-color="#052F54" data-size="16"></span> Kopieren</button>
                 <div id="copy-feedback-oneliner-de" class="copy-feedback" style="bottom: 50px; top: auto;">Kopiert! ✓</div>
             </div>
 
             <h4 style="margin-top: 20px;"><span data-icon="chart"></span>Was bedeutet das Ergebnis?</h4>
-            <ul style="font-size: 0.9em; color: #586069;">
+            <ul style="font-size: 0.9em; color: #EFFAFF;">
                 <li><strong><span data-icon="checkmarkSimple" data-color="#28a745" data-size="16"></span> Programm</strong> - Installiert und funktionsfähig</li>
                 <li><strong>❌ Programm fehlt</strong> - Muss noch installiert werden</li>
                 <li><strong>🔴 ERFORDERLICH fehlt?</strong> - VelocityNvim wird NICHT funktionieren</li>
@@ -69,7 +69,7 @@ function getArchRequirements() {
             <div class="code-block">
                 <code>sudo pacman -S neovim git gcc base-devel</code>
             </div>
-            <ul style="font-size: 0.9em; color: #586069;">
+            <ul style="font-size: 0.9em; color: #EFFAFF;">
                 <li><strong>neovim</strong> - Editor-Engine (>= 0.11.0)</li>
                 <li><strong>git</strong> - Versionskontrolle für Plugin-Installation</li>
                 <li><strong>gcc</strong> - C-Compiler für Treesitter-Parser</li>
@@ -84,7 +84,7 @@ sudo pacman -S wl-clipboard curl wget unzip tar<br><br>
 # Für X11:<br>
 sudo pacman -S xclip xsel curl wget unzip tar</code>
             </div>
-            <ul style="font-size: 0.9em; color: #586069;">
+            <ul style="font-size: 0.9em; color: #EFFAFF;">
                 <li><strong>wl-clipboard</strong> - Zwischenablage für Wayland (wl-copy/wl-paste)</li>
                 <li><strong>xclip/xsel</strong> - Zwischenablage für X11</li>
                 <li><strong>curl/wget</strong> - HTTP-Download-Tools</li>
@@ -96,7 +96,7 @@ sudo pacman -S xclip xsel curl wget unzip tar</code>
             <div class="code-block">
                 <code>sudo pacman -S ttf-meslo-nerd wezterm</code>
             </div>
-            <ul style="font-size: 0.9em; color: #586069;">
+            <ul style="font-size: 0.9em; color: #EFFAFF;">
                 <li><strong>ttf-meslo-nerd</strong> - Nerd Font für UI-Icons (Neo-tree, Bufferline, Lualine)</li>
                 <li><strong>wezterm</strong> - GPU-beschleunigter Terminal, VelocityNvim-optimiert</li>
                 <li><em>Alternative Fonts:</em> ttf-jetbrains-mono-nerd, ttf-firacode-nerd</li>
@@ -110,7 +110,7 @@ sudo pacman -S rust fzf ripgrep fd bat git-delta<br><br>
 # Zusätzliche Tools via Cargo<br>
 cargo install ruff stylua hyperfine</code>
             </div>
-            <ul style="font-size: 0.9em; color: #586069;">
+            <ul style="font-size: 0.9em; color: #EFFAFF;">
                 <li><strong>rust</strong> - Rust-Toolchain (enthält cargo)</li>
                 <li><strong>fzf</strong> - Fuzzy-Finder (FZF-Lua Backend)</li>
                 <li><strong>ripgrep</strong> - Ultraschnelle Textsuche (10-100x schneller als grep)</li>
@@ -180,7 +180,7 @@ function getMacOSRequirements() {
             <div class="code-block">
                 <code>brew install neovim git gcc</code>
             </div>
-            <ul style="font-size: 0.9em; color: #586069;">
+            <ul style="font-size: 0.9em; color: #EFFAFF;">
                 <li><strong>neovim</strong> - Editor-Engine (>= 0.11.0)</li>
                 <li><strong>git</strong> - Versionskontrolle</li>
                 <li><strong>gcc</strong> - C-Compiler für Treesitter</li>
@@ -190,7 +190,7 @@ function getMacOSRequirements() {
             <div class="code-block">
                 <code>brew install --cask font-meslo-lg-nerd-font wezterm</code>
             </div>
-            <ul style="font-size: 0.9em; color: #586069;">
+            <ul style="font-size: 0.9em; color: #EFFAFF;">
                 <li><strong>font-meslo-lg-nerd-font</strong> - Nerd Font für UI-Icons</li>
                 <li><strong>wezterm</strong> - Optimierter Terminal-Emulator</li>
                 <li><strong>Hinweis:</strong> macOS-Zwischenablage funktioniert nativ (pbcopy/pbpaste)</li>
@@ -243,12 +243,12 @@ function getVerificationEN() {
             <h4 style="margin-top: 20px;"><span data-icon="clipboard"></span>Complete Check (One-Liner)</h4>
             <div class="code-block" style="position: relative; padding-bottom: 45px;">
                 <code id="oneliner-en">bash -c 'echo "=== VelocityNvim Check ==="; echo ""; echo "🔴 REQUIRED - Editor & VCS:"; nvim --version &>/dev/null && echo "✓ Neovim" || echo "❌ Neovim MISSING!"; git --version &>/dev/null && echo "✓ Git" || echo "❌ Git MISSING!"; echo ""; echo "🔴 REQUIRED - Build Tools:"; gcc --version &>/dev/null && echo "✓ GCC" || echo "❌ GCC MISSING!"; make --version &>/dev/null && echo "✓ make" || echo "❌ make MISSING!"; echo ""; echo "🔴 REQUIRED - Download & Archive:"; command -v curl &>/dev/null && echo "✓ curl" || echo "❌ curl MISSING!"; command -v wget &>/dev/null && echo "✓ wget" || echo "❌ wget MISSING!"; command -v unzip &>/dev/null && echo "✓ unzip" || echo "❌ unzip MISSING!"; command -v tar &>/dev/null && echo "✓ tar" || echo "❌ tar MISSING!"; echo ""; echo "🟠 CLIPBOARD:"; wl-copy --version &>/dev/null && echo "✓ wl-clipboard" || true; xclip -version &>/dev/null && echo "✓ xclip" || true; command -v pbcopy &>/dev/null && echo "✓ pbcopy" || true; echo ""; echo "🎨 NERD FONT:"; fc-list | grep -iq "nerd" && echo "✓ Nerd Font installed" || echo "❌ Nerd Font missing"; echo ""; echo "⚡ RUST:"; for tool in cargo fzf rg fd bat; do command -v $tool &>/dev/null && echo "✓ $tool" || echo "❌ $tool"; done; command -v delta &>/dev/null && echo "✓ git-delta" || echo "❌ git-delta"; echo ""; echo "🧠 LSP:"; for lsp in lua-language-server pyright typescript-language-server rust-analyzer texlab; do command -v $lsp &>/dev/null && echo "✓ $lsp" || echo "❌ $lsp"; done; echo ""; echo "🔧 FORMATTERS:"; for fmt in ruff stylua prettier shfmt; do command -v $fmt &>/dev/null && echo "✓ $fmt" || echo "❌ $fmt"; done; echo ""; echo "📝 LATEX:"; command -v pdflatex &>/dev/null && echo "✓ pdflatex" || echo "❌ pdflatex"; command -v latexmk &>/dev/null && echo "✓ latexmk" || echo "❌ latexmk"; echo ""; echo "📄 PDF:"; for pdf in zathura okular evince; do command -v $pdf &>/dev/null && echo "✓ $pdf" || true; done'</code>
-                <button class="copy-btn" style="position: absolute; bottom: 10px; right: 10px; background: #0366d6; border: none; color: white; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-size: 0.9em;" onclick="copyOneliner('en')" title="Copy command"><span data-icon="clipboard" data-color="white" data-size="16"></span> Copy</button>
+                <button class="copy-btn" style="position: absolute; bottom: 10px; right: 10px; background: #39FFF2; border: none; color: #052F54; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.9em; font-weight: 600; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(57, 255, 242, 0.3);" onclick="copyOneliner('en')" onmouseover="this.style.background='#66CCFF'; this.style.boxShadow='0 4px 12px rgba(102, 204, 255, 0.4)'" onmouseout="this.style.background='#39FFF2'; this.style.boxShadow='0 2px 8px rgba(57, 255, 242, 0.3)'" title="Copy command"><span data-icon="clipboard" data-color="#052F54" data-size="16"></span> Copy</button>
                 <div id="copy-feedback-oneliner-en" class="copy-feedback" style="bottom: 50px; top: auto;">Copied! ✓</div>
             </div>
 
             <h4 style="margin-top: 20px;"><span data-icon="chart"></span>What Does the Result Mean?</h4>
-            <ul style="font-size: 0.9em; color: #586069;">
+            <ul style="font-size: 0.9em; color: #EFFAFF;">
                 <li><strong><span data-icon="checkmarkSimple" data-color="#28a745" data-size="16"></span> Program</strong> - Installed and functional</li>
                 <li><strong>❌ Program missing</strong> - Needs to be installed</li>
                 <li><strong>🔴 REQUIRED missing?</strong> - VelocityNvim will NOT work</li>
@@ -269,7 +269,7 @@ function getArchRequirementsEN() {
             <div class="code-block">
                 <code>sudo pacman -S neovim git gcc base-devel</code>
             </div>
-            <ul style="font-size: 0.9em; color: #586069;">
+            <ul style="font-size: 0.9em; color: #EFFAFF;">
                 <li><strong>neovim</strong> - Editor engine (>= 0.11.0)</li>
                 <li><strong>git</strong> - Version control for plugin installation</li>
                 <li><strong>gcc</strong> - C compiler for Treesitter parsers</li>
