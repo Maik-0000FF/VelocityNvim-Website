@@ -1382,63 +1382,6 @@ a.support-item:hover {
     min-width: 120px;
 }
 
-/* ============================================
-   6. PAGE NAVIGATION
-   ============================================ */
-
-/* Mobile navigation arrows in navbar */
-.mobile-page-nav {
-    display: none;
-}
-
-@media (max-width: 768px) {
-    .mobile-page-nav {
-        display: flex;
-        gap: var(--spacing-sm);
-        align-items: center;
-        order: 2;
-        margin-left: auto;
-    }
-
-    .mobile-nav-arrow {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 36px;
-        height: 36px;
-        min-width: 36px;
-        min-height: 36px;
-        max-width: 36px;
-        max-height: 36px;
-        border-radius: var(--radius-md);
-        background: transparent;
-        color: var(--color-accent-cyan);
-        text-decoration: none;
-        transition: all var(--transition-normal);
-        -webkit-tap-highlight-color: transparent;
-        flex-shrink: 0;
-    }
-
-    .mobile-nav-arrow:hover {
-        background: var(--overlay-light);
-    }
-
-    .mobile-nav-arrow:active {
-        transform: scale(0.95);
-    }
-
-    .mobile-nav-arrow.disabled {
-        opacity: 0.3;
-        cursor: not-allowed;
-        pointer-events: none;
-    }
-
-    .mobile-nav-arrow span[data-icon] {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-}
 
 /* ============================================
    7. ICONS

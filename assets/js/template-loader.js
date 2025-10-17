@@ -8,16 +8,6 @@ import { requirementsTemplate } from './templates/requirements.js';
 import { installationTemplate } from './templates/installation.js';
 import { supportTemplate } from './templates/support.js';
 import { linksTemplate } from './templates/links.js';
-import { eagerLoadingTemplate } from './templates/eager-loading.js';
-import { beautifulUiTemplate } from './templates/beautiful-ui.js';
-import { customizationTemplate } from './templates/customization.js';
-import { nativeVimPackTemplate } from './templates/native-vim-pack.js';
-import { luaPerformanceTemplate } from './templates/lua-performance.js';
-import { customizableThemeTemplate } from './templates/customizable-theme.js';
-import { leanEfficientTemplate } from './templates/lean-efficient.js';
-import { modernPluginsTemplate } from './templates/modern-plugins.js';
-import { readyToGoTemplate } from './templates/ready-to-go.js';
-import { pageNavigationTemplate } from './page-navigation.js';
 import { getIcon, renderDataIcons } from './material-icons.js';
 
 /**
@@ -55,67 +45,6 @@ export function loadTemplates(callback) {
     const linksContainer = document.getElementById('links-container');
     if (linksContainer) {
         linksContainer.innerHTML = linksTemplate();
-    }
-
-    // Eager Loading
-    const eagerLoadingContainer = document.getElementById('eager-loading-container');
-    if (eagerLoadingContainer) {
-        eagerLoadingContainer.innerHTML = eagerLoadingTemplate();
-    }
-
-    // Beautiful UI
-    const beautifulUiContainer = document.getElementById('beautiful-ui-container');
-    if (beautifulUiContainer) {
-        beautifulUiContainer.innerHTML = beautifulUiTemplate();
-    }
-
-    // Customization
-    const customizationContainer = document.getElementById('customization-container');
-    if (customizationContainer) {
-        customizationContainer.innerHTML = customizationTemplate();
-    }
-
-    // Native vim.pack
-    const nativeVimPackContainer = document.getElementById('native-vim-pack-container');
-    if (nativeVimPackContainer) {
-        nativeVimPackContainer.innerHTML = nativeVimPackTemplate();
-    }
-
-    // Lua Performance
-    const luaPerformanceContainer = document.getElementById('lua-performance-container');
-    if (luaPerformanceContainer) {
-        luaPerformanceContainer.innerHTML = luaPerformanceTemplate();
-    }
-
-    // Customizable Theme
-    const customizableThemeContainer = document.getElementById('customizable-theme-container');
-    if (customizableThemeContainer) {
-        customizableThemeContainer.innerHTML = customizableThemeTemplate();
-    }
-
-    // Lean & Efficient
-    const leanEfficientContainer = document.getElementById('lean-efficient-container');
-    if (leanEfficientContainer) {
-        leanEfficientContainer.innerHTML = leanEfficientTemplate();
-    }
-
-    // Modern Plugins
-    const modernPluginsContainer = document.getElementById('modern-plugins-container');
-    if (modernPluginsContainer) {
-        modernPluginsContainer.innerHTML = modernPluginsTemplate();
-    }
-
-    // Ready to Go
-    const readyToGoContainer = document.getElementById('ready-to-go-container');
-    if (readyToGoContainer) {
-        readyToGoContainer.innerHTML = readyToGoTemplate();
-    }
-
-    // Mobile Page Navigation (for detail pages - in navbar)
-    const mobilePageNav = document.getElementById('mobile-page-navigation');
-    if (mobilePageNav) {
-        const currentPage = window.location.pathname.split('/').pop();
-        mobilePageNav.innerHTML = pageNavigationTemplate(currentPage);
     }
 
     // Render all data-icon attributes
