@@ -641,7 +641,7 @@ a.feature-card:hover {
 
 .feature-card h2,
 .feature-card h3 {
-    color: var(--color-text-dark);
+    color: var(--card-glow-color, var(--color-text-dark));
     font-size: 1.3em;
     margin: var(--spacing-md) 0;
     padding: 0;
@@ -649,7 +649,7 @@ a.feature-card:hover {
 }
 
 .feature-card p {
-    color: var(--color-text-dark-secondary);
+    color: var(--card-glow-color, var(--color-text-dark-secondary));
     line-height: 1.6;
     margin: 0;
 }
@@ -1317,7 +1317,7 @@ a.feature-card:hover {
 }
 
 .support-item h3 {
-    color: var(--color-text-dark);
+    color: var(--card-glow-color, var(--color-text-dark));
     font-size: 1.3em;
     margin: var(--spacing-md) 0;
     border: none;
@@ -1325,7 +1325,7 @@ a.feature-card:hover {
 }
 
 .support-item p {
-    color: var(--color-text-dark-secondary);
+    color: var(--card-glow-color, var(--color-text-dark-secondary));
     line-height: 1.6;
     margin: 0;
 }
