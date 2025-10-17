@@ -293,6 +293,13 @@ body {
 
 .content {
     padding: var(--spacing-2xl);
+    background: linear-gradient(
+        to bottom,
+        var(--color-bg-dark) 0%,
+        #042645 40%,
+        #052F54 70%,
+        #063862 100%
+    );
 }
 
 /* Prevent CLS by reserving space for dynamic content */
