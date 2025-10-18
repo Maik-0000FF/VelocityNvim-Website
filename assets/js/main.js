@@ -301,38 +301,43 @@ function initFloatingLogos() {
     const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
     if (isTouchDevice) {
-        // Check if gyroscope was enabled via debug page
+        // Check if gyroscope was enabled via Nerd Zone
         const gyroscopeEnabled = localStorage.getItem('velocityGyroscopeEnabled') === 'true';
 
         if (gyroscopeEnabled) {
-            // User enabled gyroscope via debug page - activate immediately
-            console.log('🎯 Gyroscope enabled via debug page - activating...');
+            console.log('🎯 Gyroscope enabled via Nerd Zone');
 
-            if (typeof DeviceOrientationEvent !== 'undefined' &&
-                typeof DeviceOrientationEvent.requestPermission === 'function') {
-                // iOS 13+ - request permission (should be auto-granted if already done)
-                DeviceOrientationEvent.requestPermission()
-                    .then(permissionState => {
-                        if (permissionState === 'granted') {
-                            window.addEventListener('deviceorientation', handleOrientation, true);
-                            hasOrientationPermission = true;
-                            console.log('✅ Gyroscope activated successfully!');
-                        }
-                    })
-                    .catch(error => {
-                        console.log('Permission auto-request failed, waiting for touch:', error);
-                        document.addEventListener('touchstart', requestOrientationPermission, { once: true });
-                    });
-            } else if (window.DeviceOrientationEvent) {
-                // Android or older iOS - activate directly
-                window.addEventListener('deviceorientation', handleOrientation, true);
-                hasOrientationPermission = true;
-                console.log('✅ Gyroscope activated (Android/older iOS)');
-            }
+            // Auto-activate on first touch (permission already granted, will succeed silently)
+            const activateGyroscope = () => {
+                if (typeof DeviceOrientationEvent !== 'undefined' &&
+                    typeof DeviceOrientationEvent.requestPermission === 'function') {
+                    // iOS 13+ - request (will auto-grant since permission exists)
+                    DeviceOrientationEvent.requestPermission()
+                        .then(permissionState => {
+                            if (permissionState === 'granted') {
+                                window.addEventListener('deviceorientation', handleOrientation, true);
+                                hasOrientationPermission = true;
+                                console.log('✅ Gyroscope activated!');
+                            }
+                        })
+                        .catch(error => {
+                            console.log('Activation failed:', error);
+                        });
+                } else if (window.DeviceOrientationEvent) {
+                    // Android or older iOS - activate directly
+                    window.addEventListener('deviceorientation', handleOrientation, true);
+                    hasOrientationPermission = true;
+                    console.log('✅ Gyroscope activated!');
+                }
+            };
+
+            // Activate on first touch anywhere on the page
+            document.addEventListener('touchstart', activateGyroscope, { once: true });
+            document.addEventListener('click', activateGyroscope, { once: true });
+
         } else {
-            // Not enabled yet - wait for user interaction or debug page activation
-            console.log('ℹ️ Gyroscope not enabled. Visit /debug-gyroscope.html to activate.');
-            document.addEventListener('touchstart', requestOrientationPermission, { once: true });
+            // Not enabled - user needs to visit Nerd Zone first
+            console.log('ℹ️ Visit Nerd Zone to enable gyroscope');
         }
     }
 
