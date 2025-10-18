@@ -76,7 +76,7 @@ export const featuresTemplate = () => `
             </div>
 
             <div class="feature-card" style="--card-glow-color: #9966FF;">
-                <img src="assets/images/lua02-svgrepo-com.svg" alt="Lua" style="width: 48px; height: 48px; filter: brightness(0) saturate(100%) invert(61%) sepia(77%) saturate(4196%) hue-rotate(230deg) brightness(102%) contrast(101%);">
+                <img src="assets/images/lua-purple-blue.svg" alt="Lua" style="width: 48px; height: 48px;">
                 <h2>Lua-Performance</h2>
                 <p>Native Lua-Integration für maximale Geschwindigkeit und direkten API-Zugriff</p>
             </div>
@@ -133,7 +133,7 @@ export const featuresTemplate = () => `
             </div>
 
             <div class="feature-card" style="--card-glow-color: #9966FF;">
-                <img src="assets/images/lua02-svgrepo-com.svg" alt="Lua" style="width: 48px; height: 48px; filter: brightness(0) saturate(100%) invert(61%) sepia(77%) saturate(4196%) hue-rotate(230deg) brightness(102%) contrast(101%);">
+                <img src="assets/images/lua-purple-blue.svg" alt="Lua" style="width: 48px; height: 48px;">
                 <h2>Lua Performance</h2>
                 <p>Native Lua integration for maximum speed and direct API access</p>
             </div>

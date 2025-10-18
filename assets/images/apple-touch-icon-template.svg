@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" version="1.1">
   <!-- Dark blue background -->
-  <rect width="512" height="512" fill="#041D3C" rx="56" ry="56"/>
+  <rect width="512" height="512" fill="#041D3C"/>
 
   <!-- VelocityNvim Logo (scaled and centered) -->
   <g transform="translate(28, 415) scale(1.45, -1.45)">
