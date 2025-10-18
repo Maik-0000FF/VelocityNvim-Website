@@ -230,16 +230,90 @@ function initFloatingLogos() {
         });
     }
 
-    // Mouse repulsion effect
+    // Mouse/Device orientation repulsion effect
     let mouseX = 0;
     let mouseY = 0;
+    let tiltX = 0; // Device tilt for mobile (beta: left/right)
+    let tiltY = 0; // Device tilt for mobile (gamma: front/back)
+    let hasOrientationPermission = false;
     const repelDistance = 300; // Distance in pixels where repulsion starts
     const repelStrength = 0.8; // Strength of repulsion (0-1)
 
+    // Desktop & Mobile: Mouse tracking (always active)
     document.addEventListener('mousemove', function(e) {
         mouseX = e.clientX;
         mouseY = e.clientY;
     });
+
+    // Mobile: Device Orientation (Gyroscope)
+    function handleOrientation(event) {
+        // beta: front-to-back tilt (-180 to 180 degrees, 0 = flat)
+        // gamma: left-to-right tilt (-90 to 90 degrees, 0 = upright)
+        const beta = event.beta || 0;  // Y-axis rotation
+        const gamma = event.gamma || 0; // X-axis rotation
+
+        // Convert tilt to screen coordinates
+        // When tilted right (gamma > 0), logos should move left (negative X)
+        // When tilted forward (beta > 0), logos should move up (negative Y)
+        const maxTilt = 30; // Maximum tilt angle to consider (degrees)
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+
+        // Map tilt to virtual mouse position
+        // Tilt right (gamma > 0) = mouse on left side
+        // Tilt left (gamma < 0) = mouse on right side
+        tiltX = viewportWidth / 2 - (gamma / maxTilt) * (viewportWidth / 2);
+        tiltY = viewportHeight / 2 + (beta / maxTilt) * (viewportHeight / 2);
+
+        // Clamp to viewport bounds
+        tiltX = Math.max(0, Math.min(viewportWidth, tiltX));
+        tiltY = Math.max(0, Math.min(viewportHeight, tiltY));
+    }
+
+    // Request device orientation permission (required for iOS 13+)
+    function requestOrientationPermission() {
+        if (typeof DeviceOrientationEvent !== 'undefined' &&
+            typeof DeviceOrientationEvent.requestPermission === 'function') {
+            // iOS 13+ requires explicit permission
+            DeviceOrientationEvent.requestPermission()
+                .then(permissionState => {
+                    if (permissionState === 'granted') {
+                        window.addEventListener('deviceorientation', handleOrientation, true);
+                        hasOrientationPermission = true;
+                        console.log('Device orientation permission granted');
+                    } else {
+                        console.log('Device orientation permission denied');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error requesting device orientation permission:', error);
+                });
+        } else if (window.DeviceOrientationEvent) {
+            // Non-iOS or older iOS: no permission needed
+            window.addEventListener('deviceorientation', handleOrientation, true);
+            hasOrientationPermission = true;
+            console.log('Device orientation activated (no permission required)');
+        } else {
+            console.log('Device orientation not supported on this device');
+        }
+    }
+
+    // Initialize orientation tracking on mobile
+    // Check if device supports touch (mobile/tablet)
+    const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+    if (isTouchDevice) {
+        // For iOS 13+, we need user interaction to request permission
+        // Add a one-time touch listener
+        const requestPermissionOnTouch = () => {
+            requestOrientationPermission();
+            document.removeEventListener('touchstart', requestPermissionOnTouch);
+        };
+        document.addEventListener('touchstart', requestPermissionOnTouch, { once: true });
+
+        // For Android and older iOS, try to activate immediately
+        requestOrientationPermission();
+    }
 
     // Animation loop for smooth repulsion
     function updateLogoPositions() {
@@ -249,10 +323,16 @@ function initFloatingLogos() {
             const logoCenterX = rect.left + rect.width / 2;
             const logoCenterY = rect.top + rect.height / 2;
 
-            // === Mouse Repulsion ===
-            // Calculate distance from mouse to logo center
-            const deltaX = logoCenterX - mouseX;
-            const deltaY = logoCenterY - mouseY;
+            // === Mouse/Tilt Repulsion ===
+            // Use tilt coordinates if device orientation is active AND has valid tilt data
+            // Otherwise use mouse coordinates (works on both desktop and mobile)
+            const hasTiltData = hasOrientationPermission && (tiltX !== 0 || tiltY !== 0);
+            const interactionX = hasTiltData ? tiltX : mouseX;
+            const interactionY = hasTiltData ? tiltY : mouseY;
+
+            // Calculate distance from interaction point to logo center
+            const deltaX = logoCenterX - interactionX;
+            const deltaY = logoCenterY - interactionY;
             const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 
             if (distance < repelDistance) {
