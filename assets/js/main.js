@@ -325,36 +325,32 @@ function initParallaxEffect() {
     }
 
     window.addEventListener('scroll', function() {
-        const scrollY = window.scrollY;
-        const parallaxSpeed = 0.25; // Adjust speed (0.25 = moves at 1/4 scroll speed)
-        const zoomSpeed = 0.0001; // Zoom speed (0.0001 = very subtle zoom)
-        const rotationResetSpeed = 0.02; // Speed to reset rotation (0.02 = slow reset)
-        const fadeSpeed = 0.001; // Speed of fade out (0.001 = very gradual)
-        const blurSpeed = 0.005; // Blur speed (0.005 = subtle blur increase)
-
-        // Move screenshot up as user scrolls down
-        const translateY = -(scrollY * parallaxSpeed);
-
-        // Calculate scale - starts at 1 and increases with scroll
-        const scale = 1 + (scrollY * zoomSpeed);
-
-        // Calculate rotation - starts at 23deg and gradually resets to 0deg
-        const rotationY = Math.max(0, 23 - (scrollY * rotationResetSpeed));
-
-        // Calculate translateX - starts at 10% and reduces to 2% as rotation decreases
-        // This keeps the screenshot centered as rotation changes
-        // On mobile, apply additional offset to shift left
         const isMobile = window.innerWidth <= 768;
-        const mobileOffset = isMobile ? -3 : 0; // Shift 3% left on mobile
-        const translateX = 2 + (rotationY / 23) * 8 + mobileOffset; // 10% at 23deg, 2% at 0deg (desktop), 7% / -1% (mobile)
 
-        // Calculate opacity - starts at 1 and fades to 0 (disabled on mobile)
-        const opacity = isMobile ? 1 : Math.max(0, 1 - (scrollY * fadeSpeed));
+        // On mobile: disable ALL parallax effects to fix z-index and performance
+        if (isMobile) {
+            // Reset to static state - no transforms, no effects
+            heroScreenshot.style.transform = 'none';
+            heroScreenshot.style.opacity = '1';
+            heroScreenshot.style.filter = 'none';
+            return;
+        }
 
-        // Calculate blur - starts at 0px and increases with scroll (disabled on mobile)
-        const blur = isMobile ? 0 : scrollY * blurSpeed;
+        // Desktop only: Full parallax effects
+        const scrollY = window.scrollY;
+        const parallaxSpeed = 0.25;
+        const zoomSpeed = 0.0001;
+        const rotationResetSpeed = 0.02;
+        const fadeSpeed = 0.001;
+        const blurSpeed = 0.005;
 
-        // Keep existing 3D transform and add translateY, scale, and dynamic rotation
+        const translateY = -(scrollY * parallaxSpeed);
+        const scale = 1 + (scrollY * zoomSpeed);
+        const rotationY = Math.max(0, 23 - (scrollY * rotationResetSpeed));
+        const translateX = 2 + (rotationY / 23) * 8;
+        const opacity = Math.max(0, 1 - (scrollY * fadeSpeed));
+        const blur = scrollY * blurSpeed;
+
         heroScreenshot.style.transform = `perspective(1000px) rotateY(${rotationY}deg) translateX(${translateX}%) translateY(${translateY}px) scale(${scale})`;
         heroScreenshot.style.opacity = opacity;
         heroScreenshot.style.filter = `blur(${blur}px)`;
