@@ -301,12 +301,39 @@ function initFloatingLogos() {
     const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
     if (isTouchDevice) {
-        // For iOS 13+, we need user interaction to request permission
-        // Add a one-time touch listener
-        document.addEventListener('touchstart', requestOrientationPermission, { once: true });
+        // Check if gyroscope was enabled via debug page
+        const gyroscopeEnabled = localStorage.getItem('velocityGyroscopeEnabled') === 'true';
 
-        // For Android and older iOS, try to activate immediately
-        requestOrientationPermission();
+        if (gyroscopeEnabled) {
+            // User enabled gyroscope via debug page - activate immediately
+            console.log('🎯 Gyroscope enabled via debug page - activating...');
+
+            if (typeof DeviceOrientationEvent !== 'undefined' &&
+                typeof DeviceOrientationEvent.requestPermission === 'function') {
+                // iOS 13+ - request permission (should be auto-granted if already done)
+                DeviceOrientationEvent.requestPermission()
+                    .then(permissionState => {
+                        if (permissionState === 'granted') {
+                            window.addEventListener('deviceorientation', handleOrientation, true);
+                            hasOrientationPermission = true;
+                            console.log('✅ Gyroscope activated successfully!');
+                        }
+                    })
+                    .catch(error => {
+                        console.log('Permission auto-request failed, waiting for touch:', error);
+                        document.addEventListener('touchstart', requestOrientationPermission, { once: true });
+                    });
+            } else if (window.DeviceOrientationEvent) {
+                // Android or older iOS - activate directly
+                window.addEventListener('deviceorientation', handleOrientation, true);
+                hasOrientationPermission = true;
+                console.log('✅ Gyroscope activated (Android/older iOS)');
+            }
+        } else {
+            // Not enabled yet - wait for user interaction or debug page activation
+            console.log('ℹ️ Gyroscope not enabled. Visit /debug-gyroscope.html to activate.');
+            document.addEventListener('touchstart', requestOrientationPermission, { once: true });
+        }
     }
 
     // Animation loop for smooth repulsion

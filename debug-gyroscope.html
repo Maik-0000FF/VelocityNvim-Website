@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gyroscope Debug - VelocityNvim</title>
+    <title>Nerd Zone - VelocityNvim</title>
     <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+
+    <!-- Load CSS -->
+    <link rel="stylesheet" href="assets/css/bundle.css">
+    <link rel="stylesheet" href="assets/css/material-icons.css">
+
     <style>
         * {
             margin: 0;
@@ -14,18 +19,17 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #041D3C 0%, #042645 33%, #052F54 66%, #063862 100%);
             color: #EFFAFF;
-            padding: 20px;
             min-height: 100vh;
         }
 
-        .container {
+        .nerd-zone-content {
+            padding: 100px 20px 20px 20px;
             max-width: 800px;
             margin: 0 auto;
         }
 
-        h1 {
+        .nerd-zone-content h1 {
             background: linear-gradient(135deg, #39FFF2 0%, #F86CFF 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -33,22 +37,6 @@
             font-size: 2em;
             margin-bottom: 20px;
             text-align: center;
-        }
-
-        .back-link {
-            display: inline-block;
-            color: #39FFF2;
-            text-decoration: none;
-            margin-bottom: 20px;
-            padding: 10px 20px;
-            border: 2px solid #39FFF2;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .back-link:hover {
-            background: #39FFF2;
-            color: #052F54;
         }
 
         .debug-card {
@@ -162,12 +150,39 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="/" class="back-link">← Zurück zur Hauptseite</a>
+    <!-- Minimalist Navigation -->
+    <nav class="sticky-nav">
+        <div class="nav-content">
+            <a href="/#top" class="nav-logo">
+                <img src="assets/images/favicon.svg" alt="VelocityNvim Logo">
+                <span>VelocityNvim</span>
+            </a>
+            <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li class="lang-content de active"><a href="/#features">Features</a></li>
+                <li class="lang-content en"><a href="/#features">Features</a></li>
+                <li class="lang-content de active"><a href="docs/requirements.html">Voraussetzungen</a></li>
+                <li class="lang-content en"><a href="docs/requirements.html">Requirements</a></li>
+                <li><a href="docs/installation.html">Installation</a></li>
+                <li class="lang-content de active"><a href="/#support">Support</a></li>
+                <li class="lang-content en"><a href="/#support">Support</a></li>
+                <li><a href="debug-gyroscope.html" class="active">Nerd Zone</a></li>
+            </ul>
+            <div class="nav-lang-switch">
+                <button class="nav-lang-btn active" onclick="switchLanguage('de')">DE</button>
+                <button class="nav-lang-btn" onclick="switchLanguage('en')">EN</button>
+            </div>
+        </div>
+    </nav>
 
-        <h1>🎯 Gyroscope Debug Tool</h1>
+    <div class="nerd-zone-content">
+        <h1>🎯 Nerd Zone - Gyroscope Control</h1>
 
-        <div class="instructions">
+        <div class="instructions lang-content de active">
             <h3>📱 So funktioniert's:</h3>
             <ul>
                 <li>Tippen Sie auf den Button "Gyroscope aktivieren"</li>
@@ -177,12 +192,26 @@
             </ul>
         </div>
 
-        <button id="enable-gyro" class="enable-button">
+        <div class="instructions lang-content en">
+            <h3>📱 How it works:</h3>
+            <ul>
+                <li>Tap the "Enable Gyroscope" button</li>
+                <li>Allow access to Motion & Orientation</li>
+                <li>Tilt your device and watch the values change</li>
+                <li>The pink dot shows the tilt direction visually</li>
+            </ul>
+        </div>
+
+        <button id="enable-gyro" class="enable-button lang-content de active">
             📱 Gyroscope aktivieren
+        </button>
+        <button id="enable-gyro-en" class="enable-button lang-content en">
+            📱 Enable Gyroscope
         </button>
 
         <div class="debug-card">
-            <h2>📊 System Status</h2>
+            <h2 class="lang-content de active">📊 System Status</h2>
+            <h2 class="lang-content en">📊 System Status</h2>
             <div class="debug-item">
                 <span class="debug-label">Touch Device:</span>
                 <span class="debug-value" id="status-touch">Checking...</span>
@@ -202,7 +231,8 @@
         </div>
 
         <div class="debug-card">
-            <h2>🎯 Live Sensor Data</h2>
+            <h2 class="lang-content de active">🎯 Live Sensor Daten</h2>
+            <h2 class="lang-content en">🎯 Live Sensor Data</h2>
             <div class="debug-item">
                 <span class="debug-label">Beta (Front/Back):</span>
                 <span class="debug-value" id="sensor-beta">--°</span>
@@ -222,12 +252,16 @@
         </div>
 
         <div class="debug-card">
-            <h2>📍 Visual Tilt Indicator</h2>
+            <h2 class="lang-content de active">📍 Visuelle Neigungs-Anzeige</h2>
+            <h2 class="lang-content en">📍 Visual Tilt Indicator</h2>
             <div class="visual-indicator">
                 <div class="tilt-dot" id="tilt-dot"></div>
             </div>
-            <p style="text-align: center; color: #99ECFF; font-size: 0.9em;">
+            <p class="lang-content de active" style="text-align: center; color: #99ECFF; font-size: 0.9em;">
                 Neigen Sie Ihr Gerät - der Punkt zeigt die Richtung an
+            </p>
+            <p class="lang-content en" style="text-align: center; color: #99ECFF; font-size: 0.9em;">
+                Tilt your device - the dot shows the direction
             </p>
         </div>
     </div>
@@ -248,6 +282,7 @@
         // Visual elements
         const tiltDot = document.getElementById('tilt-dot');
         const enableButton = document.getElementById('enable-gyro');
+        const enableButtonEn = document.getElementById('enable-gyro-en');
 
         let eventCounter = 0;
 
@@ -304,8 +339,10 @@
 
         // Request permission and start listening
         async function enableGyroscope() {
-            enableButton.textContent = '⏳ Requesting Permission...';
+            enableButton.textContent = '⏳ Anfrage läuft...';
+            enableButtonEn.textContent = '⏳ Requesting...';
             enableButton.disabled = true;
+            enableButtonEn.disabled = true;
 
             try {
                 if (typeof DeviceOrientationEvent !== 'undefined' &&
@@ -319,7 +356,8 @@
                     if (permission === 'granted') {
                         statusPermission.textContent = '✅ GRANTED';
                         statusPermission.className = 'debug-value status-ok';
-                        enableButton.textContent = '✅ Gyroscope Active!';
+                        enableButton.textContent = '✅ Gyroscope Aktiv!';
+                        enableButtonEn.textContent = '✅ Gyroscope Active!';
 
                         // Save permission state for main page
                         localStorage.setItem('velocityGyroscopeEnabled', 'true');
@@ -328,15 +366,18 @@
                     } else {
                         statusPermission.textContent = '❌ DENIED';
                         statusPermission.className = 'debug-value status-error';
-                        enableButton.textContent = '❌ Permission Denied';
+                        enableButton.textContent = '❌ Zugriff verweigert';
+                        enableButtonEn.textContent = '❌ Permission Denied';
                         enableButton.disabled = false;
+                        enableButtonEn.disabled = false;
                     }
                 } else if (window.DeviceOrientationEvent) {
                     // Android or older iOS - no permission needed
                     console.log('Android/Old iOS - no permission needed');
                     statusPermission.textContent = '✅ AUTO (No Permission Needed)';
                     statusPermission.className = 'debug-value status-ok';
-                    enableButton.textContent = '✅ Gyroscope Active!';
+                    enableButton.textContent = '✅ Gyroscope Aktiv!';
+                    enableButtonEn.textContent = '✅ Gyroscope Active!';
 
                     // Save permission state for main page
                     localStorage.setItem('velocityGyroscopeEnabled', 'true');
@@ -346,22 +387,29 @@
                     // Not supported
                     statusPermission.textContent = '❌ NOT SUPPORTED';
                     statusPermission.className = 'debug-value status-error';
-                    enableButton.textContent = '❌ Not Supported on This Device';
+                    enableButton.textContent = '❌ Nicht unterstützt';
+                    enableButtonEn.textContent = '❌ Not Supported';
                 }
             } catch (error) {
                 console.error('Error enabling gyroscope:', error);
                 statusPermission.textContent = '❌ ERROR: ' + error.message;
                 statusPermission.className = 'debug-value status-error';
-                enableButton.textContent = '❌ Error - Try Again';
+                enableButton.textContent = '❌ Fehler - Erneut versuchen';
+                enableButtonEn.textContent = '❌ Error - Try Again';
                 enableButton.disabled = false;
+                enableButtonEn.disabled = false;
             }
         }
 
         // Initialize
         checkSystem();
 
-        // Button click handler
+        // Button click handlers (both German and English)
         enableButton.addEventListener('click', enableGyroscope);
+        enableButtonEn.addEventListener('click', enableGyroscope);
     </script>
+
+    <!-- Load Navigation JavaScript -->
+    <script type="module" src="assets/js/main.js"></script>
 </body>
 </html>
