@@ -255,19 +255,23 @@ function initFloatingLogos() {
         // Convert tilt to screen coordinates
         // When tilted right (gamma > 0), logos should move left (negative X)
         // When tilted forward (beta > 0), logos should move up (negative Y)
-        const maxTilt = 30; // Maximum tilt angle to consider (degrees)
+        const maxTilt = 15; // Maximum tilt angle to consider (degrees) - reduced for higher sensitivity
+        const tiltMultiplier = 2.5; // Amplify tilt effect for more intense interaction
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
 
-        // Map tilt to virtual mouse position
+        // Map tilt to virtual mouse position with amplification
         // Tilt right (gamma > 0) = mouse on left side
         // Tilt left (gamma < 0) = mouse on right side
-        tiltX = viewportWidth / 2 - (gamma / maxTilt) * (viewportWidth / 2);
-        tiltY = viewportHeight / 2 + (beta / maxTilt) * (viewportHeight / 2);
+        const tiltXOffset = (gamma / maxTilt) * (viewportWidth / 2) * tiltMultiplier;
+        const tiltYOffset = (beta / maxTilt) * (viewportHeight / 2) * tiltMultiplier;
 
-        // Clamp to viewport bounds
-        tiltX = Math.max(0, Math.min(viewportWidth, tiltX));
-        tiltY = Math.max(0, Math.min(viewportHeight, tiltY));
+        tiltX = viewportWidth / 2 - tiltXOffset;
+        tiltY = viewportHeight / 2 + tiltYOffset;
+
+        // Clamp to viewport bounds with extra margin for stronger effect
+        tiltX = Math.max(-viewportWidth * 0.5, Math.min(viewportWidth * 1.5, tiltX));
+        tiltY = Math.max(-viewportHeight * 0.5, Math.min(viewportHeight * 1.5, tiltY));
     }
 
     // Request device orientation permission (required for iOS 13+)
