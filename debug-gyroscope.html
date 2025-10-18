@@ -273,6 +273,11 @@
         function handleOrientation(event) {
             eventCounter++;
 
+            // Reset counter at 9999 to keep it clean
+            if (eventCounter > 9999) {
+                eventCounter = 0;
+            }
+
             const beta = event.beta || 0;   // -180 to 180 (front/back)
             const gamma = event.gamma || 0;  // -90 to 90 (left/right)
             const alpha = event.alpha || 0;  // 0 to 360 (compass)
@@ -316,6 +321,9 @@
                         statusPermission.className = 'debug-value status-ok';
                         enableButton.textContent = '✅ Gyroscope Active!';
 
+                        // Save permission state for main page
+                        localStorage.setItem('velocityGyroscopeEnabled', 'true');
+
                         window.addEventListener('deviceorientation', handleOrientation, true);
                     } else {
                         statusPermission.textContent = '❌ DENIED';
@@ -329,6 +337,9 @@
                     statusPermission.textContent = '✅ AUTO (No Permission Needed)';
                     statusPermission.className = 'debug-value status-ok';
                     enableButton.textContent = '✅ Gyroscope Active!';
+
+                    // Save permission state for main page
+                    localStorage.setItem('velocityGyroscopeEnabled', 'true');
 
                     window.addEventListener('deviceorientation', handleOrientation, true);
                 } else {
