@@ -8,7 +8,8 @@
   font-style: normal;
   font-weight: 100 700;
   font-display: swap;
-  src: url('../fonts/material-icons/MaterialSymbolsOutlined-Regular.ttf') format('truetype');
+  src: url('../fonts/material-icons/MaterialSymbolsOutlined.woff2') format('woff2'),
+       url('../fonts/material-icons/MaterialSymbolsOutlined-Regular.ttf') format('truetype');
 }
 
 .material-symbols-outlined {

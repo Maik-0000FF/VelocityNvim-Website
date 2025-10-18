@@ -39,6 +39,15 @@ document.addEventListener('DOMContentLoaded', function() {
         switchLanguage('en');
     }
 
+    // Remove inline language preload styles (JavaScript takes over)
+    const preloadStyle = document.getElementById('lang-preload');
+    if (preloadStyle) {
+        preloadStyle.remove();
+    }
+
+    // Mark that JavaScript has loaded (allows CSS pre-rendering to be disabled)
+    document.documentElement.classList.add('js-loaded');
+
     // Reinitialize scroll hover effects on window resize
     let resizeTimer;
     window.addEventListener('resize', function() {

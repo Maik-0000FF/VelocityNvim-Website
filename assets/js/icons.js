@@ -244,43 +244,6 @@ export const Icons = {
         </svg>
     `,
 
-    // Download Icon
-    download: (color = 'currentColor', size = '24') => `
-        <svg class="icon-inline" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-    `,
-
-    // Container/Docker Icon
-    container: (color = 'currentColor', size = '24') => `
-        <svg class="icon-inline" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2" y="3" width="20" height="5" rx="1" fill="none" stroke="${color}" stroke-width="2"/>
-            <rect x="2" y="10" width="20" height="5" rx="1" fill="none" stroke="${color}" stroke-width="2"/>
-            <rect x="2" y="17" width="20" height="4" rx="1" fill="none" stroke="${color}" stroke-width="2"/>
-        </svg>
-    `,
-
-    // Arrow Left Icon
-    arrowLeft: (color = 'currentColor', size = '24') => `
-        <svg class="icon-inline" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M19 12H5M5 12l7 7M5 12l7-7" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-    `,
-
-    // Arrow Right Icon
-    arrowRight: (color = 'currentColor', size = '24') => `
-        <svg class="icon-inline" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M5 12h14M19 12l-7-7M19 12l-7 7" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-    `,
-
-    // Home Icon
-    home: (color = 'currentColor', size = '24') => `
-        <svg class="icon-inline" width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z" fill="none" stroke="${color}" stroke-width="2"/>
-            <path d="M9 22V12h6v10" stroke="${color}" stroke-width="2"/>
-        </svg>
-    `,
 };
 
 /**

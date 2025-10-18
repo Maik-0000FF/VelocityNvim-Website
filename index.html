@@ -6,8 +6,9 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/images/favicon-512x512.png">
     <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png">
-    <link rel="apple-touch-icon" sizes="192x192" href="/assets/images/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
 
     <!-- Primary Meta Tags -->
     <title>VelocityNvim - Native vim.pack Neovim Distribution</title>
@@ -99,13 +100,43 @@
     <link rel="preload" as="image" href="assets/images/screenshot_velocitynvim.webp" type="image/webp" fetchpriority="high">
 
     <!-- Preload Material Icons Font -->
-    <link rel="preload" as="font" href="assets/fonts/material-icons/MaterialSymbolsOutlined-Regular.ttf" type="font/ttf" crossorigin>
+    <link rel="preload" as="font" href="assets/fonts/material-icons/MaterialSymbolsOutlined.woff2" type="font/woff2" crossorigin>
 
     <!-- Material Icons (Self-hosted) -->
     <link rel="stylesheet" href="assets/css/material-icons.css">
 
     <!-- Bundled CSS for Performance -->
     <link rel="stylesheet" href="assets/css/bundle.css">
+
+    <!-- Inline Script: Load Language Preference Before Render (Prevents FOUC) -->
+    <script>
+        (function() {
+            const savedLang = localStorage.getItem('velocityLang');
+            if (savedLang === 'en') {
+                // Add style tag to hide German and show English immediately
+                const style = document.createElement('style');
+                style.id = 'lang-preload';
+                style.textContent = `
+                    .lang-content.de { display: none !important; }
+                    .lang-content.en { display: block !important; }
+                    .lang-content.en.hero-buttons { display: grid !important; }
+                    .lang-content.en.features { display: grid !important; }
+                    .lang-content.en.features-grid { display: grid !important; }
+                    .nav-lang-btn:first-child {
+                        background: rgba(57, 255, 242, 0.25) !important;
+                        border-color: var(--color-accent-cyan) !important;
+                        box-shadow: none !important;
+                    }
+                    .nav-lang-btn:last-child {
+                        background: rgba(248, 108, 255, 0.25) !important;
+                        border-color: var(--color-accent-magenta) !important;
+                        box-shadow: var(--shadow-glow-purple) !important;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        })();
+    </script>
 </head>
 <body>
     <!-- Floating Background Logos -->

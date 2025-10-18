@@ -18,6 +18,36 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="../assets/css/bundle.css">
+
+    <!-- Inline Script: Load Language Preference Before Render (Prevents FOUC) -->
+    <script>
+        (function() {
+            const savedLang = localStorage.getItem('velocityLang');
+            if (savedLang === 'en') {
+                // Add style tag to hide German and show English immediately
+                const style = document.createElement('style');
+                style.id = 'lang-preload';
+                style.textContent = `
+                    .lang-content.de { display: none !important; }
+                    .lang-content.en { display: block !important; }
+                    .lang-content.en.hero-buttons { display: grid !important; }
+                    .lang-content.en.features { display: grid !important; }
+                    .lang-content.en.features-grid { display: grid !important; }
+                    .nav-lang-btn:first-child {
+                        background: rgba(57, 255, 242, 0.25) !important;
+                        border-color: var(--color-accent-cyan) !important;
+                        box-shadow: none !important;
+                    }
+                    .nav-lang-btn:last-child {
+                        background: rgba(248, 108, 255, 0.25) !important;
+                        border-color: var(--color-accent-magenta) !important;
+                        box-shadow: var(--shadow-glow-purple) !important;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+        })();
+    </script>
 </head>
 <body>
     <!-- Floating Background Logos -->
