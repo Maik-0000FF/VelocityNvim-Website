@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gyroscope Debug - VelocityNvim</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #041D3C 0%, #042645 33%, #052F54 66%, #063862 100%);
+            color: #EFFAFF;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            background: linear-gradient(135deg, #39FFF2 0%, #F86CFF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #39FFF2;
+            text-decoration: none;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            border: 2px solid #39FFF2;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: #39FFF2;
+            color: #052F54;
+        }
+
+        .debug-card {
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px solid #39FFF2;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .debug-card h2 {
+            color: #F86CFF;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .debug-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px;
+            margin: 8px 0;
+            background: rgba(57, 255, 242, 0.1);
+            border-radius: 6px;
+            font-family: monospace;
+        }
+
+        .debug-label {
+            font-weight: bold;
+            color: #99ECFF;
+        }
+
+        .debug-value {
+            color: #F86CFF;
+            font-weight: bold;
+        }
+
+        .status-ok {
+            color: #39FFF2;
+        }
+
+        .status-error {
+            color: #EE44FF;
+        }
+
+        .enable-button {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1em;
+            font-weight: bold;
+            background: linear-gradient(135deg, #39FFF2 0%, #F86CFF 100%);
+            color: #052F54;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            margin: 20px 0;
+        }
+
+        .enable-button:hover {
+            transform: scale(1.05);
+        }
+
+        .enable-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .visual-indicator {
+            width: 100%;
+            height: 300px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid #39FFF2;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .tilt-dot {
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, #F86CFF 0%, #39FFF2 100%);
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.1s ease;
+            box-shadow: 0 0 20px rgba(248, 108, 255, 0.8);
+        }
+
+        .instructions {
+            background: rgba(248, 108, 255, 0.2);
+            border-left: 4px solid #F86CFF;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        .instructions h3 {
+            color: #F86CFF;
+            margin-bottom: 10px;
+        }
+
+        .instructions ul {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/" class="back-link">← Zurück zur Hauptseite</a>
+
+        <h1>🎯 Gyroscope Debug Tool</h1>
+
+        <div class="instructions">
+            <h3>📱 So funktioniert's:</h3>
+            <ul>
+                <li>Tippen Sie auf den Button "Gyroscope aktivieren"</li>
+                <li>Erlauben Sie den Zugriff auf Motion & Orientation</li>
+                <li>Neigen Sie Ihr Gerät und beobachten Sie die Werte</li>
+                <li>Der pinke Punkt zeigt die Neigung visuell an</li>
+            </ul>
+        </div>
+
+        <button id="enable-gyro" class="enable-button">
+            📱 Gyroscope aktivieren
+        </button>
+
+        <div class="debug-card">
+            <h2>📊 System Status</h2>
+            <div class="debug-item">
+                <span class="debug-label">Touch Device:</span>
+                <span class="debug-value" id="status-touch">Checking...</span>
+            </div>
+            <div class="debug-item">
+                <span class="debug-label">DeviceOrientationEvent:</span>
+                <span class="debug-value" id="status-api">Checking...</span>
+            </div>
+            <div class="debug-item">
+                <span class="debug-label">Permission API:</span>
+                <span class="debug-value" id="status-permission-api">Checking...</span>
+            </div>
+            <div class="debug-item">
+                <span class="debug-label">Permission Status:</span>
+                <span class="debug-value" id="status-permission">Not Requested</span>
+            </div>
+        </div>
+
+        <div class="debug-card">
+            <h2>🎯 Live Sensor Data</h2>
+            <div class="debug-item">
+                <span class="debug-label">Beta (Front/Back):</span>
+                <span class="debug-value" id="sensor-beta">--°</span>
+            </div>
+            <div class="debug-item">
+                <span class="debug-label">Gamma (Left/Right):</span>
+                <span class="debug-value" id="sensor-gamma">--°</span>
+            </div>
+            <div class="debug-item">
+                <span class="debug-label">Alpha (Compass):</span>
+                <span class="debug-value" id="sensor-alpha">--°</span>
+            </div>
+            <div class="debug-item">
+                <span class="debug-label">Events Received:</span>
+                <span class="debug-value" id="event-count">0</span>
+            </div>
+        </div>
+
+        <div class="debug-card">
+            <h2>📍 Visual Tilt Indicator</h2>
+            <div class="visual-indicator">
+                <div class="tilt-dot" id="tilt-dot"></div>
+            </div>
+            <p style="text-align: center; color: #99ECFF; font-size: 0.9em;">
+                Neigen Sie Ihr Gerät - der Punkt zeigt die Richtung an
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Status elements
+        const statusTouch = document.getElementById('status-touch');
+        const statusApi = document.getElementById('status-api');
+        const statusPermissionApi = document.getElementById('status-permission-api');
+        const statusPermission = document.getElementById('status-permission');
+
+        // Sensor elements
+        const sensorBeta = document.getElementById('sensor-beta');
+        const sensorGamma = document.getElementById('sensor-gamma');
+        const sensorAlpha = document.getElementById('sensor-alpha');
+        const eventCount = document.getElementById('event-count');
+
+        // Visual elements
+        const tiltDot = document.getElementById('tilt-dot');
+        const enableButton = document.getElementById('enable-gyro');
+
+        let eventCounter = 0;
+
+        // Check system capabilities
+        function checkSystem() {
+            // Touch detection
+            const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+            statusTouch.textContent = isTouchDevice ? '✅ YES' : '❌ NO';
+            statusTouch.className = isTouchDevice ? 'debug-value status-ok' : 'debug-value status-error';
+
+            // DeviceOrientationEvent API
+            const hasOrientationEvent = typeof DeviceOrientationEvent !== 'undefined';
+            statusApi.textContent = hasOrientationEvent ? '✅ Available' : '❌ Not Available';
+            statusApi.className = hasOrientationEvent ? 'debug-value status-ok' : 'debug-value status-error';
+
+            // Permission API (iOS 13+)
+            const hasPermissionApi = hasOrientationEvent && typeof DeviceOrientationEvent.requestPermission === 'function';
+            statusPermissionApi.textContent = hasPermissionApi ? '✅ YES (iOS 13+)' : '❌ NO (Android/Old iOS)';
+            statusPermissionApi.className = 'debug-value';
+        }
+
+        // Handle orientation events
+        function handleOrientation(event) {
+            eventCounter++;
+
+            const beta = event.beta || 0;   // -180 to 180 (front/back)
+            const gamma = event.gamma || 0;  // -90 to 90 (left/right)
+            const alpha = event.alpha || 0;  // 0 to 360 (compass)
+
+            // Update sensor values
+            sensorBeta.textContent = beta.toFixed(1) + '°';
+            sensorGamma.textContent = gamma.toFixed(1) + '°';
+            sensorAlpha.textContent = alpha.toFixed(1) + '°';
+            eventCount.textContent = eventCounter;
+
+            // Update visual indicator
+            // Map gamma (-90 to 90) to X position (0 to 100%)
+            // Map beta (-180 to 180) to Y position (0 to 100%)
+            const maxTilt = 30;
+            const xPercent = 50 + (gamma / maxTilt) * 50;
+            const yPercent = 50 + (beta / maxTilt) * 50;
+
+            const clampedX = Math.max(0, Math.min(100, xPercent));
+            const clampedY = Math.max(0, Math.min(100, yPercent));
+
+            tiltDot.style.left = clampedX + '%';
+            tiltDot.style.top = clampedY + '%';
+        }
+
+        // Request permission and start listening
+        async function enableGyroscope() {
+            enableButton.textContent = '⏳ Requesting Permission...';
+            enableButton.disabled = true;
+
+            try {
+                if (typeof DeviceOrientationEvent !== 'undefined' &&
+                    typeof DeviceOrientationEvent.requestPermission === 'function') {
+                    // iOS 13+ - requires permission
+                    console.log('iOS 13+ detected - requesting permission');
+                    const permission = await DeviceOrientationEvent.requestPermission();
+
+                    console.log('Permission response:', permission);
+
+                    if (permission === 'granted') {
+                        statusPermission.textContent = '✅ GRANTED';
+                        statusPermission.className = 'debug-value status-ok';
+                        enableButton.textContent = '✅ Gyroscope Active!';
+
+                        window.addEventListener('deviceorientation', handleOrientation, true);
+                    } else {
+                        statusPermission.textContent = '❌ DENIED';
+                        statusPermission.className = 'debug-value status-error';
+                        enableButton.textContent = '❌ Permission Denied';
+                        enableButton.disabled = false;
+                    }
+                } else if (window.DeviceOrientationEvent) {
+                    // Android or older iOS - no permission needed
+                    console.log('Android/Old iOS - no permission needed');
+                    statusPermission.textContent = '✅ AUTO (No Permission Needed)';
+                    statusPermission.className = 'debug-value status-ok';
+                    enableButton.textContent = '✅ Gyroscope Active!';
+
+                    window.addEventListener('deviceorientation', handleOrientation, true);
+                } else {
+                    // Not supported
+                    statusPermission.textContent = '❌ NOT SUPPORTED';
+                    statusPermission.className = 'debug-value status-error';
+                    enableButton.textContent = '❌ Not Supported on This Device';
+                }
+            } catch (error) {
+                console.error('Error enabling gyroscope:', error);
+                statusPermission.textContent = '❌ ERROR: ' + error.message;
+                statusPermission.className = 'debug-value status-error';
+                enableButton.textContent = '❌ Error - Try Again';
+                enableButton.disabled = false;
+            }
+        }
+
+        // Initialize
+        checkSystem();
+
+        // Button click handler
+        enableButton.addEventListener('click', enableGyroscope);
+    </script>
+</body>
+</html>
