@@ -637,14 +637,13 @@ h2 {
 }
 
 .feature-card.scroll-hover-active {
-    background: transparent;
-    backdrop-filter: blur(35px) saturate(100%);
-    -webkit-backdrop-filter: blur(35px) saturate(100%);
+    background: rgba(4, 29, 60, 0.4);
+    backdrop-filter: blur(35px) saturate(180%) brightness(1.1);
+    -webkit-backdrop-filter: blur(35px) saturate(180%) brightness(1.1);
     transform: translateY(-6px);
     box-shadow:
         0 0 80px color-mix(in srgb, var(--card-glow-color, #39FFF2) 70%, transparent),
-        0 10px 40px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 10px 40px rgba(0, 0, 0, 0.3),
         inset 0 0 60px color-mix(in srgb, var(--card-glow-color, #39FFF2) 5%, transparent);
     border: 1px solid color-mix(in srgb, var(--card-glow-color, #39FFF2) 70%, transparent);
     border-radius: var(--radius-2xl);
@@ -653,14 +652,13 @@ h2 {
 /* Desktop hover effect */
 @media (min-width: 769px) {
     .feature-card:hover {
-        background: transparent;
-        backdrop-filter: blur(35px) saturate(100%);
-        -webkit-backdrop-filter: blur(35px) saturate(100%);
+        background: rgba(4, 29, 60, 0.4);
+        backdrop-filter: blur(35px) saturate(180%) brightness(1.1);
+        -webkit-backdrop-filter: blur(35px) saturate(180%) brightness(1.1);
         transform: translateY(-6px);
         box-shadow:
             0 0 80px color-mix(in srgb, var(--card-glow-color, #39FFF2) 70%, transparent),
-            0 10px 40px rgba(0, 0, 0, 0.5),
-            inset 0 1px 0 rgba(255, 255, 255, 0.3),
+            0 10px 40px rgba(0, 0, 0, 0.3),
             inset 0 0 60px color-mix(in srgb, var(--card-glow-color, #39FFF2) 5%, transparent);
         border: 1px solid color-mix(in srgb, var(--card-glow-color, #39FFF2) 70%, transparent);
         border-radius: var(--radius-2xl);
@@ -1206,14 +1204,13 @@ h2 {
 }
 
 .support-item.scroll-hover-active {
-    background: transparent;
-    backdrop-filter: blur(35px) saturate(100%);
-    -webkit-backdrop-filter: blur(35px) saturate(100%);
+    background: rgba(4, 29, 60, 0.4);
+    backdrop-filter: blur(35px) saturate(180%) brightness(1.1);
+    -webkit-backdrop-filter: blur(35px) saturate(180%) brightness(1.1);
     transform: translateY(-6px);
     box-shadow:
         0 0 80px color-mix(in srgb, var(--card-glow-color, #39FFF2) 70%, transparent),
-        0 10px 40px rgba(0, 0, 0, 0.5),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 10px 40px rgba(0, 0, 0, 0.3),
         inset 0 0 60px color-mix(in srgb, var(--card-glow-color, #39FFF2) 5%, transparent);
     border: 1px solid color-mix(in srgb, var(--card-glow-color, #39FFF2) 70%, transparent);
     border-radius: 24px;
@@ -1222,14 +1219,13 @@ h2 {
 /* Desktop hover effect */
 @media (min-width: 769px) {
     .support-item:hover {
-        background: transparent;
-        backdrop-filter: blur(35px) saturate(100%);
-        -webkit-backdrop-filter: blur(35px) saturate(100%);
+        background: rgba(4, 29, 60, 0.4);
+        backdrop-filter: blur(35px) saturate(180%) brightness(1.1);
+        -webkit-backdrop-filter: blur(35px) saturate(180%) brightness(1.1);
         transform: translateY(-6px);
         box-shadow:
             0 0 80px color-mix(in srgb, var(--card-glow-color, #39FFF2) 70%, transparent),
-            0 10px 40px rgba(0, 0, 0, 0.5),
-            inset 0 1px 0 rgba(255, 255, 255, 0.3),
+            0 10px 40px rgba(0, 0, 0, 0.3),
             inset 0 0 60px color-mix(in srgb, var(--card-glow-color, #39FFF2) 5%, transparent);
         border: 1px solid color-mix(in srgb, var(--card-glow-color, #39FFF2) 70%, transparent);
         border-radius: 24px;
