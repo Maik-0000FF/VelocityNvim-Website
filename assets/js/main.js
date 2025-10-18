@@ -141,21 +141,21 @@ function initFloatingLogos() {
     const logoCount = 23; // Number of floating logos
     // Determine correct path based on current location
     const isInDocsFolder = window.location.pathname.includes('/docs/');
-    const logoPath = isInDocsFolder ? '../assets/images/favicon.svg' : 'assets/images/favicon.svg';
+    const logoBasePath = isInDocsFolder ? '../assets/images/floating-logos/' : 'assets/images/floating-logos/';
     const logos = []; // Store logo data for mouse interaction
 
-    // Color gradient from Cyan to Magenta (matching the theme)
-    const colorFilters = [
-        'brightness(0) saturate(100%) invert(77%) sepia(77%) saturate(2766%) hue-rotate(134deg) brightness(95%) contrast(107%)', // Cyan #39FFF2
-        'brightness(0) saturate(100%) invert(74%) sepia(56%) saturate(1573%) hue-rotate(157deg) brightness(102%) contrast(101%)', // Light Cyan #99ECFF
-        'brightness(0) saturate(100%) invert(62%) sepia(88%) saturate(2055%) hue-rotate(168deg) brightness(101%) contrast(101%)', // Blue-Cyan #66CCFF
-        'brightness(0) saturate(100%) invert(46%) sepia(99%) saturate(1729%) hue-rotate(196deg) brightness(103%) contrast(103%)', // Blue #00D3FF
-        'brightness(0) saturate(100%) invert(51%) sepia(85%) saturate(4282%) hue-rotate(214deg) brightness(95%) contrast(90%)', // Mid-Blue #8899FF
-        'brightness(0) saturate(100%) invert(48%) sepia(94%) saturate(3211%) hue-rotate(233deg) brightness(102%) contrast(101%)', // Purple-Blue #9966FF
-        'brightness(0) saturate(100%) invert(52%) sepia(73%) saturate(3764%) hue-rotate(243deg) brightness(100%) contrast(101%)', // Purple #9D6EFF
-        'brightness(0) saturate(100%) invert(65%) sepia(51%) saturate(3930%) hue-rotate(249deg) brightness(101%) contrast(101%)', // Pink-Purple #CC66FF
-        'brightness(0) saturate(100%) invert(54%) sepia(98%) saturate(3618%) hue-rotate(282deg) brightness(101%) contrast(101%)', // Magenta #F86CFF
-        'brightness(0) saturate(100%) invert(53%) sepia(84%) saturate(5979%) hue-rotate(289deg) brightness(103%) contrast(100%)', // Hot Magenta #EE44FF
+    // Pre-generated logo variants (no filters needed - colors baked into SVG)
+    const logoVariants = [
+        'logo-cyan.svg',
+        'logo-light-cyan.svg',
+        'logo-blue-cyan.svg',
+        'logo-blue.svg',
+        'logo-mid-blue.svg',
+        'logo-purple-blue.svg',
+        'logo-purple.svg',
+        'logo-pink-purple.svg',
+        'logo-magenta.svg',
+        'logo-hot-magenta.svg',
     ];
 
     for (let i = 0; i < logoCount; i++) {
@@ -170,10 +170,6 @@ function initFloatingLogos() {
         // Position at 0,0 - movement will be handled entirely by transform
         logo.style.left = '0';
         logo.style.top = '0';
-
-        // Random color from the gradient
-        const randomColorFilter = colorFilters[Math.floor(Math.random() * colorFilters.length)];
-        logo.style.setProperty('--logo-color-filter', randomColorFilter);
 
         // Create 4 random waypoints within the viewport
         // Keep logos within visible area with margin for logo size
@@ -216,9 +212,10 @@ function initFloatingLogos() {
         // Add random animation delay (negative value to start mid-animation)
         logo.style.animationDelay = `${Math.random() * -duration}s`;
 
-        // Create img element
+        // Create img element with random color variant
         const img = document.createElement('img');
-        img.src = logoPath;
+        const randomVariant = logoVariants[Math.floor(Math.random() * logoVariants.length)];
+        img.src = logoBasePath + randomVariant;
         img.alt = '';
         img.setAttribute('aria-hidden', 'true');
         logo.appendChild(img);

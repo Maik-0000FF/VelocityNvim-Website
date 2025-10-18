@@ -256,7 +256,6 @@
 .floating-logo {
     position: absolute;
     opacity: 0.3;
-    filter: blur(1px);
     animation: floatLogo var(--float-duration) ease-in-out infinite;
     will-change: transform;
 }
@@ -265,7 +264,6 @@
     width: 100%;
     height: 100%;
     object-fit: contain;
-    filter: var(--logo-color-filter);
 }
 
 /* ============================================
