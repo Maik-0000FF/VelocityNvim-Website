@@ -62,6 +62,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize floating background logos
     initFloatingLogos();
+
+    // Initialize auto-hiding navbar on mobile
+    initAutoHideNavbar();
 });
 
 // ===== Scroll-based Hover Effects for Mobile =====
@@ -471,6 +474,40 @@ function showCopyFeedback(feedbackElement) {
     setTimeout(function() {
         feedbackElement.classList.remove('show');
     }, 2000);
+}
+
+// ===== Auto-hiding Navbar on Mobile =====
+function initAutoHideNavbar() {
+    let lastScrollTop = 0;
+    let scrollTimeout;
+    const navbar = document.querySelector('.sticky-nav');
+
+    if (!navbar) return;
+
+    function handleNavbarScroll() {
+        // Only on mobile
+        if (window.innerWidth > 768) {
+            navbar.classList.remove('nav-hidden');
+            return;
+        }
+
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        // Scrolling down & past threshold (100px)
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            navbar.classList.add('nav-hidden');
+        } else {
+            // Scrolling up or at top
+            navbar.classList.remove('nav-hidden');
+        }
+
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Prevent negative scroll
+    }
+
+    window.addEventListener('scroll', function() {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(handleNavbarScroll, 10);
+    });
 }
 
 

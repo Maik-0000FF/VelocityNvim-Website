@@ -1033,6 +1033,11 @@ h2 {
     width: 100%;
     left: 0;
     right: 0;
+    transition: transform 0.3s ease-in-out;
+}
+
+.sticky-nav.nav-hidden {
+    transform: translateY(-100%);
 }
 
 .nav-content {
@@ -1673,6 +1678,11 @@ h4 .icon-inline {
     /* Navigation Mobile */
     .sticky-nav {
         position: fixed;
+    }
+
+    /* Auto-hide navbar on mobile when scrolling down */
+    .sticky-nav.nav-hidden {
+        transform: translateY(-100%);
     }
 
     .nav-content {
