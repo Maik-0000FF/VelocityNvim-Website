@@ -348,11 +348,11 @@ function initParallaxEffect() {
         const mobileOffset = isMobile ? -3 : 0; // Shift 3% left on mobile
         const translateX = 2 + (rotationY / 23) * 8 + mobileOffset; // 10% at 23deg, 2% at 0deg (desktop), 7% / -1% (mobile)
 
-        // Calculate opacity - starts at 1 and fades to 0
-        const opacity = Math.max(0, 1 - (scrollY * fadeSpeed));
+        // Calculate opacity - starts at 1 and fades to 0 (disabled on mobile)
+        const opacity = isMobile ? 1 : Math.max(0, 1 - (scrollY * fadeSpeed));
 
-        // Calculate blur - starts at 0px and increases with scroll
-        const blur = scrollY * blurSpeed;
+        // Calculate blur - starts at 0px and increases with scroll (disabled on mobile)
+        const blur = isMobile ? 0 : scrollY * blurSpeed;
 
         // Keep existing 3D transform and add translateY, scale, and dynamic rotation
         heroScreenshot.style.transform = `perspective(1000px) rotateY(${rotationY}deg) translateX(${translateX}%) translateY(${translateY}px) scale(${scale})`;
