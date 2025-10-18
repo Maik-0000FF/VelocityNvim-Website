@@ -230,151 +230,17 @@ function initFloatingLogos() {
         });
     }
 
-    // Mouse/Device orientation repulsion effect
+    // Mouse repulsion effect
     let mouseX = 0;
     let mouseY = 0;
-    let tiltX = 0; // Device tilt for mobile (beta: left/right)
-    let tiltY = 0; // Device tilt for mobile (gamma: front/back)
-    let hasOrientationPermission = false;
     const repelDistance = 300; // Distance in pixels where repulsion starts
     const repelStrength = 0.8; // Strength of repulsion (0-1)
 
-    // Desktop & Mobile: Mouse tracking (always active)
+    // Mouse tracking
     document.addEventListener('mousemove', function(e) {
         mouseX = e.clientX;
         mouseY = e.clientY;
     });
-
-    // Mobile: Device Orientation (Gyroscope)
-    function handleOrientation(event) {
-        // beta: front-to-back tilt (-180 to 180 degrees, 0 = flat)
-        // gamma: left-to-right tilt (-90 to 90 degrees, 0 = upright)
-        const beta = event.beta || 0;  // Y-axis rotation
-        const gamma = event.gamma || 0; // X-axis rotation
-
-        // Convert tilt to screen coordinates
-        // When tilted right (gamma > 0), logos should move left (negative X)
-        // When tilted forward (beta > 0), logos should move up (negative Y)
-        const maxTilt = 15; // Maximum tilt angle to consider (degrees) - reduced for higher sensitivity
-        const tiltMultiplier = 2.5; // Amplify tilt effect for more intense interaction
-        const viewportWidth = window.innerWidth;
-        const viewportHeight = window.innerHeight;
-
-        // Map tilt to virtual mouse position with amplification
-        // Tilt right (gamma > 0) = mouse on left side
-        // Tilt left (gamma < 0) = mouse on right side
-        const tiltXOffset = (gamma / maxTilt) * (viewportWidth / 2) * tiltMultiplier;
-        const tiltYOffset = (beta / maxTilt) * (viewportHeight / 2) * tiltMultiplier;
-
-        tiltX = viewportWidth / 2 - tiltXOffset;
-        tiltY = viewportHeight / 2 + tiltYOffset;
-
-        // Clamp to viewport bounds with extra margin for stronger effect
-        tiltX = Math.max(-viewportWidth * 0.5, Math.min(viewportWidth * 1.5, tiltX));
-        tiltY = Math.max(-viewportHeight * 0.5, Math.min(viewportHeight * 1.5, tiltY));
-    }
-
-    // Request device orientation permission (required for iOS 13+)
-    function requestOrientationPermission() {
-        if (typeof DeviceOrientationEvent !== 'undefined' &&
-            typeof DeviceOrientationEvent.requestPermission === 'function') {
-            // iOS 13+ requires explicit permission
-            DeviceOrientationEvent.requestPermission()
-                .then(permissionState => {
-                    if (permissionState === 'granted') {
-                        window.addEventListener('deviceorientation', handleOrientation, true);
-                        hasOrientationPermission = true;
-                    }
-                })
-                .catch(error => {
-                    console.error('Device orientation permission error:', error);
-                });
-        } else if (window.DeviceOrientationEvent) {
-            // Non-iOS or older iOS: no permission needed
-            window.addEventListener('deviceorientation', handleOrientation, true);
-            hasOrientationPermission = true;
-        }
-    }
-
-    // Initialize orientation tracking on mobile
-    // Check if device supports touch (mobile/tablet)
-    const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-
-    if (isTouchDevice) {
-        // Check if gyroscope was enabled via Nerd Zone
-        const gyroscopeEnabled = localStorage.getItem('velocityGyroscopeEnabled') === 'true';
-
-        // Create debug indicator
-        const debugIndicator = document.createElement('div');
-        debugIndicator.style.cssText = `
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(0, 0, 0, 0.8);
-            color: #39FFF2;
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-size: 12px;
-            z-index: 10000;
-            border: 2px solid #39FFF2;
-            font-family: monospace;
-        `;
-
-        if (gyroscopeEnabled) {
-            debugIndicator.textContent = '🎯 Tap anywhere to activate gyroscope';
-            document.body.appendChild(debugIndicator);
-            console.log('🎯 Gyroscope enabled via Nerd Zone');
-
-            // Auto-activate on first touch (permission already granted, will succeed silently)
-            const activateGyroscope = () => {
-                debugIndicator.textContent = '⏳ Activating...';
-
-                if (typeof DeviceOrientationEvent !== 'undefined' &&
-                    typeof DeviceOrientationEvent.requestPermission === 'function') {
-                    // iOS 13+ - request (will auto-grant since permission exists)
-                    DeviceOrientationEvent.requestPermission()
-                        .then(permissionState => {
-                            console.log('Permission state:', permissionState);
-                            if (permissionState === 'granted') {
-                                window.addEventListener('deviceorientation', handleOrientation, true);
-                                hasOrientationPermission = true;
-                                debugIndicator.textContent = '✅ Gyroscope active!';
-                                setTimeout(() => debugIndicator.remove(), 3000);
-                                console.log('✅ Gyroscope activated!');
-                            } else {
-                                debugIndicator.textContent = '❌ Permission denied';
-                                debugIndicator.style.borderColor = '#EE44FF';
-                                console.log('❌ Permission denied');
-                            }
-                        })
-                        .catch(error => {
-                            debugIndicator.textContent = '❌ Error: ' + error.message;
-                            debugIndicator.style.borderColor = '#EE44FF';
-                            console.log('Activation failed:', error);
-                        });
-                } else if (window.DeviceOrientationEvent) {
-                    // Android or older iOS - activate directly
-                    window.addEventListener('deviceorientation', handleOrientation, true);
-                    hasOrientationPermission = true;
-                    debugIndicator.textContent = '✅ Gyroscope active!';
-                    setTimeout(() => debugIndicator.remove(), 3000);
-                    console.log('✅ Gyroscope activated!');
-                }
-            };
-
-            // Activate on first touch anywhere on the page
-            document.addEventListener('touchstart', activateGyroscope, { once: true });
-            document.addEventListener('click', activateGyroscope, { once: true });
-
-        } else {
-            // Not enabled - user needs to visit Nerd Zone first
-            debugIndicator.textContent = 'ℹ️ Visit Nerd Zone to enable gyroscope';
-            debugIndicator.style.borderColor = '#F86CFF';
-            document.body.appendChild(debugIndicator);
-            setTimeout(() => debugIndicator.remove(), 5000);
-            console.log('ℹ️ Visit Nerd Zone to enable gyroscope');
-        }
-    }
 
     // Animation loop for smooth repulsion
     function updateLogoPositions() {
@@ -384,16 +250,10 @@ function initFloatingLogos() {
             const logoCenterX = rect.left + rect.width / 2;
             const logoCenterY = rect.top + rect.height / 2;
 
-            // === Mouse/Tilt Repulsion ===
-            // Use tilt coordinates if device orientation is active AND has valid tilt data
-            // Otherwise use mouse coordinates (works on both desktop and mobile)
-            const hasTiltData = hasOrientationPermission && (tiltX !== 0 || tiltY !== 0);
-            const interactionX = hasTiltData ? tiltX : mouseX;
-            const interactionY = hasTiltData ? tiltY : mouseY;
-
-            // Calculate distance from interaction point to logo center
-            const deltaX = logoCenterX - interactionX;
-            const deltaY = logoCenterY - interactionY;
+            // === Mouse Repulsion ===
+            // Calculate distance from mouse to logo center
+            const deltaX = logoCenterX - mouseX;
+            const deltaY = logoCenterY - mouseY;
             const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 
             if (distance < repelDistance) {
