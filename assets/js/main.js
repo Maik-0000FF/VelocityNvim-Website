@@ -133,10 +133,45 @@ function initScrollHoverEffects() {
     console.log(`Scroll hover observer initialized for ${allCards.length} cards (${featureCards.length} features + ${supportItems.length} support + ${screenshotCount} screenshot)`);
 }
 
+// ===== Debug Overlay =====
+function createDebugOverlay() {
+    const debugDiv = document.createElement('div');
+    debugDiv.id = 'gyroscope-debug';
+    debugDiv.style.cssText = `
+        position: fixed;
+        top: 70px;
+        left: 10px;
+        background: rgba(0, 0, 0, 0.9);
+        color: #39FFF2;
+        padding: 15px;
+        border-radius: 8px;
+        font-family: monospace;
+        font-size: 12px;
+        z-index: 9999;
+        max-width: 300px;
+        line-height: 1.6;
+        border: 2px solid #39FFF2;
+    `;
+    debugDiv.innerHTML = `
+        <div style="font-weight: bold; margin-bottom: 10px; color: #F86CFF;">GYROSCOPE DEBUG</div>
+        <div id="debug-touch">Touch: checking...</div>
+        <div id="debug-permission">Permission: checking...</div>
+        <div id="debug-beta">Beta (Y): --</div>
+        <div id="debug-gamma">Gamma (X): --</div>
+        <div id="debug-tilt">Tilt Position: --</div>
+        <div id="debug-interaction">Using: --</div>
+    `;
+    document.body.appendChild(debugDiv);
+    return debugDiv;
+}
+
 // ===== Floating Background Logos =====
 function initFloatingLogos() {
     const container = document.querySelector('.floating-logos-container');
     if (!container) return;
+
+    // Create debug overlay
+    const debugOverlay = createDebugOverlay();
 
     const logoCount = 23; // Number of floating logos
     // Determine correct path based on current location
@@ -246,11 +281,25 @@ function initFloatingLogos() {
     });
 
     // Mobile: Device Orientation (Gyroscope)
+    let lastLogTime = 0;
     function handleOrientation(event) {
         // beta: front-to-back tilt (-180 to 180 degrees, 0 = flat)
         // gamma: left-to-right tilt (-90 to 90 degrees, 0 = upright)
         const beta = event.beta || 0;  // Y-axis rotation
         const gamma = event.gamma || 0; // X-axis rotation
+
+        // Update debug overlay
+        const debugBeta = document.getElementById('debug-beta');
+        const debugGamma = document.getElementById('debug-gamma');
+        if (debugBeta) debugBeta.textContent = `Beta (Y): ${beta.toFixed(1)}°`;
+        if (debugGamma) debugGamma.textContent = `Gamma (X): ${gamma.toFixed(1)}°`;
+
+        // Debug logging (throttled to once per second)
+        const now = Date.now();
+        if (now - lastLogTime > 1000) {
+            console.log(`Gyroscope: beta=${beta.toFixed(1)}° gamma=${gamma.toFixed(1)}°`);
+            lastLogTime = now;
+        }
 
         // Convert tilt to screen coordinates
         // When tilted right (gamma > 0), logos should move left (negative X)
@@ -272,51 +321,79 @@ function initFloatingLogos() {
         // Clamp to viewport bounds with extra margin for stronger effect
         tiltX = Math.max(-viewportWidth * 0.5, Math.min(viewportWidth * 1.5, tiltX));
         tiltY = Math.max(-viewportHeight * 0.5, Math.min(viewportHeight * 1.5, tiltY));
+
+        // Update debug overlay
+        const debugTilt = document.getElementById('debug-tilt');
+        if (debugTilt) debugTilt.textContent = `Tilt Position: ${Math.round(tiltX)}, ${Math.round(tiltY)}`;
     }
 
     // Request device orientation permission (required for iOS 13+)
     function requestOrientationPermission() {
+        console.log('Requesting device orientation permission...');
+
         if (typeof DeviceOrientationEvent !== 'undefined' &&
             typeof DeviceOrientationEvent.requestPermission === 'function') {
             // iOS 13+ requires explicit permission
+            console.log('iOS 13+ detected - requesting permission via DeviceOrientationEvent.requestPermission()');
             DeviceOrientationEvent.requestPermission()
                 .then(permissionState => {
+                    console.log('Permission state:', permissionState);
                     if (permissionState === 'granted') {
                         window.addEventListener('deviceorientation', handleOrientation, true);
                         hasOrientationPermission = true;
-                        console.log('Device orientation permission granted');
+                        console.log('✅ Device orientation permission granted - gyroscope active');
+                        const debugPerm = document.getElementById('debug-permission');
+                        if (debugPerm) debugPerm.textContent = 'Permission: ✅ GRANTED';
                     } else {
-                        console.log('Device orientation permission denied');
+                        console.log('❌ Device orientation permission denied');
+                        const debugPerm = document.getElementById('debug-permission');
+                        if (debugPerm) debugPerm.textContent = 'Permission: ❌ DENIED';
                     }
                 })
                 .catch(error => {
-                    console.error('Error requesting device orientation permission:', error);
+                    console.error('❌ Error requesting device orientation permission:', error);
                 });
         } else if (window.DeviceOrientationEvent) {
             // Non-iOS or older iOS: no permission needed
+            console.log('Non-iOS or older iOS detected - activating without permission');
             window.addEventListener('deviceorientation', handleOrientation, true);
             hasOrientationPermission = true;
-            console.log('Device orientation activated (no permission required)');
+            console.log('✅ Device orientation activated (no permission required)');
+            const debugPerm = document.getElementById('debug-permission');
+            if (debugPerm) debugPerm.textContent = 'Permission: ✅ AUTO (Android)';
         } else {
-            console.log('Device orientation not supported on this device');
+            console.log('❌ Device orientation not supported on this device');
+            const debugPerm = document.getElementById('debug-permission');
+            if (debugPerm) debugPerm.textContent = 'Permission: ❌ NOT SUPPORTED';
         }
     }
 
     // Initialize orientation tracking on mobile
     // Check if device supports touch (mobile/tablet)
     const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    console.log('Touch device detected:', isTouchDevice);
+
+    // Update debug overlay
+    const debugTouch = document.getElementById('debug-touch');
+    if (debugTouch) debugTouch.textContent = `Touch: ${isTouchDevice ? '✅ YES' : '❌ NO'}`;
 
     if (isTouchDevice) {
+        console.log('Initializing gyroscope for touch device...');
+
         // For iOS 13+, we need user interaction to request permission
         // Add a one-time touch listener
         const requestPermissionOnTouch = () => {
+            console.log('Touch detected - requesting orientation permission');
             requestOrientationPermission();
             document.removeEventListener('touchstart', requestPermissionOnTouch);
         };
         document.addEventListener('touchstart', requestPermissionOnTouch, { once: true });
 
         // For Android and older iOS, try to activate immediately
+        console.log('Attempting immediate activation for Android/older iOS...');
         requestOrientationPermission();
+    } else {
+        console.log('Not a touch device - gyroscope disabled');
     }
 
     // Animation loop for smooth repulsion
@@ -333,6 +410,14 @@ function initFloatingLogos() {
             const hasTiltData = hasOrientationPermission && (tiltX !== 0 || tiltY !== 0);
             const interactionX = hasTiltData ? tiltX : mouseX;
             const interactionY = hasTiltData ? tiltY : mouseY;
+
+            // Update debug overlay (only once per frame)
+            if (logoData === logos[0]) {
+                const debugInteraction = document.getElementById('debug-interaction');
+                if (debugInteraction) {
+                    debugInteraction.textContent = `Using: ${hasTiltData ? '🎯 GYROSCOPE' : '🖱️ MOUSE'} (${Math.round(interactionX)}, ${Math.round(interactionY)})`;
+                }
+            }
 
             // Calculate distance from interaction point to logo center
             const deltaX = logoCenterX - interactionX;
