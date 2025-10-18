@@ -60,6 +60,24 @@
     --transition-fast: 0.2s ease;
     --transition-normal: 0.3s ease;
 
+    /* Z-Index Layering System
+       Layer 0-9:    Background elements (floating logos, decorative)
+       Layer 10-49:  Content (text, images, screenshots)
+       Layer 50-99:  Interactive elements (buttons, cards, hover effects)
+       Layer 100-499: Fixed UI (sticky headers, navbars)
+       Layer 500-999: Overlays (modals, dropdowns, tooltips)
+    */
+    --z-background: 0;
+    --z-floating-logos: 1;
+    --z-content: 10;
+    --z-content-overlay: 20;
+    --z-buttons: 50;
+    --z-cards: 50;
+    --z-navigation: 100;
+    --z-mobile-menu-button: 101;
+    --z-dropdown: 500;
+    --z-modal: 900;
+
     /* Shadows */
     --shadow-sm: 0 4px 15px rgba(3, 102, 214, 0.3);
     --shadow-md: 0 6px 20px rgba(3, 102, 214, 0.4);
@@ -249,7 +267,7 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
-    z-index: 1;
+    z-index: var(--z-floating-logos);
     pointer-events: none;
 }
 
@@ -314,7 +332,7 @@ html {
     border: 1px solid var(--overlay-light);
     overflow: hidden;
     position: relative;
-    z-index: 2;
+    z-index: var(--z-content);
 }
 
 .header {
@@ -339,7 +357,7 @@ html {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    z-index: 1;
+    z-index: var(--z-content);
     pointer-events: none;
 }
 
@@ -348,7 +366,7 @@ html {
     margin-bottom: 10px;
     font-weight: 700;
     position: relative;
-    z-index: 1;
+    z-index: var(--z-content);
     background: var(--gradient-cyan-purple);
     background-clip: text;
     -webkit-background-clip: text;
@@ -361,7 +379,7 @@ html {
     font-size: 1.3em;
     opacity: 0.95;
     position: relative;
-    z-index: 1;
+    z-index: var(--z-content);
     color: var(--color-text-dark);
 }
 
@@ -493,7 +511,7 @@ h2 {
     text-align: center;
     margin: var(--spacing-2xl) 0;
     position: relative;
-    z-index: 2;
+    z-index: var(--z-content);
 }
 
 .hero-subtitle {
@@ -510,7 +528,7 @@ h2 {
     max-width: 500px;
     margin: 0 auto var(--spacing-3xl) auto;
     position: relative;
-    z-index: 3;
+    z-index: var(--z-buttons);
 }
 
 .hero-btn {
@@ -582,7 +600,7 @@ h2 {
     transform: perspective(1000px) rotateY(23deg) translateX(10%);
     transform-style: preserve-3d;
     position: relative;
-    z-index: 1;
+    z-index: var(--z-content);
 }
 
 .hero-screenshot img {
@@ -1011,7 +1029,7 @@ h2 {
     backdrop-filter: var(--blur-glassmorphism);
     box-shadow: var(--shadow-dark);
     border-bottom: 1px solid var(--overlay-light);
-    z-index: 1000;
+    z-index: var(--z-navigation);
     width: 100%;
     left: 0;
     right: 0;
@@ -1126,7 +1144,7 @@ h2 {
     padding: var(--spacing-xs);
     background: transparent;
     border: none;
-    z-index: 1001;
+    z-index: var(--z-mobile-menu-button);
 }
 
 .hamburger span {
@@ -1489,7 +1507,7 @@ h4 .icon-inline {
         margin-left: auto;
         margin-right: auto;
         position: relative;
-        z-index: 10;
+        z-index: var(--z-buttons);
     }
 
     .hero-btn {
@@ -1497,7 +1515,7 @@ h4 .icon-inline {
         font-size: 0.9em;
         min-width: 0;
         position: relative;
-        z-index: 10;
+        z-index: var(--z-buttons);
     }
 
     .hero-screenshot {
@@ -1505,7 +1523,7 @@ h4 .icon-inline {
         border-radius: 8px;
         transform: perspective(1000px) rotateY(23deg) translateX(7%);
         position: relative;
-        z-index: 1;
+        z-index: var(--z-content);
     }
 
     /* Features Section Mobile */
