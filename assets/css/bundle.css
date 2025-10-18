@@ -137,7 +137,7 @@
     --gradient-cyan-purple: linear-gradient(
         to right,
         var(--color-accent-cyan) 0%,
-        var(--color-accent-purple) 100%
+        var(--color-accent-magenta) 100%
     );
 
     --gradient-glow-cyan: radial-gradient(
@@ -1049,11 +1049,19 @@ h2 {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 1.3em;
+    font-size: 1.6em;
     font-weight: 700;
-    color: var(--color-accent-cyan);
     text-decoration: none;
     white-space: nowrap;
+}
+
+.nav-logo span {
+    background: var(--gradient-cyan-purple);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: var(--animation-gradient);
 }
 
 .nav-logo img {
@@ -1674,7 +1682,7 @@ h4 .icon-inline {
     }
 
     .nav-logo {
-        font-size: 1.1em;
+        font-size: 1.4em;
         gap: var(--spacing-xs);
         order: 1;
     }

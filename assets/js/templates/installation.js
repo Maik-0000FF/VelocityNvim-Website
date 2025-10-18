@@ -4,8 +4,6 @@
 
 export const installationTemplate = () => `
     <div id="installation"></div>
-    <h2 class="lang-content de active">Installation</h2>
-    <h2 class="lang-content en">Installation</h2>
 
     <!-- German Installation -->
     <div class="install-section lang-content de active">

@@ -7,8 +7,6 @@ import { Icons } from '../icons.js';
 
 export const requirementsTemplate = () => `
     <div id="requirements"></div>
-    <h2 class="lang-content de active">Systemvoraussetzungen</h2>
-    <h2 class="lang-content en">System Requirements</h2>
 
     <!-- German System Requirements -->
     <div class="install-section lang-content de active">
