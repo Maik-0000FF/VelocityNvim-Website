@@ -71,6 +71,10 @@ document.addEventListener('DOMContentLoaded', function() {
 let scrollHoverObserver = null;
 
 function initScrollHoverEffects() {
+    // Read viewport dimensions first (before any DOM changes)
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
     const featureCards = document.querySelectorAll('.feature-card');
     const supportItems = document.querySelectorAll('.support-item');
     const heroScreenshot = document.querySelector('.hero-screenshot');
@@ -91,20 +95,18 @@ function initScrollHoverEffects() {
         scrollHoverObserver = null;
     }
 
-    // Remove all scroll-hover-active classes
+    // Remove all scroll-hover-active classes (DOM writes after reads)
     allCards.forEach(card => {
         card.classList.remove('scroll-hover-active');
     });
 
-    // Only activate on mobile screens
-    if (window.innerWidth > 768) {
+    // Only activate on mobile screens (using cached viewport width)
+    if (viewportWidth > 768) {
         console.log('Desktop detected - scroll hover effects disabled');
         return;
     }
 
-    // Calculate rootMargin - card triggers hover when it reaches center (40% from top/bottom)
-    // Add extra margin at top to account for fixed navbar on mobile
-    const viewportHeight = window.innerHeight;
+    // Calculate rootMargin using pre-read viewport dimensions
     const navbarHeight = 60; // Fixed navbar height on mobile
     const marginBottom = Math.round(viewportHeight * 0.4);
     const marginTop = Math.round(viewportHeight * 0.4) + navbarHeight;
@@ -247,16 +249,26 @@ function initFloatingLogos() {
 
     // Animation loop for smooth repulsion
     function updateLogoPositions() {
-        logos.forEach(logoData => {
-            const logo = logoData.element;
-            const rect = logo.getBoundingClientRect();
-            const logoCenterX = rect.left + rect.width / 2;
-            const logoCenterY = rect.top + rect.height / 2;
+        // Batch all layout reads first (prevent layout thrashing)
+        const positions = logos.map(logoData => {
+            const rect = logoData.element.getBoundingClientRect();
+            return {
+                logoData: logoData,
+                centerX: rect.left + rect.width / 2,
+                centerY: rect.top + rect.height / 2,
+                width: rect.width,
+                height: rect.height
+            };
+        });
+
+        // Now perform all calculations and writes
+        positions.forEach((pos, index) => {
+            const logoData = pos.logoData;
 
             // === Mouse Repulsion ===
             // Calculate distance from mouse to logo center
-            const deltaX = logoCenterX - mouseX;
-            const deltaY = logoCenterY - mouseY;
+            const deltaX = pos.centerX - mouseX;
+            const deltaY = pos.centerY - mouseY;
             const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 
             if (distance < repelDistance) {
@@ -273,30 +285,25 @@ function initFloatingLogos() {
             }
 
             // === Logo-to-Logo Repulsion ===
-            logos.forEach(otherLogoData => {
-                if (logoData === otherLogoData) return; // Skip self
+            positions.forEach((otherPos, otherIndex) => {
+                if (index === otherIndex) return; // Skip self
 
-                const otherLogo = otherLogoData.element;
-                const otherRect = otherLogo.getBoundingClientRect();
-                const otherCenterX = otherRect.left + otherRect.width / 2;
-                const otherCenterY = otherRect.top + otherRect.height / 2;
-
-                // Calculate distance between logos
+                // Calculate distance between logos using cached positions
                 const logoDistance = Math.sqrt(
-                    Math.pow(logoCenterX - otherCenterX, 2) +
-                    Math.pow(logoCenterY - otherCenterY, 2)
+                    Math.pow(pos.centerX - otherPos.centerX, 2) +
+                    Math.pow(pos.centerY - otherPos.centerY, 2)
                 );
 
                 // Minimum distance between logos (sum of their radii + buffer)
-                const minDistance = (rect.width / 2 + otherRect.width / 2) + 30;
+                const minDistance = (pos.width / 2 + otherPos.width / 2) + 30;
 
                 if (logoDistance < minDistance && logoDistance > 0) {
                     // Calculate repulsion force (stronger when closer)
                     const logoForce = (1 - logoDistance / minDistance) * 0.15;
 
                     // Calculate direction away from other logo (normalized)
-                    const logoDirX = (logoCenterX - otherCenterX) / logoDistance;
-                    const logoDirY = (logoCenterY - otherCenterY) / logoDistance;
+                    const logoDirX = (pos.centerX - otherPos.centerX) / logoDistance;
+                    const logoDirY = (pos.centerY - otherPos.centerY) / logoDistance;
 
                     // Apply repulsion away from other logo
                     logoData.repelX += logoDirX * logoForce * 3;
@@ -308,9 +315,9 @@ function initFloatingLogos() {
             logoData.repelX *= 0.92;
             logoData.repelY *= 0.92;
 
-            // Apply transform with repulsion offset
-            logo.style.setProperty('--repel-x', `${logoData.repelX}px`);
-            logo.style.setProperty('--repel-y', `${logoData.repelY}px`);
+            // Apply transform with repulsion offset (DOM write)
+            logoData.element.style.setProperty('--repel-x', `${logoData.repelX}px`);
+            logoData.element.style.setProperty('--repel-y', `${logoData.repelY}px`);
         });
 
         requestAnimationFrame(updateLogoPositions);
