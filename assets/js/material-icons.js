@@ -102,12 +102,19 @@ export function getIcon(iconName, color, size) {
 
 /**
  * Rendert alle Icons mit data-icon Attribut
+ * Optimized to prevent layout thrashing by batching reads and writes
  */
 export function renderDataIcons() {
-    document.querySelectorAll('[data-icon]').forEach(el => {
-        const iconName = el.getAttribute('data-icon');
-        const color = el.getAttribute('data-color');
-        const size = el.getAttribute('data-size');
-        el.innerHTML = getIcon(iconName, color, size);
+    // Batch all DOM reads first
+    const iconElements = Array.from(document.querySelectorAll('[data-icon]')).map(el => ({
+        element: el,
+        iconName: el.getAttribute('data-icon'),
+        color: el.getAttribute('data-color'),
+        size: el.getAttribute('data-size')
+    }));
+
+    // Then batch all DOM writes
+    iconElements.forEach(({ element, iconName, color, size }) => {
+        element.innerHTML = getIcon(iconName, color, size);
     });
 }
