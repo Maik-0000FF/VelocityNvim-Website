@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeTemplates(() => {
         // Initialize scroll hover effects after templates are loaded
         initScrollHoverEffects();
+        // Initialize parallax effect after templates are loaded
+        initParallaxEffect();
     });
 
     // Setup nav links close on mobile
@@ -48,17 +50,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mark that JavaScript has loaded (allows CSS pre-rendering to be disabled)
     document.documentElement.classList.add('js-loaded');
 
-    // Reinitialize scroll hover effects on window resize
+    // Reinitialize scroll hover effects and parallax on window resize
     let resizeTimer;
     window.addEventListener('resize', function() {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(function() {
             initScrollHoverEffects();
+            initParallaxEffect();
         }, 250);
     });
-
-    // Initialize parallax effect for screenshot
-    initParallaxEffect();
 
     // Initialize floating background logos
     initFloatingLogos();
@@ -349,19 +349,20 @@ function initParallaxEffect() {
         return;
     }
 
+    // Cache viewport width - read once, not on every scroll
+    const isMobile = window.innerWidth <= 768;
+
+    // On mobile: disable ALL parallax effects to fix z-index and performance
+    if (isMobile) {
+        // Reset to static state - no transforms, no effects
+        heroScreenshot.style.transform = 'none';
+        heroScreenshot.style.opacity = '1';
+        heroScreenshot.style.filter = 'none';
+        return; // Don't attach scroll listener on mobile
+    }
+
+    // Desktop only: Full parallax effects
     window.addEventListener('scroll', function() {
-        const isMobile = window.innerWidth <= 768;
-
-        // On mobile: disable ALL parallax effects to fix z-index and performance
-        if (isMobile) {
-            // Reset to static state - no transforms, no effects
-            heroScreenshot.style.transform = 'none';
-            heroScreenshot.style.opacity = '1';
-            heroScreenshot.style.filter = 'none';
-            return;
-        }
-
-        // Desktop only: Full parallax effects
         const scrollY = window.scrollY;
         const parallaxSpeed = 0.25;
         const zoomSpeed = 0.0001;
