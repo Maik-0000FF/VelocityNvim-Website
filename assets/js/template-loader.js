@@ -12,48 +12,56 @@ import { getIcon, renderDataIcons } from './material-icons.js';
 
 /**
  * Lädt alle Templates in die Content-Container
+ * Optimized to batch DOM reads before writes
  */
 export function loadTemplates(callback) {
-    // Load Footer Component
+    // Load Footer Component (async, won't block)
     loadFooter();
 
-    // Hero & Features
-    const heroContainer = document.getElementById('hero-container');
-    if (heroContainer) {
-        heroContainer.innerHTML = heroTemplate() + featuresTemplate();
-    }
+    // Batch all DOM reads first
+    const containers = {
+        hero: document.getElementById('hero-container'),
+        requirements: document.getElementById('requirements-container'),
+        installation: document.getElementById('installation-container'),
+        support: document.getElementById('support-container'),
+        links: document.getElementById('links-container')
+    };
 
-    // Requirements
-    const requirementsContainer = document.getElementById('requirements-container');
-    if (requirementsContainer) {
-        requirementsContainer.innerHTML = requirementsTemplate();
-    }
+    // Then batch all DOM writes using requestAnimationFrame for optimal performance
+    requestAnimationFrame(() => {
+        // Hero & Features
+        if (containers.hero) {
+            containers.hero.innerHTML = heroTemplate() + featuresTemplate();
+        }
 
-    // Installation
-    const installationContainer = document.getElementById('installation-container');
-    if (installationContainer) {
-        installationContainer.innerHTML = installationTemplate();
-    }
+        // Requirements
+        if (containers.requirements) {
+            containers.requirements.innerHTML = requirementsTemplate();
+        }
 
-    // Support
-    const supportContainer = document.getElementById('support-container');
-    if (supportContainer) {
-        supportContainer.innerHTML = supportTemplate();
-    }
+        // Installation
+        if (containers.installation) {
+            containers.installation.innerHTML = installationTemplate();
+        }
 
-    // Links
-    const linksContainer = document.getElementById('links-container');
-    if (linksContainer) {
-        linksContainer.innerHTML = linksTemplate();
-    }
+        // Support
+        if (containers.support) {
+            containers.support.innerHTML = supportTemplate();
+        }
 
-    // Render all data-icon attributes
-    renderAllIcons();
+        // Links
+        if (containers.links) {
+            containers.links.innerHTML = linksTemplate();
+        }
 
-    // Call callback after templates are loaded
-    if (callback && typeof callback === 'function') {
-        callback();
-    }
+        // Render all data-icon attributes
+        renderAllIcons();
+
+        // Call callback after templates are loaded
+        if (callback && typeof callback === 'function') {
+            callback();
+        }
+    });
 }
 
 /**

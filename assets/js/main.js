@@ -69,11 +69,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ===== Scroll-based Hover Effects for Mobile =====
 let scrollHoverObserver = null;
+let lastBreakpoint = null; // Track if we're on mobile or desktop
 
 function initScrollHoverEffects() {
     // Read viewport dimensions first (before any DOM changes)
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
+
+    // Determine current breakpoint
+    const currentBreakpoint = viewportWidth > 768 ? 'desktop' : 'mobile';
+
+    // Only reinitialize if breakpoint changed (mobile ↔ desktop transition)
+    const breakpointChanged = lastBreakpoint !== currentBreakpoint;
+
+    // If already initialized and breakpoint hasn't changed, skip
+    if (scrollHoverObserver && !breakpointChanged) {
+        return;
+    }
+
+    lastBreakpoint = currentBreakpoint;
 
     const featureCards = document.querySelectorAll('.feature-card');
     const supportItems = document.querySelectorAll('.support-item');
@@ -100,8 +114,8 @@ function initScrollHoverEffects() {
         card.classList.remove('scroll-hover-active');
     });
 
-    // Only activate on mobile screens (using cached viewport width)
-    if (viewportWidth > 768) {
+    // Only activate on mobile screens
+    if (currentBreakpoint === 'desktop') {
         console.log('Desktop detected - scroll hover effects disabled');
         return;
     }
