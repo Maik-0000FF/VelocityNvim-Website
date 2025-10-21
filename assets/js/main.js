@@ -339,6 +339,14 @@ function initFloatingLogos() {
 
     // Start animation loop
     updateLogoPositions();
+
+    // Pause animation when page is hidden to save CPU
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) {
+            updateLogoPositions(); // Resume animation when page becomes visible
+        }
+        // When hidden, requestAnimationFrame automatically stops calling updateLogoPositions
+    });
 }
 
 // ===== Parallax Effect for Hero Screenshot =====

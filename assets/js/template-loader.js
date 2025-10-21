@@ -27,41 +27,39 @@ export function loadTemplates(callback) {
         links: document.getElementById('links-container')
     };
 
-    // Then batch all DOM writes using requestAnimationFrame for optimal performance
-    requestAnimationFrame(() => {
-        // Hero & Features
-        if (containers.hero) {
-            containers.hero.innerHTML = heroTemplate() + featuresTemplate();
-        }
+    // Batch all DOM writes (no requestAnimationFrame needed for initial load)
+    // Hero & Features
+    if (containers.hero) {
+        containers.hero.innerHTML = heroTemplate() + featuresTemplate();
+    }
 
-        // Requirements
-        if (containers.requirements) {
-            containers.requirements.innerHTML = requirementsTemplate();
-        }
+    // Requirements
+    if (containers.requirements) {
+        containers.requirements.innerHTML = requirementsTemplate();
+    }
 
-        // Installation
-        if (containers.installation) {
-            containers.installation.innerHTML = installationTemplate();
-        }
+    // Installation
+    if (containers.installation) {
+        containers.installation.innerHTML = installationTemplate();
+    }
 
-        // Support
-        if (containers.support) {
-            containers.support.innerHTML = supportTemplate();
-        }
+    // Support
+    if (containers.support) {
+        containers.support.innerHTML = supportTemplate();
+    }
 
-        // Links
-        if (containers.links) {
-            containers.links.innerHTML = linksTemplate();
-        }
+    // Links
+    if (containers.links) {
+        containers.links.innerHTML = linksTemplate();
+    }
 
-        // Render all data-icon attributes
-        renderAllIcons();
+    // Render all data-icon attributes
+    renderAllIcons();
 
-        // Call callback after templates are loaded
-        if (callback && typeof callback === 'function') {
-            callback();
-        }
-    });
+    // Call callback after templates are loaded
+    if (callback && typeof callback === 'function') {
+        callback();
+    }
 }
 
 /**
