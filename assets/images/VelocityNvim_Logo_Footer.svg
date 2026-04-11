@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60" height="60" viewBox="0 0 330 220" xmlns="http://www.w3.org/2000/svg">
+  <!-- VelocityNvim Footer Logo - Icon in Grau -->
+  <title>VelocityNvim Footer Logo</title>
+  <g fill="#a0aec0" transform="translate(0,220) scale(1,-1)">
+    <path d="M60 0 L80 40 L95 40 L80 10 L260 10 L245 40 L260 40 L280 0 Z"/>
+    <path d="M0 120 L35 50 L40 50 L75 120 L65 120 L40 70 L15 120 Z"/>
+    <path d="M45 50 L80 120 L115 120 L110 110 L90 110 L80 90 L100 90 L95 80 L75 80 L65 60 L85 60 L80 50 Z"/>
+    <path d="M85 50 L120 120 L135 120 L105 60 L130 60 L135 50 Z"/>
+    <path d="M140 50 L135 60 L135 110 L140 120 L170 120 L170 50 Z M145 110 L145 60 L160 60 L160 110 Z"/>
+    <path d="M175 120 L175 50 L235 50 L230 60 L185 60 L185 110 L205 110 L200 120 Z"/>
+    <path d="M125 130 L170 220 L215 130 L200 130 L170 190 L140 130 Z"/>
+    <path d="M205 120 L240 50 L255 50 L220 120 Z"/>
+    <path d="M225 120 L230 110 L245 110 L275 50 L290 50 L260 110 L275 110 L270 120 Z"/>
+    <path d="M275 120 L295 80 L290 70 L290 60 L295 50 L330 120 L315 120 L300 90 L285 120 Z"/>
+  </g>
+</svg>

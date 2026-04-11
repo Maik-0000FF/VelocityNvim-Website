@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#041D3C">
+
+    <!-- Primary Meta Tags -->
+    <title>Installation - VelocityNvim</title>
+    <meta name="title" content="Installation - VelocityNvim">
+    <meta name="description" content="VelocityNvim installieren: Schritt-für-Schritt Anleitung für Linux, macOS und Windows. Backup erstellen, Repository klonen, Plugins synchronisieren.">
+    <meta name="keywords" content="VelocityNvim install, Neovim installation, neovim setup guide, install neovim config, vim.pack installation, neovim Linux, neovim macOS, neovim Windows">
+    <meta name="author" content="VelocityNvim Project">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://velocitynvim.com/docs/installation.html">
+    <meta property="og:title" content="Installation - VelocityNvim">
+    <meta property="og:description" content="Schritt-für-Schritt Installationsanleitung für VelocityNvim auf Linux, macOS und Windows.">
+    <meta property="og:image" content="https://velocitynvim.com/assets/images/screenshot_velocitynvim.png">
+    <meta property="og:site_name" content="VelocityNvim">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:locale:alternate" content="en_US">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://velocitynvim.com/docs/installation.html">
+    <meta name="twitter:title" content="Installation - VelocityNvim">
+    <meta name="twitter:description" content="Schritt-für-Schritt Installationsanleitung für VelocityNvim.">
+    <meta name="twitter:image" content="https://velocitynvim.com/assets/images/screenshot_velocitynvim.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://velocitynvim.com/docs/installation.html">
+
+    <!-- Alternate Languages -->
+    <link rel="alternate" hreflang="de" href="https://velocitynvim.com/docs/installation.html">
+    <link rel="alternate" hreflang="en" href="https://velocitynvim.com/docs/installation.html">
+    <link rel="alternate" hreflang="x-default" href="https://velocitynvim.com/docs/installation.html">
+
+    <!-- Structured Data (JSON-LD) - HowTo -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "VelocityNvim Installation",
+        "description": "Schritt-für-Schritt Anleitung zur Installation von VelocityNvim auf Linux, macOS und Windows",
+        "totalTime": "PT5M",
+        "estimatedCost": {
+            "@type": "MonetaryAmount",
+            "currency": "EUR",
+            "value": "0"
+        },
+        "tool": [
+            {"@type": "HowToTool", "name": "Git"},
+            {"@type": "HowToTool", "name": "Neovim 0.10+"},
+            {"@type": "HowToTool", "name": "Terminal"}
+        ],
+        "step": [
+            {
+                "@type": "HowToStep",
+                "position": 1,
+                "name": "Backup erstellen",
+                "text": "Erstelle ein Backup deiner bestehenden Neovim-Konfiguration"
+            },
+            {
+                "@type": "HowToStep",
+                "position": 2,
+                "name": "Repository klonen",
+                "text": "Klone das VelocityNvim Repository in dein Neovim-Konfigurationsverzeichnis"
+            },
+            {
+                "@type": "HowToStep",
+                "position": 3,
+                "name": "Plugins synchronisieren",
+                "text": "Starte Neovim und führe den Plugin-Sync aus"
+            }
+        ],
+        "author": {
+            "@type": "Organization",
+            "name": "VelocityNvim Project"
+        }
+    }
+    </script>
+
+    <!-- BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://velocitynvim.com/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Documentation",
+                "item": "https://velocitynvim.com/docs/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Installation",
+                "item": "https://velocitynvim.com/docs/installation.html"
+            }
+        ]
+    }
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+    <link rel="icon" type="image/png" sizes="512x512" href="../assets/images/favicon-512x512.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../assets/images/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+
+    <!-- Google Material Icons -->
+    <link rel="preload" as="font" href="../assets/fonts/material-icons/MaterialSymbolsOutlined.woff2?v=2" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="../assets/css/material-icons.css?v=2">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/bundle.css?v=2">
+
+    <!-- Inline Script: Load Language Preference Before Render (Prevents FOUC) -->
+    <script>
+        (function() {
+            const savedLang = localStorage.getItem('velocityLang');
+            if (savedLang === 'en') {
+                // Add style tag to hide German and show English immediately
+                const style = document.createElement('style');
+                style.id = 'lang-preload';
+                style.textContent = `
+                    .lang-content.de { display: none !important; }
+                    .lang-content.en { display: block !important; }
+                    .lang-content.en.hero-buttons { display: grid !important; }
+                    .lang-content.en.features { display: grid !important; }
+                    .lang-content.en.features-grid { display: grid !important; }
+                `;
+                document.head.appendChild(style);
+                document.documentElement.lang = 'en';
+                // Update toggle button text on load - show target language (DE since current is EN)
+                document.addEventListener('DOMContentLoaded', function() {
+                    const toggleBtn = document.querySelector('.nav-lang-toggle');
+                    if (toggleBtn) {
+                        toggleBtn.textContent = 'DE';
+                        toggleBtn.setAttribute('data-lang', 'en');
+                    }
+                });
+            }
+        })();
+    </script>
+</head>
+<body>
+    <!-- Sticky Navigation -->
+    <nav class="sticky-nav">
+        <div class="nav-content">
+            <a href="../index.html" class="nav-logo">
+                <img src="../assets/images/VelocityNvim_Logo_navbar.svg" alt="VelocityNvim - Fast Neovim Distribution" width="40" height="40" loading="eager">
+                <span>VelocityNvim</span>
+            </a>
+            <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li class="lang-content de active"><a href="requirements.html">Voraussetzungen</a></li>
+                <li class="lang-content en"><a href="requirements.html">Requirements</a></li>
+                <li class="lang-content de active"><a href="installation.html">Installation</a></li>
+                <li class="lang-content en"><a href="installation.html">Installation</a></li>
+            </ul>
+            <button class="nav-lang-toggle" onclick="toggleLanguage()" data-lang="de" title="Switch language / Sprache wechseln">EN</button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header">
+            <h1 class="lang-content de active">Installation</h1>
+            <h1 class="lang-content en">Installation</h1>
+            <p class="subtitle lang-content de active">VelocityNvim auf deinem System einrichten</p>
+            <p class="subtitle lang-content en">Set up VelocityNvim on your system</p>
+        </div>
+
+        <div class="content">
+            <div id="installation-container"></div>
+        </div>
+
+        <div id="footer-container"></div>
+    </div>
+
+    <noscript>
+        <div style="text-align:center;padding:40px;color:#EFFAFF;font-family:sans-serif;">
+            <h2>VelocityNvim - Installation</h2>
+            <p>JavaScript wird benötigt, um diese Seite anzuzeigen. / JavaScript is required to view this page.</p>
+            <p><a href="https://github.com/Maik-0000FF/VelocityNvim" style="color:#39FFF2;">GitHub Repository</a></p>
+        </div>
+    </noscript>
+
+    <script type="module" src="../assets/js/main.js?v=2"></script>
+</body>
+</html>

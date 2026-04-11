@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    <!-- Homepage Images -->
+    <url>
+        <loc>https://velocitynvim.com/</loc>
+        <image:image>
+            <image:loc>https://velocitynvim.com/assets/media/feature-demo.gif</image:loc>
+            <image:title>VelocityNvim Feature Demo</image:title>
+            <image:caption>VelocityNvim Neovim distribution with native vim.pack - Animated demo showing editor features, LSP integration, Treesitter syntax highlighting, and blink.cmp completion</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://velocitynvim.com/assets/images/VelocityNvim_Logo.svg</image:loc>
+            <image:title>VelocityNvim Logo</image:title>
+            <image:caption>Official VelocityNvim logo - Fast Neovim distribution with native vim.pack</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://velocitynvim.com/assets/images/VelocityNvim_Logo_navbar.svg</image:loc>
+            <image:title>VelocityNvim Navigation Logo</image:title>
+            <image:caption>VelocityNvim logo used in navigation bar</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://velocitynvim.com/assets/images/lua-purple-blue.svg</image:loc>
+            <image:title>Lua Programming Language Icon</image:title>
+            <image:caption>Lua icon representing VelocityNvim's native Lua configuration</image:caption>
+        </image:image>
+    </url>
+</urlset>

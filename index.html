@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <meta name="theme-color" content="#041D3C">
+
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="https://github.com">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/images/favicon-512x512.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/apple-touch-icon.png">
+
+    <!-- Primary Meta Tags -->
+    <title>VelocityNvim - Native vim.pack Neovim Distribution</title>
+    <meta name="title" content="VelocityNvim - Native vim.pack Neovim Distribution">
+    <meta name="description" content="Neovim distribution with native vim.pack and eager loading. No plugin managers needed. Modern LSP, Treesitter, fzf-lua. Uninterrupted workflow - all plugins instantly available.">
+    <meta name="keywords" content="fastest neovim, fast neovim distribution, neovim performance, neovim speed, high performance neovim, neovim, nvim, vim.pack, eager loading, no lazy loading, LSP, treesitter, fzf-lua, blink.cmp, workflow optimization, neovim distribution, alternative to lazyvim, alternative to nvchad">
+    <meta name="author" content="VelocityNvim Project">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="German">
+    <meta name="revisit-after" content="7 days">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://velocitynvim.com/">
+    <meta property="og:title" content="VelocityNvim - Native vim.pack Neovim Distribution">
+    <meta property="og:description" content="Fast Neovim distribution with native vim.pack and eager loading. High-performance setup without plugin managers. Modern LSP, Treesitter, fzf-lua. Uninterrupted workflow.">
+    <meta property="og:image" content="https://velocitynvim.com/assets/images/screenshot_velocitynvim.png">
+    <meta property="og:image:width" content="3840">
+    <meta property="og:image:height" content="1996">
+    <meta property="og:site_name" content="VelocityNvim">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:locale:alternate" content="en_US">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://velocitynvim.com/">
+    <meta property="twitter:title" content="VelocityNvim - Native vim.pack Neovim Distribution">
+    <meta property="twitter:description" content="Fast Neovim distribution with native vim.pack and eager loading. High-performance setup without plugin managers. Modern LSP, Treesitter, fzf-lua. Uninterrupted workflow.">
+    <meta property="twitter:image" content="https://velocitynvim.com/assets/images/screenshot_velocitynvim.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://velocitynvim.com/">
+
+    <!-- Alternate Languages -->
+    <link rel="alternate" hreflang="de" href="https://velocitynvim.com/">
+    <link rel="alternate" hreflang="en" href="https://velocitynvim.com/">
+    <link rel="alternate" hreflang="x-default" href="https://velocitynvim.com/">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "VelocityNvim",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Linux, macOS, Windows",
+        "description": "Fast and high-performance Neovim distribution with native vim.pack and eager loading architecture. No external plugin managers required. Features modern LSP integration, Treesitter syntax highlighting, fzf-lua fuzzy finding, and blink.cmp completion. All plugins load at startup for uninterrupted workflow.",
+        "url": "https://velocitynvim.com/",
+        "downloadUrl": "https://github.com/Maik-0000FF/VelocityNvim",
+        "softwareVersion": "1.0.1",
+        "datePublished": "2025-10-01",
+        "dateModified": "2026-04-10",
+        "author": {
+            "@type": "Organization",
+            "name": "VelocityNvim Project"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR"
+        },
+        "keywords": "fastest neovim, fast neovim distribution, neovim performance, neovim speed, high performance neovim, neovim, vim, vim.pack, editor, IDE, LSP, treesitter, fzf-lua, blink.cmp, eager loading, no lazy loading, workflow optimization, neovim distribution, alternative to lazyvim, alternative to nvchad",
+        "programmingLanguage": "Lua",
+        "license": "https://opensource.org/licenses/MIT"
+    }
+    </script>
+
+    <!-- Additional Structured Data for Organization -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "VelocityNvim Project",
+        "url": "https://velocitynvim.com/",
+        "logo": "https://velocitynvim.com/assets/images/VelocityNvim_Logo.svg",
+        "sameAs": [
+            "https://github.com/Maik-0000FF/VelocityNvim"
+        ]
+    }
+    </script>
+
+    <!-- WebSite Schema for Sitelinks -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "VelocityNvim",
+        "url": "https://velocitynvim.com/",
+        "description": "Native vim.pack Neovim Distribution - Fast, modern, and highly customizable",
+        "inLanguage": ["de", "en"],
+        "publisher": {
+            "@type": "Organization",
+            "name": "VelocityNvim Project"
+        }
+    }
+    </script>
+
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is VelocityNvim?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "VelocityNvim is a fast and modern Neovim distribution that uses native vim.pack instead of external plugin managers. It features eager loading for instant plugin availability, LSP integration, Treesitter syntax highlighting, and fzf-lua fuzzy finding."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What are the system requirements for VelocityNvim?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "VelocityNvim requires Neovim 0.10 or higher, Git, a Nerd Font for icons, Ripgrep for fast searching, and fd-find for file finding. It works on Linux, macOS, and Windows."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do I install VelocityNvim?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Installation is simple: backup your existing Neovim config, clone the VelocityNvim repository to your Neovim config directory, and run the plugin sync command. The whole process takes about 5 minutes."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Does VelocityNvim use lazy loading?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No, VelocityNvim uses eager loading instead of lazy loading. All plugins are loaded at startup, ensuring they are instantly available without any delays during your workflow."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <!-- Preload LCP video (responsive) -->
+    <link rel="preload" as="video" href="assets/media/feature-demo.webm" type="video/webm" media="(min-width: 769px)" fetchpriority="high">
+    <link rel="preload" as="video" href="assets/media/feature-demo-mobile.webm" type="video/webm" media="(max-width: 768px)" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/media/feature-demo-poster.webp" type="image/webp" fetchpriority="high">
+
+    <!-- Preload Material Icons Font -->
+    <link rel="preload" as="font" href="assets/fonts/material-icons/MaterialSymbolsOutlined.woff2?v=2" type="font/woff2" crossorigin>
+
+    <!-- Preload JavaScript Modules (prevents waterfall loading) -->
+    <link rel="modulepreload" href="assets/js/main.js?v=2">
+    <link rel="modulepreload" href="assets/js/fluid-simulation.js">
+    <link rel="modulepreload" href="assets/js/template-loader.js">
+    <link rel="modulepreload" href="assets/js/icons.js">
+
+    <!-- Material Icons (Self-hosted) -->
+    <link rel="stylesheet" href="assets/css/material-icons.css?v=2">
+
+    <!-- Bundled CSS for Performance -->
+    <link rel="stylesheet" href="assets/css/bundle.css?v=2">
+
+    <!-- Inline Script: Load Language Preference Before Render (Prevents FOUC) -->
+    <script>
+        (function() {
+            const savedLang = localStorage.getItem('velocityLang');
+            if (savedLang === 'en') {
+                // Add style tag to hide German and show English immediately
+                const style = document.createElement('style');
+                style.id = 'lang-preload';
+                style.textContent = `
+                    .lang-content.de { display: none !important; }
+                    .lang-content.en { display: block !important; }
+                    .lang-content.en.hero-buttons { display: grid !important; }
+                    .lang-content.en.features { display: grid !important; }
+                    .lang-content.en.features-grid { display: grid !important; }
+                `;
+                document.head.appendChild(style);
+                document.documentElement.lang = 'en';
+                // Update toggle button text on load - show target language (DE since current is EN)
+                document.addEventListener('DOMContentLoaded', function() {
+                    const toggleBtn = document.querySelector('.nav-lang-toggle');
+                    if (toggleBtn) {
+                        toggleBtn.textContent = 'DE';
+                        toggleBtn.setAttribute('data-lang', 'en');
+                    }
+                });
+            }
+        })();
+    </script>
+</head>
+<body>
+    <!-- Fluid Simulation Canvas -->
+    <canvas id="fluid-canvas"></canvas>
+
+    <!-- Minimalist Navigation -->
+    <nav class="sticky-nav">
+        <div class="nav-content">
+            <a href="#top" class="nav-logo">
+                <img src="assets/images/VelocityNvim_Logo_navbar.svg" alt="VelocityNvim - Fast Neovim Distribution" width="40" height="40" loading="eager">
+                <span>VelocityNvim</span>
+            </a>
+            <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li class="lang-content de active"><a href="#features">Features</a></li>
+                <li class="lang-content en"><a href="#features">Features</a></li>
+                <li class="lang-content de active"><a href="docs/requirements.html">Voraussetzungen</a></li>
+                <li class="lang-content en"><a href="docs/requirements.html">Requirements</a></li>
+                <li><a href="docs/installation.html">Installation</a></li>
+                <li class="lang-content de active"><a href="#support">Support</a></li>
+                <li class="lang-content en"><a href="#support">Support</a></li>
+            </ul>
+            <button class="nav-lang-toggle" onclick="toggleLanguage()" data-lang="de" title="Switch language / Sprache wechseln">EN</button>
+        </div>
+    </nav>
+
+    <div class="container" id="top">
+        <header class="header">
+            <h1>VelocityNvim</h1>
+            <p class="subtitle">Native vim.pack Neovim Distribution</p>
+        </header>
+
+        <main class="content">
+            <!-- Hero & Features Section -->
+            <div id="hero-container"></div>
+
+            <!-- Support Section -->
+            <div id="support-container"></div>
+
+            <!-- Links Section -->
+            <div id="links-container"></div>
+        </main>
+
+        <footer id="footer-container"></footer>
+    </div>
+
+    <noscript>
+        <div style="text-align:center;padding:40px;color:#EFFAFF;font-family:sans-serif;">
+            <h2>VelocityNvim</h2>
+            <p>JavaScript wird benötigt, um diese Seite anzuzeigen. / JavaScript is required to view this page.</p>
+            <p><a href="https://github.com/Maik-0000FF/VelocityNvim" style="color:#39FFF2;">GitHub Repository</a></p>
+        </div>
+    </noscript>
+
+    <!-- Modular JavaScript with ES6 Modules -->
+    <script type="module" src="assets/js/main.js?v=2"></script>
+</body>
+</html>
