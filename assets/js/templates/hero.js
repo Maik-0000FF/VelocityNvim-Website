@@ -49,12 +49,12 @@ export const heroTemplate = () => `
                 <div data-stagger="3" class="hero-meta lang-content de active">
                     <span>MIT-lizenziert</span>
                     <span>Linux · macOS · Windows</span>
-                    <span>Neovim ≥ 0.10</span>
+                    <span>Neovim ≥ 0.11</span>
                 </div>
                 <div data-stagger="3" class="hero-meta lang-content en">
                     <span>MIT licensed</span>
                     <span>Linux · macOS · Windows</span>
-                    <span>Neovim ≥ 0.10</span>
+                    <span>Neovim ≥ 0.11</span>
                 </div>
 
                 <div data-stagger="4" class="preview hero-screenshot">
@@ -77,7 +77,7 @@ export const heroTemplate = () => `
 
                 <div data-stagger="5" class="metrics">
                     <div class="metric">
-                        <div class="metric-value" data-count="8">8<span class="unit">core plugins</span></div>
+                        <div class="metric-value" data-count="27">27<span class="unit">plugins</span></div>
                         <div class="metric-label">Eager loaded</div>
                     </div>
                     <div class="metric">
@@ -85,8 +85,8 @@ export const heroTemplate = () => `
                         <div class="metric-label">Plugin manager</div>
                     </div>
                     <div class="metric">
-                        <div class="metric-value" data-count="150" data-prefix="~">~150<span class="unit">ms</span></div>
-                        <div class="metric-label">Cold start</div>
+                        <div class="metric-value" data-count="7">7<span class="unit">servers</span></div>
+                        <div class="metric-label">LSP out-of-box</div>
                     </div>
                     <div class="metric">
                         <div class="metric-value" data-count="100">100<span class="unit">%</span></div>
@@ -112,8 +112,8 @@ export const featuresTemplate = () => `
                     </p>
                     <p>
                         VelocityNvim wählt einen anderen Weg. <strong>Wir lassen Neovim das tun, wofür es gebaut wurde:</strong>
-                        <code class="mono">vim.pack</code> Plugins beim Start initialisieren. Was läuft, läuft. Was du
-                        siehst, ist der echte Editor — keine spekulativen Lade-Strategien.
+                        <code class="mono">vim.pack</code> initialisiert in Neovim 0.11 alle Plugins beim Start. Was läuft, läuft.
+                        Was du siehst, ist der echte Editor — keine spekulativen Lade-Strategien.
                     </p>
                 </div>
             </div>
@@ -129,8 +129,8 @@ export const featuresTemplate = () => `
                     </p>
                     <p>
                         VelocityNvim takes a different route. <strong>We let Neovim do what it was built for:</strong>
-                        <code class="mono">vim.pack</code> initialises plugins at startup. What runs, runs. What you
-                        see is the real editor — no speculative loading strategies.
+                        <code class="mono">vim.pack</code> initialises every plugin at startup on Neovim 0.11. What runs,
+                        runs. What you see is the real editor — no speculative loading strategies.
                     </p>
                 </div>
             </div>
@@ -159,12 +159,12 @@ export const featuresTemplate = () => `
                 <article class="feature-card">
                     <div class="feature-num">02</div>
                     <h3>Native vim.pack</h3>
-                    <p>Verwendet das in Neovim 0.10 eingeführte vim.pack-System. Kein externer Plugin-Manager, keine zusätzliche Abstraktion zwischen dir und dem Editor.</p>
+                    <p>Verwendet das in Neovim 0.11 verfügbare vim.pack-System. Kein externer Plugin-Manager, keine zusätzliche Abstraktion zwischen dir und dem Editor.</p>
                 </article>
                 <article class="feature-card">
                     <div class="feature-num">03</div>
-                    <h3>Moderner LSP-Stack</h3>
-                    <p>nvim-lspconfig, mason.nvim und blink.cmp als Completion-Engine — vorkonfiguriert für die gängigsten Sprachen, ohne Magie zu verstecken.</p>
+                    <h3>Native LSP-API</h3>
+                    <p>Nutzt die moderne <code class="mono">vim.lsp.config</code>-API von Neovim 0.11 — kein nvim-lspconfig, kein mason.nvim. Sieben Sprachserver vorkonfiguriert.</p>
                 </article>
                 <article class="feature-card">
                     <div class="feature-num">04</div>
@@ -193,12 +193,12 @@ export const featuresTemplate = () => `
                 <article class="feature-card">
                     <div class="feature-num">02</div>
                     <h3>Native vim.pack</h3>
-                    <p>Uses the vim.pack system introduced in Neovim 0.10. No external plugin manager, no extra abstraction between you and the editor.</p>
+                    <p>Uses the vim.pack system available in Neovim 0.11. No external plugin manager, no extra abstraction between you and the editor.</p>
                 </article>
                 <article class="feature-card">
                     <div class="feature-num">03</div>
-                    <h3>Modern LSP stack</h3>
-                    <p>nvim-lspconfig, mason.nvim and blink.cmp as completion engine — preconfigured for common languages, without hiding the magic.</p>
+                    <h3>Native LSP API</h3>
+                    <p>Uses Neovim 0.11's modern <code class="mono">vim.lsp.config</code> API — no nvim-lspconfig, no mason.nvim. Seven language servers preconfigured.</p>
                 </article>
                 <article class="feature-card">
                     <div class="feature-num">04</div>
@@ -231,20 +231,28 @@ export const featuresTemplate = () => `
             </div>
 
             <div class="stack-list lang-content de active">
-                <div class="stack-row"><div class="stack-name">vim.pack</div><div class="stack-desc">Nativer Plugin-Loader von Neovim 0.10+</div><div class="stack-tag">Core</div></div>
-                <div class="stack-row"><div class="stack-name">nvim-lspconfig</div><div class="stack-desc">LSP-Server-Konfiguration & Lifecycle</div><div class="stack-tag">LSP</div></div>
-                <div class="stack-row"><div class="stack-name">blink.cmp</div><div class="stack-desc">Performante Completion-Engine in Rust</div><div class="stack-tag">Completion</div></div>
-                <div class="stack-row"><div class="stack-name">nvim-treesitter</div><div class="stack-desc">Inkrementelles Parsing & Syntax-Highlighting</div><div class="stack-tag">Syntax</div></div>
+                <div class="stack-row"><div class="stack-name">vim.pack</div><div class="stack-desc">Nativer Plugin-Loader von Neovim 0.11+</div><div class="stack-tag">Core</div></div>
+                <div class="stack-row"><div class="stack-name">vim.lsp.config</div><div class="stack-desc">Native LSP-Konfiguration — kein nvim-lspconfig nötig</div><div class="stack-tag">LSP</div></div>
+                <div class="stack-row"><div class="stack-name">blink.cmp</div><div class="stack-desc">Completion-Engine mit Rust-Backend für maximale Geschwindigkeit</div><div class="stack-tag">Completion</div></div>
+                <div class="stack-row"><div class="stack-name">nvim-treesitter</div><div class="stack-desc">Inkrementelles Parsing &amp; Syntax-Highlighting</div><div class="stack-tag">Syntax</div></div>
                 <div class="stack-row"><div class="stack-name">fzf-lua</div><div class="stack-desc">Fuzzy-Finder für Files, Buffer und LSP-Symbole</div><div class="stack-tag">Picker</div></div>
-                <div class="stack-row"><div class="stack-name">mason.nvim</div><div class="stack-desc">Installations-Manager für LSPs, Linter, Formatter</div><div class="stack-tag">Tooling</div></div>
+                <div class="stack-row"><div class="stack-name">neo-tree.nvim</div><div class="stack-desc">File-Explorer mit Git-Integration und LSP-File-Operations</div><div class="stack-tag">Explorer</div></div>
+                <div class="stack-row"><div class="stack-name">conform.nvim</div><div class="stack-desc">Asynchroner Formatter — stylua, prettier, shfmt etc.</div><div class="stack-tag">Format</div></div>
+                <div class="stack-row"><div class="stack-name">gitsigns.nvim</div><div class="stack-desc">Inline Git-Indikatoren, Hunks und Blame</div><div class="stack-tag">Git</div></div>
+                <div class="stack-row"><div class="stack-name">lualine.nvim</div><div class="stack-desc">Statusline mit modularer Komponenten-Architektur</div><div class="stack-tag">UI</div></div>
+                <div class="stack-row"><div class="stack-name">tokyonight.nvim</div><div class="stack-desc">Theme-Basis — vollständig per Override anpassbar</div><div class="stack-tag">Theme</div></div>
             </div>
             <div class="stack-list lang-content en">
-                <div class="stack-row"><div class="stack-name">vim.pack</div><div class="stack-desc">Neovim 0.10+ native plugin loader</div><div class="stack-tag">Core</div></div>
-                <div class="stack-row"><div class="stack-name">nvim-lspconfig</div><div class="stack-desc">LSP server configuration &amp; lifecycle</div><div class="stack-tag">LSP</div></div>
-                <div class="stack-row"><div class="stack-name">blink.cmp</div><div class="stack-desc">Fast completion engine written in Rust</div><div class="stack-tag">Completion</div></div>
+                <div class="stack-row"><div class="stack-name">vim.pack</div><div class="stack-desc">Neovim 0.11+ native plugin loader</div><div class="stack-tag">Core</div></div>
+                <div class="stack-row"><div class="stack-name">vim.lsp.config</div><div class="stack-desc">Native LSP configuration — no nvim-lspconfig required</div><div class="stack-tag">LSP</div></div>
+                <div class="stack-row"><div class="stack-name">blink.cmp</div><div class="stack-desc">Completion engine with a Rust backend for maximum speed</div><div class="stack-tag">Completion</div></div>
                 <div class="stack-row"><div class="stack-name">nvim-treesitter</div><div class="stack-desc">Incremental parsing &amp; syntax highlighting</div><div class="stack-tag">Syntax</div></div>
                 <div class="stack-row"><div class="stack-name">fzf-lua</div><div class="stack-desc">Fuzzy finder for files, buffers and LSP symbols</div><div class="stack-tag">Picker</div></div>
-                <div class="stack-row"><div class="stack-name">mason.nvim</div><div class="stack-desc">Install manager for LSPs, linters and formatters</div><div class="stack-tag">Tooling</div></div>
+                <div class="stack-row"><div class="stack-name">neo-tree.nvim</div><div class="stack-desc">File explorer with git integration and LSP file operations</div><div class="stack-tag">Explorer</div></div>
+                <div class="stack-row"><div class="stack-name">conform.nvim</div><div class="stack-desc">Async formatter — stylua, prettier, shfmt and more</div><div class="stack-tag">Format</div></div>
+                <div class="stack-row"><div class="stack-name">gitsigns.nvim</div><div class="stack-desc">Inline git indicators, hunks and blame</div><div class="stack-tag">Git</div></div>
+                <div class="stack-row"><div class="stack-name">lualine.nvim</div><div class="stack-desc">Statusline with modular component architecture</div><div class="stack-tag">UI</div></div>
+                <div class="stack-row"><div class="stack-name">tokyonight.nvim</div><div class="stack-desc">Theme base — fully customisable via override</div><div class="stack-tag">Theme</div></div>
             </div>
 
             <div class="install-section">
