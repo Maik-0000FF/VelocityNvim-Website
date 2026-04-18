@@ -23,11 +23,6 @@ export const supportTemplate = () => `
                     <h3>Bugs melden</h3>
                     <p>Klare Reports beschleunigen Fixes erheblich.</p>
                 </a>
-                <a href="https://github.com/Maik-0000FF/VelocityNvim/fork" class="support-item">
-                    <span data-icon="fork" data-size="22"></span>
-                    <h3>Code beitragen</h3>
-                    <p>Pull Requests sind willkommen.</p>
-                </a>
                 <a href="https://github.com/Maik-0000FF/VelocityNvim/discussions" class="support-item">
                     <span data-icon="chat" data-size="22"></span>
                     <h3>Diskutieren</h3>
@@ -53,11 +48,6 @@ export const supportTemplate = () => `
                     <span data-icon="bug" data-size="22"></span>
                     <h3>Report bugs</h3>
                     <p>Clear reports massively speed up fixes.</p>
-                </a>
-                <a href="https://github.com/Maik-0000FF/VelocityNvim/fork" class="support-item">
-                    <span data-icon="fork" data-size="22"></span>
-                    <h3>Contribute code</h3>
-                    <p>Pull requests are welcome.</p>
                 </a>
                 <a href="https://github.com/Maik-0000FF/VelocityNvim/discussions" class="support-item">
                     <span data-icon="chat" data-size="22"></span>

@@ -956,7 +956,7 @@ p { color: var(--fg-muted); text-wrap: pretty; }
 
 .support-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1px;
     background: var(--line);
     border: 1px solid var(--line);
@@ -1103,25 +1103,35 @@ a.support-item:hover { background: var(--bg-elevated); opacity: 1; }
     max-width: var(--container);
     margin: 0 auto;
     padding: 0 var(--space-3);
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
     align-items: center;
-    justify-content: space-between;
     gap: var(--space-3);
-    flex-wrap: wrap;
 }
+
+.footer-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: var(--text-sm);
+    font-weight: 550;
+    letter-spacing: var(--track-snug);
+    color: var(--fg);
+    transition: color var(--dur) var(--ease);
+}
+.footer-brand:hover { color: var(--accent); }
 
 .footer-logo {
-    width: 28px;
-    height: 28px;
-    opacity: 0.7;
+    width: 24px;
+    height: 24px;
+    opacity: 0.85;
     transition: opacity var(--dur) var(--ease);
 }
-.footer-logo:hover { opacity: 1; }
+.footer-brand:hover .footer-logo { opacity: 1; }
 
-.footer-text {
-    display: flex;
-    align-items: center;
-    gap: var(--space-2);
+.footer-copy {
+    margin: 0;
+    text-align: center;
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     letter-spacing: var(--track-wide);
@@ -1129,8 +1139,20 @@ a.support-item:hover { background: var(--bg-elevated); opacity: 1; }
     color: var(--fg-subtle);
 }
 
-.footer-text p { color: inherit; margin: 0; font-size: inherit; }
-.footer-divider { color: var(--fg-subtle); opacity: 0.5; }
+.footer-links {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--track-wide);
+    text-transform: uppercase;
+    color: var(--fg-subtle);
+}
+.footer-links a { color: var(--fg-subtle); transition: color var(--dur) var(--ease); }
+.footer-links a:hover { color: var(--fg); }
+
+.footer-divider { color: var(--fg-subtle); opacity: 0.45; }
 
 /* --------------------------------------------------------------------------
   16. LANGUAGE TOGGLE
@@ -1416,7 +1438,16 @@ a.support-item:hover {
 
     .metrics { grid-template-columns: 1fr 1fr; }
 
-    .footer-content { flex-direction: column; gap: var(--space-2); text-align: center; }
+    .footer { padding: var(--space-4) 0; margin-top: var(--space-6); }
+    .footer-content {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: var(--space-2);
+        text-align: center;
+    }
+    .footer-brand { font-size: var(--text-sm); }
+    .footer-copy { font-size: 0.7rem; line-height: 1.5; }
+    .footer-links { font-size: 0.7rem; }
 }
 
 /* --------------------------------------------------------------------------
