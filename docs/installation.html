@@ -123,10 +123,16 @@
     <link rel="stylesheet" href="../assets/css/material-icons.css?v=2">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="../assets/css/bundle.css?v=2">
+    <link rel="stylesheet" href="../assets/css/bundle.css?v=3">
 
-    <!-- Inline Script: Load Language Preference Before Render (Prevents FOUC) -->
+    <!-- Inline Script: Apply theme + language before render (prevents FOUC) -->
     <script>
+        (function() {
+            const savedTheme = localStorage.getItem('velocityTheme');
+            const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+            const theme = savedTheme || (prefersLight ? 'light' : 'dark');
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
         (function() {
             const savedLang = localStorage.getItem('velocityLang');
             if (savedLang === 'en') {
@@ -173,7 +179,13 @@
                 <li class="lang-content de active"><a href="installation.html">Installation</a></li>
                 <li class="lang-content en"><a href="installation.html">Installation</a></li>
             </ul>
-            <button class="nav-lang-toggle" onclick="toggleLanguage()" data-lang="de" title="Switch language / Sprache wechseln">EN</button>
+            <div class="nav-actions">
+                <button class="nav-theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" title="Toggle theme">
+                    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+                <button class="nav-lang-toggle" onclick="toggleLanguage()" data-lang="de" title="Switch language / Sprache wechseln">EN</button>
+            </div>
         </div>
     </nav>
 

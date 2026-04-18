@@ -1,18 +1,17 @@
 /**
- * VelocityNvim Landing Page - Main JavaScript
- * Event Handlers, Tab Switching, Language Toggle, Copy Functions
+ * VelocityNvim — Main
+ * Mobile menu, language toggle, copy-to-clipboard, scroll-reveal, auto-hide nav.
  */
 
 import { initializeTemplates } from './template-loader.js';
 
-// ===== Cached DOM References & State =====
 let cachedNavLinks = null;
 let cachedHamburger = null;
 let cachedLang = null;
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-const mobileBreakpoint = window.matchMedia('(max-width: 768px)');
+const mobileBreakpoint = window.matchMedia('(max-width: 640px)');
 
-// ===== Mobile Menu Toggle =====
+// ===== Mobile Menu =====
 function toggleMobileMenu() {
     if (!cachedNavLinks) cachedNavLinks = document.getElementById('navLinks');
     if (!cachedHamburger) cachedHamburger = document.querySelector('.hamburger');
@@ -22,19 +21,13 @@ function toggleMobileMenu() {
     cachedHamburger?.setAttribute('aria-expanded', String(isExpanded));
 }
 
-// Initialize app when DOM is ready
 document.addEventListener('DOMContentLoaded', function() {
-    // Load all templates first, then initialize scroll effects
+    initScrollProgress();
     initializeTemplates(() => {
-        // Initialize scroll hover effects after templates are loaded
-        initScrollHoverEffects();
-        // Initialize parallax effect after templates are loaded
-        initParallaxEffect();
-        // Initialize scroll-reveal entrance animations
         initScrollReveal();
+        initCountUp();
     });
 
-    // Setup nav links close on mobile (use event delegation for better performance)
     const navLinksContainer = document.getElementById('navLinks');
     if (navLinksContainer) {
         cachedNavLinks = navLinksContainer;
@@ -47,346 +40,126 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Load saved language preference (cache for later use)
     cachedLang = localStorage.getItem('velocityLang') || 'de';
-    if (cachedLang === 'en') {
-        switchLanguage('en');
-    }
+    if (cachedLang === 'en') switchLanguage('en');
 
-    // Remove inline language preload styles (JavaScript takes over)
     const preloadStyle = document.getElementById('lang-preload');
-    if (preloadStyle) {
-        preloadStyle.remove();
-    }
+    if (preloadStyle) preloadStyle.remove();
 
-    // Mark that JavaScript has loaded (allows CSS pre-rendering to be disabled)
     document.documentElement.classList.add('js-loaded');
 
-    // Reinitialize scroll hover effects and parallax on window resize
-    let resizeTimer;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function() {
-            initScrollHoverEffects();
-            initParallaxEffect();
-        }, 250);
-    }, { passive: true });
-
-    // Fluid simulation on all devices (replaces floating logos)
-    initFluidSimulation();
-
-    // Initialize auto-hiding navbar on mobile
     initAutoHideNavbar();
 });
 
-// ===== Fluid Simulation =====
-let fluidSimulationInstance = null;
-
-function initFluidSimulation() {
-    // Skip fluid simulation if user prefers reduced motion
-    if (prefersReducedMotion.matches) {
-        return;
-    }
-
-    const canvas = document.getElementById('fluid-canvas');
-    if (!canvas) {
-        console.warn('Fluid simulation canvas not found');
-        return;
-    }
-
-    // Show canvas on all devices
-    canvas.style.display = 'block';
-
-    // Import and initialize
-    import('./fluid-simulation.js').then(module => {
-        fluidSimulationInstance = module.initFluidSimulation(canvas);
-        window.fluidSimulation = fluidSimulationInstance;
-
-        if (!fluidSimulationInstance) {
-            console.warn('Fluid simulation failed to initialize');
-        }
-    });
-}
-
-// ===== Scroll-based Hover Effects for Mobile =====
-let scrollHoverObserver = null;
-let lastBreakpoint = null; // Track if we're on mobile or desktop
-
-function initScrollHoverEffects() {
-    // Read viewport height first (needed for rootMargin calculation)
-    const viewportHeight = window.innerHeight;
-
-    // Determine current breakpoint
-    const currentBreakpoint = mobileBreakpoint.matches ? 'mobile' : 'desktop';
-
-    // Only reinitialize if breakpoint changed (mobile ↔ desktop transition)
-    const breakpointChanged = lastBreakpoint !== currentBreakpoint;
-
-    // If already initialized and breakpoint hasn't changed, skip
-    if (scrollHoverObserver && !breakpointChanged) {
-        return;
-    }
-
-    lastBreakpoint = currentBreakpoint;
-
-    const featureCards = document.querySelectorAll('.feature-card');
-    const supportItems = document.querySelectorAll('.support-item');
-    const heroScreenshot = document.querySelector('.hero-screenshot');
-    const allCards = [...featureCards, ...supportItems];
-
-    if (heroScreenshot) {
-        allCards.push(heroScreenshot);
-    }
-
-    if (allCards.length === 0) {
-        return;
-    }
-
-    // Disconnect existing observer if it exists
-    if (scrollHoverObserver) {
-        scrollHoverObserver.disconnect();
-        scrollHoverObserver = null;
-    }
-
-    // Remove all scroll-hover-active classes (DOM writes after reads)
-    allCards.forEach(card => {
-        card.classList.remove('scroll-hover-active');
-    });
-
-    // Only activate on mobile screens
-    if (currentBreakpoint === 'desktop') {
-        return;
-    }
-
-    // Calculate rootMargin using pre-read viewport dimensions
-    const navbarHeight = 60; // Fixed navbar height on mobile
-    const marginBottom = Math.round(viewportHeight * 0.4);
-    const marginTop = Math.round(viewportHeight * 0.4) + navbarHeight;
-
-    const observerOptions = {
-        root: null,
-        rootMargin: `-${marginTop}px 0px -${marginBottom}px 0px`,
-        threshold: 0.1 // Single threshold for better performance (was [0, 0.25, 0.5, 0.75, 1])
-    };
-
-    scrollHoverObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Add hover class when card is in center zone of viewport
-                entry.target.classList.add('scroll-hover-active');
-            } else {
-                // Remove hover class when scrolled out of center zone
-                entry.target.classList.remove('scroll-hover-active');
-            }
-        });
-    }, observerOptions);
-
-    // Observe all cards (features + support)
-    allCards.forEach(card => {
-        scrollHoverObserver.observe(card);
-    });
-
-}
-
-// ===== Parallax Effect for Hero Screenshot =====
-function initParallaxEffect() {
-    const heroScreenshot = document.querySelector('.hero-screenshot');
-
-    if (!heroScreenshot) {
-        return;
-    }
-
-    // Use matchMedia for reliable breakpoint detection
-    const isMobile = mobileBreakpoint.matches;
-
-    // Parallax effects for both desktop and mobile (throttled with rAF for performance)
-    let parallaxTicking = false;
-
-    // Adjust values for mobile (reduced for iOS Safari performance)
-    const parallaxSpeed = isMobile ? 0.1 : 0.25;
-    const zoomSpeed = isMobile ? 0 : 0.0001; // No zoom on mobile
-    const rotationResetSpeed = isMobile ? 0.02 : 0.02;
-    const fadeSpeed = isMobile ? 0.0006 : 0.001;
-    const blurSpeed = isMobile ? 0 : 0.005; // No blur on mobile (expensive on iOS)
-    const initialRotation = isMobile ? 15 : 23;
-
-    function updateParallax() {
-        const scrollY = window.scrollY;
-        const translateY = -(scrollY * parallaxSpeed);
-        const scale = isMobile ? 1 : 1 + (scrollY * zoomSpeed);
-        const rotationY = Math.max(0, initialRotation - (scrollY * rotationResetSpeed));
-        const translateX = isMobile ? 0 : 2 + (rotationY / 23) * 8;
-        const opacity = Math.max(0, 1 - (scrollY * fadeSpeed));
-
-        if (isMobile) {
-            // Mobile: only opacity fade, no transform effects
-            heroScreenshot.style.opacity = opacity;
-        } else {
-            const blur = scrollY * blurSpeed;
-            heroScreenshot.style.transform = `perspective(1000px) rotateY(${rotationY}deg) translateX(${translateX}%) translateY(${translateY}px) scale(${scale})`;
-            heroScreenshot.style.opacity = opacity;
-            heroScreenshot.style.filter = `blur(${blur}px)`;
-        }
-        parallaxTicking = false;
-    }
-
-    window.addEventListener('scroll', function() {
-        if (!parallaxTicking) {
-            requestAnimationFrame(updateParallax);
-            parallaxTicking = true;
-        }
-    }, { passive: true });
-}
-
-// ===== Tab Switching =====
-function switchTab(tabName, e) {
-    const tabContent = document.getElementById(tabName);
-    if (!tabContent) return;
-
-    const parentSection = tabContent.closest('.install-section');
-
-    // Hide only tab contents within this section
-    const contents = parentSection.querySelectorAll('.tab-content');
-    contents.forEach(content => content.classList.remove('active'));
-
-    // Remove active class from only tabs within this section
-    const tabs = parentSection.querySelectorAll('.tab');
-    tabs.forEach(tab => tab.classList.remove('active'));
-
-    // Show selected tab content
-    tabContent.classList.add('active');
-
-    // Add active class to clicked tab
-    if (e && e.target) {
-        e.target.classList.add('active');
-    }
-}
-
-function switchRequirementsTab(tabName, e) {
-    switchTab(tabName, e);
-}
-
-function switchInstallTab(tabName, e) {
-    switchTab(tabName, e);
-}
-
-// ===== Language Switching =====
+// ===== Language =====
 function switchLanguage(lang) {
-    // Hide all language content
-    const langContents = document.querySelectorAll('.lang-content');
-    langContents.forEach(content => content.classList.remove('active'));
+    document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.lang-content.' + lang).forEach(el => el.classList.add('active'));
 
-    // Show selected language content
-    const selectedContents = document.querySelectorAll('.lang-content.' + lang);
-    selectedContents.forEach(content => content.classList.add('active'));
-
-    // Update toggle button text - show TARGET language (what you switch TO)
     const toggleBtn = document.querySelector('.nav-lang-toggle');
     if (toggleBtn) {
-        const targetLang = lang === 'de' ? 'EN' : 'DE';
-        toggleBtn.textContent = targetLang;
+        toggleBtn.textContent = lang === 'de' ? 'EN' : 'DE';
         toggleBtn.setAttribute('data-lang', lang);
     }
-
-    // Update html lang attribute for accessibility and SEO
     document.documentElement.lang = lang;
-
-    // Save language preference and update cache
     cachedLang = lang;
     localStorage.setItem('velocityLang', lang);
 }
 
 function toggleLanguage() {
-    const newLang = cachedLang === 'de' ? 'en' : 'de';
-    switchLanguage(newLang);
+    switchLanguage(cachedLang === 'de' ? 'en' : 'de');
 }
 
-// ===== Copy to Clipboard Functions =====
-function copyBitcoinAddress(lang) {
-    const address = 'bc1q6gmpgfn4wx2hx2c3njgpep9tl00etma9k7w6d4';
-    const feedback = document.getElementById('copy-feedback-' + lang);
+// ===== Theme =====
+function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('velocityTheme', theme);
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', theme === 'light' ? '#FFFFFF' : '#0A0D14');
+}
 
-    copyToClipboard(address, feedback);
+function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    setTheme(current === 'dark' ? 'light' : 'dark');
+}
+
+// ===== Tab Switching (used on docs pages) =====
+function switchTab(tabName, e) {
+    const tabContent = document.getElementById(tabName);
+    if (!tabContent) return;
+
+    const parentSection = tabContent.closest('.install-section') || tabContent.parentElement;
+    parentSection.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    parentSection.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+
+    tabContent.classList.add('active');
+    if (e && e.target) e.target.classList.add('active');
+}
+
+// ===== Copy to Clipboard =====
+function copyInstallSnippet() {
+    const block = document.querySelector('.install-section .code-block code');
+    const feedback = document.getElementById('copy-feedback-install');
+    if (block) copyToClipboard(block.innerText.trim(), feedback);
 }
 
 function copyOneliner(lang) {
     const onelinerElement = document.getElementById('oneliner-' + lang);
-    const command = onelinerElement?.textContent;
     const feedback = document.getElementById('copy-feedback-oneliner-' + lang);
-
-    if (command) {
-        copyToClipboard(command, feedback);
-    }
+    if (onelinerElement) copyToClipboard(onelinerElement.textContent, feedback);
 }
 
 function copyToClipboard(text, feedbackElement) {
-    // Modern clipboard API
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(text).then(function() {
-            showCopyFeedback(feedbackElement);
-        }).catch(function(err) {
-            console.error('Copy failed:', err);
-            fallbackCopy(text, feedbackElement);
-        });
+    if (navigator.clipboard?.writeText) {
+        navigator.clipboard.writeText(text)
+            .then(() => showCopyFeedback(feedbackElement))
+            .catch(() => fallbackCopy(text, feedbackElement));
     } else {
         fallbackCopy(text, feedbackElement);
     }
 }
 
 function fallbackCopy(text, feedbackElement) {
-    // Fallback for older browsers
     const textarea = document.createElement('textarea');
     textarea.value = text;
     textarea.style.position = 'fixed';
     textarea.style.opacity = '0';
     document.body.appendChild(textarea);
     textarea.select();
-
     try {
         document.execCommand('copy');
         showCopyFeedback(feedbackElement);
     } catch (err) {
-        console.error('Fallback copy failed:', err);
+        console.error('Copy failed:', err);
     }
-
     document.body.removeChild(textarea);
 }
 
-function showCopyFeedback(feedbackElement) {
-    if (!feedbackElement) return;
-
-    feedbackElement.classList.add('show');
-    setTimeout(function() {
-        feedbackElement.classList.remove('show');
-    }, 2000);
+function showCopyFeedback(el) {
+    if (!el) return;
+    el.classList.add('show');
+    setTimeout(() => el.classList.remove('show'), 1600);
 }
 
-// ===== Auto-hiding Navbar on Mobile =====
+// ===== Auto-hide Navbar on Mobile =====
 function initAutoHideNavbar() {
     let lastScrollTop = 0;
     let scrollTimeout;
     const navbar = document.querySelector('.sticky-nav');
-
     if (!navbar) return;
 
     function handleNavbarScroll() {
-        // Only on mobile
         if (!mobileBreakpoint.matches) {
             navbar.classList.remove('nav-hidden');
             return;
         }
-
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
-
-        // Scrolling down & past threshold (100px)
         if (scrollTop > lastScrollTop && scrollTop > 100) {
             navbar.classList.add('nav-hidden');
         } else {
-            // Scrolling up or at top
             navbar.classList.remove('nav-hidden');
         }
-
-        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Prevent negative scroll
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
     }
 
     window.addEventListener('scroll', function() {
@@ -395,73 +168,113 @@ function initAutoHideNavbar() {
     }, { passive: true });
 }
 
+// ===== Scroll Progress Bar =====
+function initScrollProgress() {
+    const bar = document.createElement('div');
+    bar.className = 'scroll-progress';
+    document.body.appendChild(bar);
 
-// ===== Scroll-Reveal Entrance Animations =====
-let scrollRevealObserver = null;
-
-function initScrollReveal() {
-    // Skip all animations if user prefers reduced motion
-    if (prefersReducedMotion.matches) {
-        return;
+    let ticking = false;
+    function update() {
+        const doc = document.documentElement;
+        const scrolled = window.scrollY || doc.scrollTop;
+        const max = (doc.scrollHeight - window.innerHeight);
+        const pct = max > 0 ? (scrolled / max) * 100 : 0;
+        bar.style.width = pct + '%';
+        bar.style.opacity = scrolled > 40 ? '1' : '0';
+        ticking = false;
     }
+    window.addEventListener('scroll', () => {
+        if (!ticking) { requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+    update();
+}
 
-    // Hero entrance: staggered fade-in on page load
-    const heroSubtitles = document.querySelectorAll('.hero-subtitle');
-    const heroButtons = document.querySelectorAll('.hero-buttons');
-    const heroElements = [...heroSubtitles, ...heroButtons];
+// ===== Count-Up on Metrics =====
+function initCountUp() {
+    if (prefersReducedMotion.matches) return;
 
-    heroElements.forEach((el, i) => {
-        el.classList.add('hero-entrance');
-        el.style.transitionDelay = `${i * 100}ms`;
-    });
+    const targets = document.querySelectorAll('.metric-value[data-count]');
+    if (!targets.length) return;
 
-    // Trigger hero entrance after a brief frame to allow CSS to register initial state
-    requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-            heroElements.forEach(el => {
-                el.classList.add('hero-entrance-visible');
-            });
-        });
-    });
-
-    // Scroll-reveal for sections
-    const featuresSections = document.querySelectorAll('.features-section');
-    const donationSections = document.querySelectorAll('.donation-section');
-    const linksContainer = document.getElementById('links-container');
-
-    const revealSections = [...featuresSections, ...donationSections];
-    if (linksContainer) revealSections.push(linksContainer);
-
-    revealSections.forEach(el => {
-        el.classList.add('scroll-reveal');
-    });
-
-    // IntersectionObserver for scroll-triggered reveals
-    scrollRevealObserver = new IntersectionObserver((entries) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('scroll-reveal-visible');
-                // Stop observing after reveal (one-time animation)
-                scrollRevealObserver.unobserve(entry.target);
+                animateCount(entry.target);
+                observer.unobserve(entry.target);
             }
         });
-    }, {
-        root: null,
-        rootMargin: '0px 0px -80px 0px',
-        threshold: 0.1
-    });
+    }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.3 });
 
-    revealSections.forEach(el => {
-        scrollRevealObserver.observe(el);
+    targets.forEach(el => {
+        // Find leading text node (before <span class="unit">)
+        const textNode = Array.from(el.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
+        if (textNode) {
+            const prefix = el.dataset.prefix || '';
+            textNode.nodeValue = prefix + '0';
+        }
+        observer.observe(el);
     });
 }
 
-// ===== Export Functions for Global Access =====
+function animateCount(el) {
+    const target = parseInt(el.dataset.count, 10);
+    if (Number.isNaN(target)) return;
+    const prefix = el.dataset.prefix || '';
+    const duration = 1100;
+    const start = performance.now();
+    const textNode = Array.from(el.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
+    if (!textNode) return;
+
+    function step(now) {
+        const t = Math.min(1, (now - start) / duration);
+        const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+        const value = Math.round(eased * target);
+        textNode.nodeValue = prefix + value;
+        if (t < 1) {
+            requestAnimationFrame(step);
+        } else {
+            el.classList.add('count-done');
+        }
+    }
+    requestAnimationFrame(step);
+}
+
+// ===== Scroll-Reveal =====
+function initScrollReveal() {
+    if (prefersReducedMotion.matches) return;
+
+    // Hero handled separately via [data-stagger] CSS animation
+    const targets = [
+        ...document.querySelectorAll('.philosophy'),
+        ...document.querySelectorAll('.features-section'),
+        ...document.querySelectorAll('.stack-section'),
+        ...document.querySelectorAll('.support-section'),
+        ...document.querySelectorAll('.links-section'),
+    ];
+
+    targets.forEach(el => el.classList.add('scroll-reveal'));
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('scroll-reveal-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+
+    targets.forEach(el => observer.observe(el));
+}
+
+// ===== Globals =====
 window.toggleMobileMenu = toggleMobileMenu;
-window.switchTab = switchTab;
-window.switchRequirementsTab = switchRequirementsTab;
-window.switchInstallTab = switchInstallTab;
 window.switchLanguage = switchLanguage;
 window.toggleLanguage = toggleLanguage;
-window.copyBitcoinAddress = copyBitcoinAddress;
+window.toggleTheme = toggleTheme;
+window.setTheme = setTheme;
+window.switchTab = switchTab;
+window.switchRequirementsTab = switchTab;
+window.switchInstallTab = switchTab;
+window.copyInstallSnippet = copyInstallSnippet;
 window.copyOneliner = copyOneliner;

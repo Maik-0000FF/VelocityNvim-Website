@@ -1,170 +1,270 @@
 /**
- * VelocityNvim Landing Page - Hero & Features Template
+ * VelocityNvim — Hero, Philosophy, Metrics, Features
  */
 
 export const heroTemplate = () => `
-    <div class="hero-section">
-        <!-- German intro -->
-        <p class="hero-subtitle lang-content de active">
-            Moderne, performante Neovim-Konfiguration ohne externe Plugin-Manager
-        </p>
-        <!-- English intro -->
-        <p class="hero-subtitle lang-content en">
-            Modern, high-performance Neovim configuration without external plugin managers
-        </p>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <!-- DE -->
+                <div data-stagger="1" class="lang-content de active">
+                    <span class="eyebrow">v1.0.1 — Native vim.pack</span>
+                    <h1 class="hero-title">
+                        Eine Neovim-Distribution, die <span class="accent">eager loadet</span> — bewusst.
+                    </h1>
+                    <p class="hero-lede">
+                        Kein Plugin-Manager. Kein Lazy Loading. Alle Plugins beim Start verfügbar — für einen
+                        Workflow ohne Verzögerungen, Race Conditions oder versteckte Cache-Bugs.
+                    </p>
+                </div>
+                <!-- EN -->
+                <div data-stagger="1" class="lang-content en">
+                    <span class="eyebrow">v1.0.1 — Native vim.pack</span>
+                    <h1 class="hero-title">
+                        A Neovim distribution that <span class="accent">eager-loads</span> — on purpose.
+                    </h1>
+                    <p class="hero-lede">
+                        No plugin manager. No lazy loading. Every plugin available at startup — for a workflow
+                        without latency, race conditions, or hidden cache bugs.
+                    </p>
+                </div>
 
-        <div class="hero-buttons lang-content de active">
-            <a href="docs/installation.html" class="hero-btn hero-btn-primary">
-                Installieren
-            </a>
-            <a href="https://github.com/Maik-0000FF/VelocityNvim" class="hero-btn hero-btn-secondary">
-                GitHub
-            </a>
-        </div>
-        <div class="hero-buttons lang-content en">
-            <a href="docs/installation.html" class="hero-btn hero-btn-primary">
-                Install
-            </a>
-            <a href="https://github.com/Maik-0000FF/VelocityNvim" class="hero-btn hero-btn-secondary">
-                GitHub
-            </a>
-        </div>
+                <div data-stagger="2" class="hero-buttons lang-content de active">
+                    <a href="docs/installation.html" class="btn btn-primary">
+                        Installieren <span class="btn-arrow">→</span>
+                    </a>
+                    <a href="https://github.com/Maik-0000FF/VelocityNvim" class="btn btn-secondary">
+                        Auf GitHub ansehen
+                    </a>
+                </div>
+                <div data-stagger="2" class="hero-buttons lang-content en">
+                    <a href="docs/installation.html" class="btn btn-primary">
+                        Install <span class="btn-arrow">→</span>
+                    </a>
+                    <a href="https://github.com/Maik-0000FF/VelocityNvim" class="btn btn-secondary">
+                        View on GitHub
+                    </a>
+                </div>
 
-        <div class="hero-screenshot">
-            <video autoplay loop muted playsinline
-                   poster="assets/media/feature-demo-poster.webp"
-                   title="VelocityNvim - Fast Neovim Distribution"
-                   width="1280"
-                   height="720">
-                <!-- Desktop sources (>768px) -->
-                <source src="assets/media/feature-demo.webm" type="video/webm" media="(min-width: 769px)">
-                <source src="assets/media/feature-demo.mp4" type="video/mp4" media="(min-width: 769px)">
-                <!-- Mobile sources (<=768px) -->
-                <source src="assets/media/feature-demo-mobile.webm" type="video/webm" media="(max-width: 768px)">
-                <source src="assets/media/feature-demo-mobile.mp4" type="video/mp4" media="(max-width: 768px)">
-                <!-- Fallback for browsers without media query support -->
-                <source src="assets/media/feature-demo.webm" type="video/webm">
-                <source src="assets/media/feature-demo.mp4" type="video/mp4">
-                VelocityNvim Neovim editor demo showing dark theme with LSP integration
-            </video>
+                <div data-stagger="3" class="hero-meta lang-content de active">
+                    <span>MIT-lizenziert</span>
+                    <span>Linux · macOS · Windows</span>
+                    <span>Neovim ≥ 0.10</span>
+                </div>
+                <div data-stagger="3" class="hero-meta lang-content en">
+                    <span>MIT licensed</span>
+                    <span>Linux · macOS · Windows</span>
+                    <span>Neovim ≥ 0.10</span>
+                </div>
+
+                <div data-stagger="4" class="preview hero-screenshot">
+                    <div class="preview-bar">
+                        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                        <span class="label">~ / nvim · velocitynvim</span>
+                    </div>
+                    <video autoplay loop muted playsinline
+                           poster="assets/media/feature-demo-poster.webp"
+                           title="VelocityNvim — Native vim.pack distribution"
+                           width="1280" height="720">
+                        <source src="assets/media/feature-demo.webm" type="video/webm" media="(min-width: 769px)">
+                        <source src="assets/media/feature-demo.mp4"  type="video/mp4"  media="(min-width: 769px)">
+                        <source src="assets/media/feature-demo-mobile.webm" type="video/webm" media="(max-width: 768px)">
+                        <source src="assets/media/feature-demo-mobile.mp4"  type="video/mp4"  media="(max-width: 768px)">
+                        <source src="assets/media/feature-demo.webm" type="video/webm">
+                        <source src="assets/media/feature-demo.mp4"  type="video/mp4">
+                    </video>
+                </div>
+
+                <div data-stagger="5" class="metrics">
+                    <div class="metric">
+                        <div class="metric-value" data-count="8">8<span class="unit">core plugins</span></div>
+                        <div class="metric-label">Eager loaded</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value" data-count="0">0<span class="unit">deps</span></div>
+                        <div class="metric-label">Plugin manager</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value" data-count="150" data-prefix="~">~150<span class="unit">ms</span></div>
+                        <div class="metric-label">Cold start</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value" data-count="100">100<span class="unit">%</span></div>
+                        <div class="metric-label">Native vim.pack</div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 `;
 
 export const featuresTemplate = () => `
-    <div id="features"></div>
-    <section class="features-section">
-        <!-- German Features -->
-        <div class="features-grid lang-content de active">
-            <div class="feature-card" style="--card-glow-color: #39FFF2;">
-                <span data-icon="rocket" data-color="#39FFF2" data-size="48"></span>
-                <h2>Blitzschnell</h2>
-                <p>Eager Loading - alle Plugins sofort verfügbar für unterbrechungsfreien Workflow</p>
+    <section class="philosophy" id="philosophy">
+        <div class="container">
+            <div class="philosophy-grid lang-content de active">
+                <span class="eyebrow">Philosophie</span>
+                <div>
+                    <h2>Lazy Loading löst ein Problem, das wir nicht haben.</h2>
+                    <p>
+                        Lazy Loading wurde populär, weil Plugin-Manager wie packer.nvim oder lazy.nvim Hunderte von
+                        Plugins gleichzeitig laden mussten. Die Lösung war eine zusätzliche Abstraktionsschicht —
+                        und damit zusätzliche Bugs, längere Stack Traces und ein stetes „Lädt das jetzt?".
+                    </p>
+                    <p>
+                        VelocityNvim wählt einen anderen Weg. <strong>Wir lassen Neovim das tun, wofür es gebaut wurde:</strong>
+                        <code class="mono">vim.pack</code> Plugins beim Start initialisieren. Was läuft, läuft. Was du
+                        siehst, ist der echte Editor — keine spekulativen Lade-Strategien.
+                    </p>
+                </div>
             </div>
 
-            <div class="feature-card" style="--card-glow-color: #33E8E8;">
-                <span data-icon="design" data-color="#33E8E8" data-size="48"></span>
-                <h2>Schöne UI</h2>
-                <p>Moderne UI-Komponenten perfekt aufeinander abgestimmt für ein konsistentes Erscheinungsbild</p>
-            </div>
-
-            <div class="feature-card" style="--card-glow-color: #66CCFF;">
-                <span data-icon="wrench" data-color="#66CCFF" data-size="48"></span>
-                <h2>Hochgradig anpassbar</h2>
-                <p>Volle Kontrolle über deine Config - erweitere, überschreibe oder ersetze jede Komponente</p>
-            </div>
-
-            <div class="feature-card" style="--card-glow-color: #8899FF;">
-                <span data-icon="package" data-color="#8899FF" data-size="48"></span>
-                <h2>Native vim.pack</h2>
-                <p>Verwendet natives vim.pack-System - keine externen Plugin-Manager erforderlich</p>
-            </div>
-
-            <div class="feature-card" style="--card-glow-color: #9966FF;">
-                <img src="assets/images/lua-purple-blue.svg" alt="Lua programming language icon" width="48" height="48" loading="lazy" decoding="async">
-                <h2>Lua-Performance</h2>
-                <p>Native Lua-Integration für maximale Geschwindigkeit und direkten API-Zugriff</p>
-            </div>
-
-            <div class="feature-card" style="--card-glow-color: #BB77FF;">
-                <span data-icon="star" data-color="#BB77FF" data-size="48"></span>
-                <h2>Anpassbares Theme</h2>
-                <p>Professionelles Theme mit vollständiger Farbkontrolle - jeder Aspekt kann überschrieben werden</p>
-            </div>
-
-            <div class="feature-card" style="--card-glow-color: #CC66FF;">
-                <span data-icon="checkmarkSimple" data-color="#CC66FF" data-size="48"></span>
-                <h2>Schlank & Effizient</h2>
-                <p>Fokussierte Konfiguration ohne Ballast - nur die essentiellen Features für maximale Produktivität</p>
-            </div>
-
-            <div class="feature-card" style="--card-glow-color: #DD55FF;">
-                <span data-icon="brain" data-color="#DD55FF" data-size="48"></span>
-                <h2>Moderne Plugins</h2>
-                <p>LSP, Treesitter, fzf-lua, blink.cmp - alles optimiert für maximale Performance</p>
-            </div>
-
-            <div class="feature-card" style="--card-glow-color: #EE44FF;">
-                <span data-icon="coffee" data-color="#EE44FF" data-size="48"></span>
-                <h2>Sofort startklar</h2>
-                <p>Installieren, Neovim öffnen, loslegen - keine stundenlange Konfiguration erforderlich</p>
+            <div class="philosophy-grid lang-content en">
+                <span class="eyebrow">Philosophy</span>
+                <div>
+                    <h2>Lazy loading solves a problem we don't have.</h2>
+                    <p>
+                        Lazy loading became popular because plugin managers like packer.nvim or lazy.nvim had to
+                        bootstrap hundreds of plugins at once. The fix was an extra abstraction layer — and with it
+                        extra bugs, longer stack traces, and a constant "is it loaded yet?".
+                    </p>
+                    <p>
+                        VelocityNvim takes a different route. <strong>We let Neovim do what it was built for:</strong>
+                        <code class="mono">vim.pack</code> initialises plugins at startup. What runs, runs. What you
+                        see is the real editor — no speculative loading strategies.
+                    </p>
+                </div>
             </div>
         </div>
+    </section>
 
-        <!-- English Features -->
-        <div class="features-grid lang-content en">
-            <div class="feature-card" style="--card-glow-color: #39FFF2;">
-                <span data-icon="rocket" data-color="#39FFF2" data-size="48"></span>
-                <h2>Fast by default</h2>
-                <p>Eager loading - all plugins instantly available for uninterrupted workflow</p>
+    <div id="features"></div>
+    <section class="features-section">
+        <div class="container">
+            <div class="section-head lang-content de active">
+                <span class="eyebrow">Features</span>
+                <p>Eine fokussierte Auswahl moderner Tools — sorgfältig integriert, vollständig konfigurierbar.</p>
+            </div>
+            <div class="section-head lang-content en">
+                <span class="eyebrow">Features</span>
+                <p>A focused selection of modern tools — carefully integrated, fully configurable.</p>
             </div>
 
-            <div class="feature-card" style="--card-glow-color: #33E8E8;">
-                <span data-icon="design" data-color="#33E8E8" data-size="48"></span>
-                <h2>Beautiful UI</h2>
-                <p>Modern UI components perfectly coordinated for a consistent appearance</p>
+            <!-- DE -->
+            <div class="features-grid lang-content de active">
+                <article class="feature-card">
+                    <div class="feature-num">01</div>
+                    <h3>Eager Loading</h3>
+                    <p>Alle Plugins werden beim Start initialisiert. Keine Verzögerung beim ersten Tastendruck, keine versteckten Trigger, keine Cache-Inkonsistenzen.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-num">02</div>
+                    <h3>Native vim.pack</h3>
+                    <p>Verwendet das in Neovim 0.10 eingeführte vim.pack-System. Kein externer Plugin-Manager, keine zusätzliche Abstraktion zwischen dir und dem Editor.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-num">03</div>
+                    <h3>Moderner LSP-Stack</h3>
+                    <p>nvim-lspconfig, mason.nvim und blink.cmp als Completion-Engine — vorkonfiguriert für die gängigsten Sprachen, ohne Magie zu verstecken.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-num">04</div>
+                    <h3>Treesitter-Highlighting</h3>
+                    <p>Präzise, syntaxbasierte Hervorhebung statt Regex-Heuristik. Inkrementelles Parsing für reaktionsschnelles Editing auch in großen Dateien.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-num">05</div>
+                    <h3>fzf-lua als Picker</h3>
+                    <p>Native FZF-Bindings für Files, Buffer, Live-Grep und LSP-Symbole. Keine Telescope-Latenz, kein zusätzlicher Lua-Overhead.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-num">06</div>
+                    <h3>Vollständig überschreibbar</h3>
+                    <p>Jede Komponente — Theme, Keymaps, LSP-Konfiguration — ist als reines Lua-Modul exponiert. Kein Spec-Schema, keine Plugin-DSL.</p>
+                </article>
             </div>
 
-            <div class="feature-card" style="--card-glow-color: #66CCFF;">
-                <span data-icon="wrench" data-color="#66CCFF" data-size="48"></span>
-                <h2>Highly customizable</h2>
-                <p>Full control over your config - extend, override or replace any component</p>
+            <!-- EN -->
+            <div class="features-grid lang-content en">
+                <article class="feature-card">
+                    <div class="feature-num">01</div>
+                    <h3>Eager loading</h3>
+                    <p>Every plugin is initialised at startup. No first-keystroke delay, no hidden triggers, no cache inconsistencies.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-num">02</div>
+                    <h3>Native vim.pack</h3>
+                    <p>Uses the vim.pack system introduced in Neovim 0.10. No external plugin manager, no extra abstraction between you and the editor.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-num">03</div>
+                    <h3>Modern LSP stack</h3>
+                    <p>nvim-lspconfig, mason.nvim and blink.cmp as completion engine — preconfigured for common languages, without hiding the magic.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-num">04</div>
+                    <h3>Treesitter highlighting</h3>
+                    <p>Precise, syntax-aware highlighting instead of regex heuristics. Incremental parsing for responsive editing in large files.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-num">05</div>
+                    <h3>fzf-lua picker</h3>
+                    <p>Native FZF bindings for files, buffers, live grep and LSP symbols. No Telescope latency, no extra Lua overhead.</p>
+                </article>
+                <article class="feature-card">
+                    <div class="feature-num">06</div>
+                    <h3>Fully overridable</h3>
+                    <p>Every component — theme, keymaps, LSP configuration — is exposed as plain Lua modules. No spec schema, no plugin DSL.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="stack-section" id="stack">
+        <div class="container">
+            <div class="section-head lang-content de active">
+                <span class="eyebrow">Stack</span>
+                <p>Was unter der Haube läuft — und wofür.</p>
+            </div>
+            <div class="section-head lang-content en">
+                <span class="eyebrow">Stack</span>
+                <p>What runs under the hood — and what it does.</p>
             </div>
 
-            <div class="feature-card" style="--card-glow-color: #8899FF;">
-                <span data-icon="package" data-color="#8899FF" data-size="48"></span>
-                <h2>Native vim.pack</h2>
-                <p>Uses native vim.pack system - no external plugin managers required</p>
+            <div class="stack-list lang-content de active">
+                <div class="stack-row"><div class="stack-name">vim.pack</div><div class="stack-desc">Nativer Plugin-Loader von Neovim 0.10+</div><div class="stack-tag">Core</div></div>
+                <div class="stack-row"><div class="stack-name">nvim-lspconfig</div><div class="stack-desc">LSP-Server-Konfiguration & Lifecycle</div><div class="stack-tag">LSP</div></div>
+                <div class="stack-row"><div class="stack-name">blink.cmp</div><div class="stack-desc">Performante Completion-Engine in Rust</div><div class="stack-tag">Completion</div></div>
+                <div class="stack-row"><div class="stack-name">nvim-treesitter</div><div class="stack-desc">Inkrementelles Parsing & Syntax-Highlighting</div><div class="stack-tag">Syntax</div></div>
+                <div class="stack-row"><div class="stack-name">fzf-lua</div><div class="stack-desc">Fuzzy-Finder für Files, Buffer und LSP-Symbole</div><div class="stack-tag">Picker</div></div>
+                <div class="stack-row"><div class="stack-name">mason.nvim</div><div class="stack-desc">Installations-Manager für LSPs, Linter, Formatter</div><div class="stack-tag">Tooling</div></div>
+            </div>
+            <div class="stack-list lang-content en">
+                <div class="stack-row"><div class="stack-name">vim.pack</div><div class="stack-desc">Neovim 0.10+ native plugin loader</div><div class="stack-tag">Core</div></div>
+                <div class="stack-row"><div class="stack-name">nvim-lspconfig</div><div class="stack-desc">LSP server configuration &amp; lifecycle</div><div class="stack-tag">LSP</div></div>
+                <div class="stack-row"><div class="stack-name">blink.cmp</div><div class="stack-desc">Fast completion engine written in Rust</div><div class="stack-tag">Completion</div></div>
+                <div class="stack-row"><div class="stack-name">nvim-treesitter</div><div class="stack-desc">Incremental parsing &amp; syntax highlighting</div><div class="stack-tag">Syntax</div></div>
+                <div class="stack-row"><div class="stack-name">fzf-lua</div><div class="stack-desc">Fuzzy finder for files, buffers and LSP symbols</div><div class="stack-tag">Picker</div></div>
+                <div class="stack-row"><div class="stack-name">mason.nvim</div><div class="stack-desc">Install manager for LSPs, linters and formatters</div><div class="stack-tag">Tooling</div></div>
             </div>
 
-            <div class="feature-card" style="--card-glow-color: #9966FF;">
-                <img src="assets/images/lua-purple-blue.svg" alt="Lua programming language icon" width="48" height="48" loading="lazy" decoding="async">
-                <h2>Lua Performance</h2>
-                <p>Native Lua integration for maximum speed and direct API access</p>
-            </div>
+            <div class="install-section">
+                <div class="lang-content de active">
+                    <h3>In 30 Sekunden installiert</h3>
+                    <p>Bestehende Konfiguration sichern, Repository klonen, Neovim öffnen.</p>
+                </div>
+                <div class="lang-content en">
+                    <h3>Install in 30 seconds</h3>
+                    <p>Back up your existing config, clone the repository, open Neovim.</p>
+                </div>
 
-            <div class="feature-card" style="--card-glow-color: #BB77FF;">
-                <span data-icon="star" data-color="#BB77FF" data-size="48"></span>
-                <h2>Customizable Theme</h2>
-                <p>Professional theme with complete color control - every aspect can be overridden</p>
-            </div>
+                <pre class="code-block"><code><span class="comment"># 1. Backup existing config</span>
+mv ~/.config/nvim ~/.config/nvim.bak
 
-            <div class="feature-card" style="--card-glow-color: #CC66FF;">
-                <span data-icon="checkmarkSimple" data-color="#CC66FF" data-size="48"></span>
-                <h2>Lean & Efficient</h2>
-                <p>Focused configuration without bloat - only essential features for maximum productivity</p>
-            </div>
+<span class="comment"># 2. Clone VelocityNvim</span>
+git clone https://github.com/Maik-0000FF/VelocityNvim ~/.config/nvim
 
-            <div class="feature-card" style="--card-glow-color: #DD55FF;">
-                <span data-icon="brain" data-color="#DD55FF" data-size="48"></span>
-                <h2>Modern Plugins</h2>
-                <p>LSP, Treesitter, fzf-lua, blink.cmp - all optimized for maximum performance</p>
-            </div>
-
-            <div class="feature-card" style="--card-glow-color: #EE44FF;">
-                <span data-icon="coffee" data-color="#EE44FF" data-size="48"></span>
-                <h2>Ready to Go</h2>
-                <p>Install, open Neovim, start coding - no hours of configuration required</p>
+<span class="comment"># 3. Launch — vim.pack handles the rest</span>
+nvim</code><button class="copy-btn" onclick="copyInstallSnippet()" title="Copy">Copy</button><div id="copy-feedback-install" class="copy-feedback">Copied</div></pre>
             </div>
         </div>
     </section>

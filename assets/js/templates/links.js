@@ -1,65 +1,27 @@
 /**
- * VelocityNvim Landing Page - Links Template
+ * VelocityNvim — Links / Resources
  */
 
 export const linksTemplate = () => `
     <div id="links"></div>
-    <h2 class="lang-content de active">Links</h2>
-    <h2 class="lang-content en">Links</h2>
+    <section class="links-section">
+        <div class="container">
+            <h2 class="lang-content de active">Ressourcen</h2>
+            <h2 class="lang-content en">Resources</h2>
 
-    <!-- German Links -->
-    <ul class="links lang-content de active">
-        <li>
-            <a href="https://github.com/Maik-0000FF/VelocityNvim">
-                <span data-icon="package" data-size="24"></span>
-                GitHub Repository
-            </a>
-        </li>
-        <li>
-            <a href="https://github.com/Maik-0000FF/VelocityNvim/blob/main/README.md">
-                <span data-icon="book" data-size="24"></span>
-                Dokumentation
-            </a>
-        </li>
-        <li>
-            <a href="https://github.com/Maik-0000FF/VelocityNvim/issues">
-                <span data-icon="bug" data-size="24"></span>
-                Probleme & Unterstützung
-            </a>
-        </li>
-        <li>
-            <a href="https://github.com/Maik-0000FF/VelocityNvim/discussions">
-                <span data-icon="chat" data-size="24"></span>
-                Diskussionen
-            </a>
-        </li>
-    </ul>
+            <ul class="links lang-content de active">
+                <li><a href="https://github.com/Maik-0000FF/VelocityNvim">GitHub Repository</a></li>
+                <li><a href="https://github.com/Maik-0000FF/VelocityNvim/blob/main/README.md">Dokumentation</a></li>
+                <li><a href="https://github.com/Maik-0000FF/VelocityNvim/issues">Issues &amp; Support</a></li>
+                <li><a href="https://github.com/Maik-0000FF/VelocityNvim/discussions">Diskussionen</a></li>
+            </ul>
 
-    <!-- English Links -->
-    <ul class="links lang-content en">
-        <li>
-            <a href="https://github.com/Maik-0000FF/VelocityNvim">
-                <span data-icon="package" data-size="24"></span>
-                GitHub Repository
-            </a>
-        </li>
-        <li>
-            <a href="https://github.com/Maik-0000FF/VelocityNvim/blob/main/README.md">
-                <span data-icon="book" data-size="24"></span>
-                Documentation
-            </a>
-        </li>
-        <li>
-            <a href="https://github.com/Maik-0000FF/VelocityNvim/issues">
-                <span data-icon="bug" data-size="24"></span>
-                Issues & Support
-            </a>
-        </li>
-        <li>
-            <a href="https://github.com/Maik-0000FF/VelocityNvim/discussions">
-                <span data-icon="chat" data-size="24"></span>
-                Discussions
-            </a>
-        </li>
-    </ul>
+            <ul class="links lang-content en">
+                <li><a href="https://github.com/Maik-0000FF/VelocityNvim">GitHub Repository</a></li>
+                <li><a href="https://github.com/Maik-0000FF/VelocityNvim/blob/main/README.md">Documentation</a></li>
+                <li><a href="https://github.com/Maik-0000FF/VelocityNvim/issues">Issues &amp; Support</a></li>
+                <li><a href="https://github.com/Maik-0000FF/VelocityNvim/discussions">Discussions</a></li>
+            </ul>
+        </div>
+    </section>
 `;
