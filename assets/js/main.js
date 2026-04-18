@@ -143,28 +143,68 @@ function showCopyFeedback(el) {
 
 // ===== Auto-hide Navbar on Mobile =====
 function initAutoHideNavbar() {
-    let lastScrollTop = 0;
-    let scrollTimeout;
     const navbar = document.querySelector('.sticky-nav');
     if (!navbar) return;
 
-    function handleNavbarScroll() {
+    const SHOW_NEAR_TOP = 100;   // always visible near page top (px)
+    const DELTA_HIDE    = 24;    // require this much downward delta to hide
+    const DELTA_SHOW    = 48;    // require this much upward delta to re-show
+    const IGNORE_DELTA  = 4;     // ignore scrolls smaller than this (jitter)
+
+    let lastScrollTop = window.scrollY;
+    let lastDirectionAnchor = lastScrollTop;
+    let lastDirection = 0; // -1 up, +1 down, 0 none
+    let ticking = false;
+
+    function update() {
+        ticking = false;
+
         if (!mobileBreakpoint.matches) {
             navbar.classList.remove('nav-hidden');
             return;
         }
-        const scrollTop = window.scrollY || document.documentElement.scrollTop;
-        if (scrollTop > lastScrollTop && scrollTop > 100) {
+
+        const scrollTop = window.scrollY;
+        const delta = scrollTop - lastScrollTop;
+
+        // Always show near top
+        if (scrollTop < SHOW_NEAR_TOP) {
+            navbar.classList.remove('nav-hidden');
+            lastScrollTop = scrollTop;
+            lastDirectionAnchor = scrollTop;
+            lastDirection = 0;
+            return;
+        }
+
+        // Ignore micro-jitter (iOS bounce, layout shifts on section reveal)
+        if (Math.abs(delta) < IGNORE_DELTA) return;
+
+        const direction = delta > 0 ? 1 : -1;
+
+        // Direction change: reset the anchor so we measure from the turning point
+        if (direction !== lastDirection) {
+            lastDirectionAnchor = scrollTop;
+            lastDirection = direction;
+            lastScrollTop = scrollTop;
+            return;
+        }
+
+        const distanceInDirection = Math.abs(scrollTop - lastDirectionAnchor);
+
+        if (direction > 0 && distanceInDirection >= DELTA_HIDE) {
             navbar.classList.add('nav-hidden');
-        } else {
+        } else if (direction < 0 && distanceInDirection >= DELTA_SHOW) {
             navbar.classList.remove('nav-hidden');
         }
-        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+
+        lastScrollTop = scrollTop;
     }
 
-    window.addEventListener('scroll', function() {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(handleNavbarScroll, 10);
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(update);
+            ticking = true;
+        }
     }, { passive: true });
 }
 

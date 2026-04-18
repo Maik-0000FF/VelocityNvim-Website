@@ -48,12 +48,12 @@ export const heroTemplate = () => `
 
                 <div data-stagger="3" class="hero-meta lang-content de active">
                     <span>MIT-lizenziert</span>
-                    <span>Linux · macOS · Windows</span>
+                    <span>Linux · macOS</span>
                     <span>Neovim ≥ 0.11</span>
                 </div>
                 <div data-stagger="3" class="hero-meta lang-content en">
                     <span>MIT licensed</span>
-                    <span>Linux · macOS · Windows</span>
+                    <span>Linux · macOS</span>
                     <span>Neovim ≥ 0.11</span>
                 </div>
 
