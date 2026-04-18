@@ -1379,8 +1379,8 @@ a.support-item:hover {
     .philosophy-grid,
     .section-head { grid-template-columns: 1fr; gap: var(--space-3); align-items: start; }
 
-    .features-grid,
-    .support-grid { grid-template-columns: repeat(2, 1fr); }
+    .features-grid { grid-template-columns: repeat(2, 1fr); }
+    .support-grid { grid-template-columns: repeat(3, 1fr); }
 
     .metrics { grid-template-columns: repeat(2, 1fr); }
     .metric:nth-child(2n) { border-right: none; }
