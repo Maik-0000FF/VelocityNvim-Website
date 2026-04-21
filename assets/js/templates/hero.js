@@ -62,7 +62,7 @@ export const heroTemplate = () => `
                         <span class="dot"></span><span class="dot"></span><span class="dot"></span>
                         <span class="label">~ / nvim · velocitynvim</span>
                     </div>
-                    <video autoplay loop muted playsinline
+                    <video autoplay loop muted playsinline preload="auto" fetchpriority="high"
                            poster="assets/media/feature-demo-poster.webp"
                            title="VelocityNvim — Native vim.pack distribution"
                            width="1280" height="720">
