@@ -540,6 +540,18 @@ p { color: var(--fg-muted); text-wrap: pretty; }
     background: var(--accent);
     opacity: 0.7;
 }
+.hero-meta .hero-meta-required {
+    color: var(--fg);
+    padding: 4px 10px;
+    border: 1px solid var(--accent-line);
+    background: var(--accent-soft);
+    border-radius: 999px;
+}
+.hero-meta .hero-meta-required::before {
+    background: var(--accent);
+    opacity: 1;
+    box-shadow: 0 0 0 3px var(--accent-soft);
+}
 
 /* --------------------------------------------------------------------------
    8. PREVIEW (terminal / video)
@@ -846,6 +858,39 @@ p { color: var(--fg-muted); text-wrap: pretty; }
     margin-top: var(--space-5);
     border-top: 1px solid var(--line);
     padding-top: var(--space-6);
+}
+
+/* Version requirement callout — used at top of Requirements & Installation pages */
+.version-callout {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+    margin: 0 0 var(--space-5);
+    padding: var(--space-3) var(--space-4);
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-line);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius);
+    color: var(--fg);
+    font-size: var(--text-sm);
+    line-height: 1.55;
+}
+.version-callout-icon {
+    flex: 0 0 auto;
+    color: var(--accent);
+    display: inline-flex;
+    align-items: center;
+    margin-top: 1px;
+}
+.version-callout-icon svg { display: block; }
+.version-callout-body { flex: 1 1 auto; }
+.version-callout-body strong { color: var(--fg); }
+.version-callout-body code.mono {
+    background: var(--bg-subtle);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 0 0.35em;
+    font-size: 0.92em;
 }
 
 .install-section h3 {

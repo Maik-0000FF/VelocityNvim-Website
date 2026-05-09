@@ -7,6 +7,16 @@ export const installationTemplate = () => `
 
     <!-- German Installation -->
     <div class="install-section lang-content de active">
+        <aside class="version-callout" role="note" aria-label="Versionsanforderung">
+            <div class="version-callout-icon" aria-hidden="true"><span data-icon="alertOrange" data-color="currentColor" data-size="22"></span></div>
+            <div class="version-callout-body">
+                <strong>Vor der Installation: Neovim 0.12 prüfen.</strong>
+                VelocityNvim funktioniert nur mit Neovim&nbsp;0.12 vollständig. Frühere Versionen
+                (auch 0.11) sind nicht unterstützt. Prüfe deine Version mit
+                <code class="mono">nvim --version</code> — und aktualisiere sie, bevor du fortfährst.
+            </div>
+        </aside>
+
         <div class="tabs">
             <button class="tab active" onclick="switchInstallTab('standalone', event)">Standalone Installation</button>
             <button class="tab" onclick="switchInstallTab('parallel', event)">Parallel Installation</button>
@@ -65,6 +75,16 @@ source ~/.bashrc</code>
 
     <!-- English Installation -->
     <div class="install-section lang-content en">
+        <aside class="version-callout" role="note" aria-label="Version requirement">
+            <div class="version-callout-icon" aria-hidden="true"><span data-icon="alertOrange" data-color="currentColor" data-size="22"></span></div>
+            <div class="version-callout-body">
+                <strong>Before installing: verify Neovim 0.12.</strong>
+                VelocityNvim only works correctly with Neovim&nbsp;0.12. Earlier versions
+                (including 0.11) are not supported. Check your version with
+                <code class="mono">nvim --version</code> — and upgrade before continuing.
+            </div>
+        </aside>
+
         <div class="tabs">
             <button class="tab active" onclick="switchInstallTab('standalone-en', event)">Standalone Installation</button>
             <button class="tab" onclick="switchInstallTab('parallel-en', event)">Parallel Installation</button>

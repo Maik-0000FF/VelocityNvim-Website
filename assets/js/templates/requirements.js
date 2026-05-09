@@ -8,6 +8,17 @@ export const requirementsTemplate = () => `
 
     <!-- German System Requirements -->
     <div class="install-section lang-content de active">
+        <aside class="version-callout" role="note" aria-label="Versionsanforderung">
+            <div class="version-callout-icon" aria-hidden="true"><span data-icon="alertOrange" data-color="currentColor" data-size="22"></span></div>
+            <div class="version-callout-body">
+                <strong>Neovim 0.12 erforderlich.</strong>
+                VelocityNvim funktioniert nur mit Neovim&nbsp;0.12 korrekt. Ältere Versionen
+                (inklusive 0.11) sind nicht unterstützt — <code class="mono">vim.pack</code> und
+                <code class="mono">vim.lsp.config</code> verhalten sich dort abweichend.
+                Prüfe deine Version mit <code class="mono">nvim --version</code>.
+            </div>
+        </aside>
+
         <div class="tabs">
             <button class="tab active" onclick="switchRequirementsTab('verify-requirements', event)">Verifikation</button>
             <button class="tab" onclick="switchRequirementsTab('arch-requirements', event)">Arch Linux</button>
@@ -42,6 +53,17 @@ export const requirementsTemplate = () => `
 
     <!-- English System Requirements -->
     <div class="install-section lang-content en">
+        <aside class="version-callout" role="note" aria-label="Version requirement">
+            <div class="version-callout-icon" aria-hidden="true"><span data-icon="alertOrange" data-color="currentColor" data-size="22"></span></div>
+            <div class="version-callout-body">
+                <strong>Neovim 0.12 required.</strong>
+                VelocityNvim only works correctly with Neovim&nbsp;0.12. Older versions
+                (including 0.11) are not supported — <code class="mono">vim.pack</code> and
+                <code class="mono">vim.lsp.config</code> behave differently there.
+                Check your version with <code class="mono">nvim --version</code>.
+            </div>
+        </aside>
+
         <div class="tabs">
             <button class="tab active" onclick="switchRequirementsTab('verify-requirements-en', event)">Verification</button>
             <button class="tab" onclick="switchRequirementsTab('arch-requirements-en', event)">Arch Linux</button>
@@ -66,7 +88,7 @@ function getArchRequirements() {
                 <code>sudo pacman -S neovim git gcc base-devel</code>
             </div>
             <ul style="font-size: 0.9em; color: #EFFAFF;">
-                <li><strong>neovim</strong> - Editor-Engine (>= 0.11.0)</li>
+                <li><strong>neovim</strong> - Editor-Engine (<strong>>= 0.12.0 erforderlich</strong>)</li>
                 <li><strong>git</strong> - Versionskontrolle für Plugin-Installation</li>
                 <li><strong>gcc</strong> - C-Compiler für Treesitter-Parser</li>
                 <li><strong>base-devel</strong> - Build-Tools (make, autoconf, etc.)</li>
@@ -177,7 +199,7 @@ function getMacOSRequirements() {
                 <code>brew install neovim git gcc</code>
             </div>
             <ul style="font-size: 0.9em; color: #EFFAFF;">
-                <li><strong>neovim</strong> - Editor-Engine (>= 0.11.0)</li>
+                <li><strong>neovim</strong> - Editor-Engine (<strong>>= 0.12.0 erforderlich</strong>)</li>
                 <li><strong>git</strong> - Versionskontrolle</li>
                 <li><strong>gcc</strong> - C-Compiler für Treesitter</li>
             </ul>
@@ -266,7 +288,7 @@ function getArchRequirementsEN() {
                 <code>sudo pacman -S neovim git gcc base-devel</code>
             </div>
             <ul style="font-size: 0.9em; color: #EFFAFF;">
-                <li><strong>neovim</strong> - Editor engine (>= 0.11.0)</li>
+                <li><strong>neovim</strong> - Editor engine (<strong>>= 0.12.0 required</strong>)</li>
                 <li><strong>git</strong> - Version control for plugin installation</li>
                 <li><strong>gcc</strong> - C compiler for Treesitter parsers</li>
                 <li><strong>base-devel</strong> - Build tools (make, autoconf, etc.)</li>

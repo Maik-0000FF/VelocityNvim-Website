@@ -49,12 +49,12 @@ export const heroTemplate = () => `
                 <div data-stagger="3" class="hero-meta lang-content de active">
                     <span>MIT-lizenziert</span>
                     <span>Linux · macOS</span>
-                    <span>Neovim ≥ 0.11</span>
+                    <span class="hero-meta-required" title="VelocityNvim setzt Neovim 0.12 voraus">Neovim 0.12 erforderlich</span>
                 </div>
                 <div data-stagger="3" class="hero-meta lang-content en">
                     <span>MIT licensed</span>
                     <span>Linux · macOS</span>
-                    <span>Neovim ≥ 0.11</span>
+                    <span class="hero-meta-required" title="VelocityNvim requires Neovim 0.12">Neovim 0.12 required</span>
                 </div>
 
                 <div data-stagger="4" class="preview hero-screenshot">
@@ -112,7 +112,7 @@ export const featuresTemplate = () => `
                     </p>
                     <p>
                         VelocityNvim wählt einen anderen Weg. <strong>Wir lassen Neovim das tun, wofür es gebaut wurde:</strong>
-                        <code class="mono">vim.pack</code> initialisiert in Neovim 0.11 alle Plugins beim Start. Was läuft, läuft.
+                        <code class="mono">vim.pack</code> initialisiert ab Neovim 0.12 alle Plugins beim Start. Was läuft, läuft.
                         Was du siehst, ist der echte Editor — keine spekulativen Lade-Strategien.
                     </p>
                 </div>
@@ -129,7 +129,7 @@ export const featuresTemplate = () => `
                     </p>
                     <p>
                         VelocityNvim takes a different route. <strong>We let Neovim do what it was built for:</strong>
-                        <code class="mono">vim.pack</code> initialises every plugin at startup on Neovim 0.11. What runs,
+                        <code class="mono">vim.pack</code> initialises every plugin at startup on Neovim 0.12. What runs,
                         runs. What you see is the real editor — no speculative loading strategies.
                     </p>
                 </div>
@@ -159,12 +159,12 @@ export const featuresTemplate = () => `
                 <article class="feature-card">
                     <div class="feature-num">02</div>
                     <h3>Native vim.pack</h3>
-                    <p>Verwendet das in Neovim 0.11 verfügbare vim.pack-System. Kein externer Plugin-Manager, keine zusätzliche Abstraktion zwischen dir und dem Editor.</p>
+                    <p>Verwendet das ab Neovim 0.12 stabilisierte vim.pack-System. Kein externer Plugin-Manager, keine zusätzliche Abstraktion zwischen dir und dem Editor.</p>
                 </article>
                 <article class="feature-card">
                     <div class="feature-num">03</div>
                     <h3>Native LSP-API</h3>
-                    <p>Nutzt die moderne <code class="mono">vim.lsp.config</code>-API von Neovim 0.11 — kein nvim-lspconfig, kein mason.nvim. Sieben Sprachserver vorkonfiguriert.</p>
+                    <p>Nutzt die moderne <code class="mono">vim.lsp.config</code>-API von Neovim 0.12 — kein nvim-lspconfig, kein mason.nvim. Sieben Sprachserver vorkonfiguriert.</p>
                 </article>
                 <article class="feature-card">
                     <div class="feature-num">04</div>
@@ -193,12 +193,12 @@ export const featuresTemplate = () => `
                 <article class="feature-card">
                     <div class="feature-num">02</div>
                     <h3>Native vim.pack</h3>
-                    <p>Uses the vim.pack system available in Neovim 0.11. No external plugin manager, no extra abstraction between you and the editor.</p>
+                    <p>Uses the vim.pack system stabilised in Neovim 0.12. No external plugin manager, no extra abstraction between you and the editor.</p>
                 </article>
                 <article class="feature-card">
                     <div class="feature-num">03</div>
                     <h3>Native LSP API</h3>
-                    <p>Uses Neovim 0.11's modern <code class="mono">vim.lsp.config</code> API — no nvim-lspconfig, no mason.nvim. Seven language servers preconfigured.</p>
+                    <p>Uses Neovim 0.12's modern <code class="mono">vim.lsp.config</code> API — no nvim-lspconfig, no mason.nvim. Seven language servers preconfigured.</p>
                 </article>
                 <article class="feature-card">
                     <div class="feature-num">04</div>
@@ -231,7 +231,7 @@ export const featuresTemplate = () => `
             </div>
 
             <div class="stack-list lang-content de active">
-                <div class="stack-row"><div class="stack-name">vim.pack</div><div class="stack-desc">Nativer Plugin-Loader von Neovim 0.11+</div><div class="stack-tag">Core</div></div>
+                <div class="stack-row"><div class="stack-name">vim.pack</div><div class="stack-desc">Nativer Plugin-Loader — <strong>setzt Neovim 0.12 voraus</strong></div><div class="stack-tag">Core</div></div>
                 <div class="stack-row"><div class="stack-name">vim.lsp.config</div><div class="stack-desc">Native LSP-Konfiguration — kein nvim-lspconfig nötig</div><div class="stack-tag">LSP</div></div>
                 <div class="stack-row"><div class="stack-name">blink.cmp</div><div class="stack-desc">Completion-Engine mit Rust-Backend für maximale Geschwindigkeit</div><div class="stack-tag">Completion</div></div>
                 <div class="stack-row"><div class="stack-name">nvim-treesitter</div><div class="stack-desc">Inkrementelles Parsing &amp; Syntax-Highlighting</div><div class="stack-tag">Syntax</div></div>
@@ -243,7 +243,7 @@ export const featuresTemplate = () => `
                 <div class="stack-row"><div class="stack-name">tokyonight.nvim</div><div class="stack-desc">Theme-Basis — vollständig per Override anpassbar</div><div class="stack-tag">Theme</div></div>
             </div>
             <div class="stack-list lang-content en">
-                <div class="stack-row"><div class="stack-name">vim.pack</div><div class="stack-desc">Neovim 0.11+ native plugin loader</div><div class="stack-tag">Core</div></div>
+                <div class="stack-row"><div class="stack-name">vim.pack</div><div class="stack-desc">Native plugin loader — <strong>requires Neovim 0.12</strong></div><div class="stack-tag">Core</div></div>
                 <div class="stack-row"><div class="stack-name">vim.lsp.config</div><div class="stack-desc">Native LSP configuration — no nvim-lspconfig required</div><div class="stack-tag">LSP</div></div>
                 <div class="stack-row"><div class="stack-name">blink.cmp</div><div class="stack-desc">Completion engine with a Rust backend for maximum speed</div><div class="stack-tag">Completion</div></div>
                 <div class="stack-row"><div class="stack-name">nvim-treesitter</div><div class="stack-desc">Incremental parsing &amp; syntax highlighting</div><div class="stack-tag">Syntax</div></div>
